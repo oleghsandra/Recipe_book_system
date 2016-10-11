@@ -1,0 +1,53 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace RecipeBookSystem.DAL.Concrete.SQL
+{
+    public static class DataRecordExtensions
+    {
+        /// <summary>
+        /// Get value of specific column from data record
+        /// </summary>
+        /// <typeparam name="T">Type of column</typeparam>
+        /// <param name="record">Data record</param>
+        /// <param name="columnName">Column name</param>
+        /// <returns>
+        /// Returns value of column. 
+        /// If value is null - returns default value for specified type.
+        /// </returns>
+        public static T Get<T>(this IDataRecord record, string columnName)
+        {
+            if (HasColumn(record, columnName))
+            {
+                var result = record[columnName] is DBNull
+                ? default(T)
+                : (T)(record[columnName]);
+
+                return result;
+            }
+            return default(T);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <param name="columnName"></param>
+        /// <returns>Returns true if column is existed in record, otherwise - false</returns>
+        private static bool HasColumn(IDataRecord record, string columnName)
+        {
+            for (int i = 0; i < record.FieldCount; i++)
+            {
+                if (string.Equals(record.GetName(i), columnName, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+}

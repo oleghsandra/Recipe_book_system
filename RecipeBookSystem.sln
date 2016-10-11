@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBookSystem.Model", "RecipeBookSystem.Model\RecipeBookSystem.Model.csproj", "{284717BB-A680-432D-A9C2-CEEE5B20A522}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RecipeBookSystem.SqlQueries", "RecipeBookSystem.SqlQueries", "{58DDECC9-3DE6-4E03-85F9-0FDA6D3B919C}"
+	ProjectSection(SolutionItems) = preProject
+		Create.sql = Create.sql
+		Delete.sql = Delete.sql
+		Insert.sql = Insert.sql
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBookSystem.DAL", "RecipeBookSystem.DAL\RecipeBookSystem.DAL.csproj", "{F2C33962-1787-4CDD-8C25-815A7DE0E457}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBookSystem.BL", "RecipeBookSystem.BL\RecipeBookSystem.BL.csproj", "{DF9E2456-F79B-426C-875B-F5FA85DC67E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBookSystem.UI", "RecipeBookSystem.UI\RecipeBookSystem.UI.csproj", "{DF45D3D0-C667-4480-9D6D-A3FF9157BCF1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{284717BB-A680-432D-A9C2-CEEE5B20A522}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{284717BB-A680-432D-A9C2-CEEE5B20A522}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{284717BB-A680-432D-A9C2-CEEE5B20A522}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{284717BB-A680-432D-A9C2-CEEE5B20A522}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2C33962-1787-4CDD-8C25-815A7DE0E457}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2C33962-1787-4CDD-8C25-815A7DE0E457}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2C33962-1787-4CDD-8C25-815A7DE0E457}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2C33962-1787-4CDD-8C25-815A7DE0E457}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF9E2456-F79B-426C-875B-F5FA85DC67E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF9E2456-F79B-426C-875B-F5FA85DC67E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF9E2456-F79B-426C-875B-F5FA85DC67E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF9E2456-F79B-426C-875B-F5FA85DC67E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF45D3D0-C667-4480-9D6D-A3FF9157BCF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF45D3D0-C667-4480-9D6D-A3FF9157BCF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF45D3D0-C667-4480-9D6D-A3FF9157BCF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF45D3D0-C667-4480-9D6D-A3FF9157BCF1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
