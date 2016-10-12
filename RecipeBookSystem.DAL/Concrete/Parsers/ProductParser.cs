@@ -12,6 +12,7 @@ namespace RecipeBookSystem.DAL.Concrete.Parsers
 
             model.Id = reader.Get<int>(ColumnNames.ProductId);
             model.Proteins = reader.Get<float>(ColumnNames.Proteins);
+            model.productTypeId = reader.Get<int>(ColumnNames.ProductTypeId);
             model.Fats = reader.Get<float>(ColumnNames.Fats);
             model.Carbohydrates = reader.Get<float>(ColumnNames.Carbohydrates);
             model.ProductTypeName = reader.Get<string>(ColumnNames.ProductTypeName);

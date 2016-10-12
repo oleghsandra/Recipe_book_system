@@ -63,6 +63,9 @@ IF OBJECT_ID('spProduct_AddNew') IS NOT NULL
 	DROP PROCEDURE spProduct_AddNew
 GO
 
+IF OBJECT_ID('spProduct_SearchByName') IS NOT NULL 
+	DROP PROCEDURE spProduct_SearchByName
+GO
 
 IF OBJECT_ID('spProduct_Delete') IS NOT NULL 
 	DROP PROCEDURE spProduct_Delete

@@ -2,6 +2,7 @@
 {
     class ProductsGridOptions
     {
+        public string searchedProductName { get; set; }
         public int ItemsCount { get; set; }
         public int PageNumber { get; set; }
         public string SortColumnName { get; set; }

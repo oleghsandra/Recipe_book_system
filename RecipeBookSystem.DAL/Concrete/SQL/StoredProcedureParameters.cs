@@ -7,6 +7,8 @@
 
         //Paramerets for getting product stored procedure
         public const string ProductId = ColumnNames.ProductId;
+        public const string UpdateProductId = "UpdateProductId";
+        public const string ProductTypeId = "ProductTypeId";
         public const string Proteins = ColumnNames.Proteins;
         public const string Fats = ColumnNames.Fats;
         public const string Carbohydrates = ColumnNames.Carbohydrates;

@@ -13,7 +13,9 @@ namespace RecipeBookSystem.DAL.Concrete.SQL
 
         public const string spAddProduct = "[dbo].[spProduct_AddNew]";
         public const string spGetProduct = "[dbo].[spProduct_Get]";
+        public const string spUpdateProduct = "[dbo].[spProduct_Update]";
         public const string spGetProductById = "[dbo].[sp_Product_GetById]";
+        public const string spSearchProductByName = "[dbo].[spProduct_SearchByName]";
         public const string spDeleteProduct = "[dbo].[spProduct_Delete]";
 
         public const string spAddDish = "[dbo].[spDish_Add]";

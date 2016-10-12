@@ -33,5 +33,35 @@ namespace RecipeBookSystem.BL.ModelProviders
         {
             _productRepository.DeleteProduct(productId);
         }
+
+        public void UpdateProduct(
+            int updateProductId,
+            string name,
+            int productTypeId,
+            float proteins,
+            float fats,
+            float carbohydrates,
+            string smallPhotoLink)
+        {
+            _productRepository.UpdateProduct(
+                updateProductId,
+                name,
+                productTypeId,
+                proteins,
+                fats,
+                carbohydrates,
+                smallPhotoLink);
+        }
+
+        public void AddProduct(ProductModel newProduct)
+        { 
+            _productRepository.AddProduct(newProduct);
+        }
+
+        public IEnumerable<ProductModel> SearchProductByName(string name)
+        {
+            return _productRepository.SearchProductByName(name);
+        }
+
     }
 }

@@ -14,7 +14,7 @@ namespace RecipeBookSystem.BL.Helpers
             _cloud = new CloudHelper();
         }
 
-        public string AddImageFromComputer(int width, int height)
+        public Bitmap GetImageFromComputer()
         {
             var openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF";
@@ -22,16 +22,21 @@ namespace RecipeBookSystem.BL.Helpers
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 var image = new Bitmap(openFileDialog.FileName);
-                var minimizedImage = new Bitmap(image, width, height);
-
-                string minimizedImagePath = Path.GetDirectoryName(Application.ExecutablePath);
-                minimizedImagePath += @"SmallImage.bmp";
-
-                minimizedImage.Save(minimizedImagePath);
-
-                return _cloud.UploadImage(minimizedImagePath);
+                return image;
             }
-            return string.Empty;
+            return null;
+        }
+
+        public string UploadImage(Bitmap image, int width, int height)
+        {
+            var minimizedImage = new Bitmap(image, width, height);
+
+            string minimizedImagePath = Path.GetDirectoryName(Application.ExecutablePath);
+            minimizedImagePath += @"SmallImage.bmp";
+
+            minimizedImage.Save(minimizedImagePath);
+
+            return _cloud.UploadImage(minimizedImagePath);
         }
 
         public Bitmap GetImage(string url)

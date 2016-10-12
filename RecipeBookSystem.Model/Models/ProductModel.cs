@@ -13,6 +13,11 @@
         public string Name { get; set; }
 
         /// <summary>
+        /// Identity of type that is this product
+        /// </summary>
+        public int productTypeId { get; set; }
+
+        /// <summary>
         /// Name of type that is this product
         /// </summary>
         public string ProductTypeName { get; set; }

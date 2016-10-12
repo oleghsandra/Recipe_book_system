@@ -83,10 +83,10 @@ EXEC spProduct_AddNew 'Oat', 7, 11.9, 5.8, 65.4, 'https://res.cloudinary.com/dub
 EXEC spProduct_AddNew 'Bread', 7, 7.7, 2.4, 53.4, 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1475356674/buj4uqvuksdd6vz9uwiy.png', NULL;
 
 
-
 --Adding Dishes and their ingredients
 EXEC spDish_Add 'Potato with meat', 1, NULL, NULL, 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1475928152/vgmot2qiwbhihmm35kew.png';
 EXEC spIngredient_Add 1, 25, 500;
 EXEC spIngredient_Add 1, 12, 200;
 GO
+
 

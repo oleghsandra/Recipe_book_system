@@ -35,7 +35,7 @@ GO
  (
 	ProductId INT NOT NULL PRIMARY KEY IDENTITY(1, 1), 
 	Name NVARCHAR(100) NOT NULL,
-	ProductTypeId INT NOT NULL FOREIGN KEY REFERENCES ProductTypes(ProductTypeId),
+	ProductTypeId INT NOT NULL FOREIGN KEY REFERENCES ProductTypes(ProductTypeId) ON UPDATE CASCADE,
 	Proteins REAL NOT NULL CHECK (Proteins >= 0 AND Proteins <= 100) DEFAULT 0,
 	Fats REAL NOT NULL CHECK (Fats >= 0 AND Fats <= 100) DEFAULT 0,
 	Carbohydrates REAL NOT NULL CHECK (Carbohydrates >= 0 AND Carbohydrates <= 100) DEFAULT 0,
@@ -138,8 +138,13 @@ CREATE PROCEDURE spProduct_AddNew(
 AS
   SET NOCOUNT ON 
 
+
   DECLARE @CurrentProductPhotoLinkId INT = NULL;
-  EXECUTE @CurrentProductPhotoLinkId = spPhotoLinks_Add @SmallPhotoLink, @BigPhotoLink;
+  
+  IF ((@SmallPhotoLink IS NOT NULL) OR (@BigPhotoLink IS NOT NULL))
+  BEGIN
+	 EXECUTE @CurrentProductPhotoLinkId = spPhotoLinks_Add @SmallPhotoLink, @BigPhotoLink;
+  END
 
   INSERT INTO Products
     VALUES (@Name,
@@ -182,6 +187,25 @@ AS
 GO
 
 -----------------------------------------------------------------
+CREATE PROCEDURE spProduct_SearchByName(
+	@Name NVARCHAR(100)
+)
+AS
+ SET NOCOUNT ON 
+	SELECT ProductId, Name, t.ProductTypeName, Proteins, Fats, Carbohydrates, f.SmallPhotoLink, f.BigPhotoLink
+	FROM Products
+
+	INNER JOIN (SELECT Name AS ProductTypeName, ProductTypeId
+				FROM ProductTypes) AS t
+	ON (t.ProductTypeId = Products.ProductTypeId)
+
+	LEFT JOIN (SELECT PhotoLinkId, SmallPhotoLink, BigPhotoLink
+				FROM PhotoLinks) AS f
+	ON (f.PhotoLinkId = Products.PhotoLinkId)
+
+	WHERE Name LIKE (@Name + '%')
+ GO
+-----------------------------------------------------------------
 CREATE PROCEDURE spProduct_Get(
 	@ProductCount INT,
 	@PageNumber INT,
@@ -191,7 +215,7 @@ CREATE PROCEDURE spProduct_Get(
 )
 AS
   SET NOCOUNT ON 
-  SELECT ProductId, Name, t.ProductTypeName, Proteins, Fats, Carbohydrates, f.SmallPhotoLink, f.BigPhotoLink
+  SELECT ProductId, Name, t.ProductTypeId, t.ProductTypeName, Proteins, Fats, Carbohydrates, f.SmallPhotoLink, f.BigPhotoLink
   FROM Products
 
   INNER JOIN (SELECT Name AS ProductTypeName, ProductTypeId
@@ -248,7 +272,11 @@ AS
  SET NOCOUNT ON 
 
   DECLARE @CurrentProductPhotoLinkId INT = NULL;
-  EXECUTE @CurrentProductPhotoLinkId = spPhotoLinks_Add @SmallPhotoLink, @BigPhotoLink;
+  
+  IF ((@SmallPhotoLink IS NOT NULL) OR (@BigPhotoLink IS NOT NULL))
+  BEGIN
+	 EXECUTE @CurrentProductPhotoLinkId = spPhotoLinks_Add @SmallPhotoLink, @BigPhotoLink;
+  END
 
   UPDATE Products
     SET Name = @Name,

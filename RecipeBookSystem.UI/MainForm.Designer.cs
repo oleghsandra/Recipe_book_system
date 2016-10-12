@@ -34,6 +34,8 @@
             this.pageSelector = new MaterialSkin.Controls.MaterialTabSelector();
             this.pages = new MaterialSkin.Controls.MaterialTabControl();
             this.productsPage = new System.Windows.Forms.TabPage();
+            this.label17 = new System.Windows.Forms.Label();
+            this.searchProductTextField = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.noMoreProductMessageLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.selectedProductsListBox = new System.Windows.Forms.ListBox();
@@ -50,7 +52,24 @@
             this.nameSortButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.filterProductComboBox = new System.Windows.Forms.ComboBox();
             this.dishesPage = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
             this.addingProductPage = new System.Windows.Forms.TabPage();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.updete_createProductButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -66,15 +85,31 @@
             this.creatingProductCarbsTextField = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.creatingProductProteinsTextField = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.addingRecipePage = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.materialSingleLineTextField1 = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.addingRecipeMessageLabel = new System.Windows.Forms.Label();
             this.labelWithMyName = new System.Windows.Forms.Label();
             this.pages.SuspendLayout();
             this.productsPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.dishesPage.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.panel5.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel2.SuspendLayout();
             this.addingProductPage.SuspendLayout();
             this.creatingProductPhotoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.creatingProductPhoto)).BeginInit();
             this.addingRecipePage.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // backgroundImageUploader
@@ -94,7 +129,7 @@
             this.pageSelector.Location = new System.Drawing.Point(-12, 24);
             this.pageSelector.MouseState = MaterialSkin.MouseState.HOVER;
             this.pageSelector.Name = "pageSelector";
-            this.pageSelector.Size = new System.Drawing.Size(718, 33);
+            this.pageSelector.Size = new System.Drawing.Size(718, 21);
             this.pageSelector.TabIndex = 2;
             this.pageSelector.Text = "pageSelector";
             // 
@@ -117,6 +152,8 @@
             // productsPage
             // 
             this.productsPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.productsPage.Controls.Add(this.label17);
+            this.productsPage.Controls.Add(this.searchProductTextField);
             this.productsPage.Controls.Add(this.noMoreProductMessageLabel);
             this.productsPage.Controls.Add(this.groupBox1);
             this.productsPage.Controls.Add(this.makeRecipeButton);
@@ -138,7 +175,32 @@
             this.productsPage.Size = new System.Drawing.Size(667, 514);
             this.productsPage.TabIndex = 0;
             this.productsPage.Text = "Product list";
-            this.productsPage.Click += new System.EventHandler(this.productsPage_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(216, 409);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(68, 21);
+            this.label17.TabIndex = 234;
+            this.label17.Text = "Search:";
+            // 
+            // searchProductTextField
+            // 
+            this.searchProductTextField.Depth = 0;
+            this.searchProductTextField.Hint = "";
+            this.searchProductTextField.Location = new System.Drawing.Point(301, 407);
+            this.searchProductTextField.MouseState = MaterialSkin.MouseState.HOVER;
+            this.searchProductTextField.Name = "searchProductTextField";
+            this.searchProductTextField.PasswordChar = '\0';
+            this.searchProductTextField.SelectedText = "";
+            this.searchProductTextField.SelectionLength = 0;
+            this.searchProductTextField.SelectionStart = 0;
+            this.searchProductTextField.Size = new System.Drawing.Size(161, 23);
+            this.searchProductTextField.TabIndex = 233;
+            this.searchProductTextField.UseSystemPasswordChar = false;
+            this.searchProductTextField.TextChanged += new System.EventHandler(this.searchProductTextField_TextChanged);
             // 
             // noMoreProductMessageLabel
             // 
@@ -180,7 +242,7 @@
             // makeRecipeButton
             // 
             this.makeRecipeButton.Depth = 0;
-            this.makeRecipeButton.Location = new System.Drawing.Point(301, 444);
+            this.makeRecipeButton.Location = new System.Drawing.Point(301, 459);
             this.makeRecipeButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.makeRecipeButton.Name = "makeRecipeButton";
             this.makeRecipeButton.Primary = true;
@@ -259,7 +321,7 @@
             // addNewProductButton
             // 
             this.addNewProductButton.Depth = 0;
-            this.addNewProductButton.Location = new System.Drawing.Point(174, 444);
+            this.addNewProductButton.Location = new System.Drawing.Point(174, 459);
             this.addNewProductButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.addNewProductButton.Name = "addNewProductButton";
             this.addNewProductButton.Primary = true;
@@ -314,7 +376,6 @@
             this.productTableView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.productTableView.Size = new System.Drawing.Size(662, 348);
             this.productTableView.TabIndex = 0;
-            this.productTableView.Paint += new System.Windows.Forms.PaintEventHandler(this.productTableView_Paint);
             // 
             // nameSortButton
             // 
@@ -349,6 +410,8 @@
             // dishesPage
             // 
             this.dishesPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dishesPage.Controls.Add(this.groupBox3);
+            this.dishesPage.Controls.Add(this.groupBox2);
             this.dishesPage.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dishesPage.ForeColor = System.Drawing.Color.White;
             this.dishesPage.Location = new System.Drawing.Point(4, 22);
@@ -358,9 +421,145 @@
             this.dishesPage.TabIndex = 1;
             this.dishesPage.Text = "My dishes";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label14);
+            this.groupBox3.Controls.Add(this.panel4);
+            this.groupBox3.Controls.Add(this.panel5);
+            this.groupBox3.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(46, 276);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(564, 232);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Dish1";
+            // 
+            // label14
+            // 
+            this.label14.ForeColor = System.Drawing.Color.Black;
+            this.label14.Location = new System.Drawing.Point(306, 155);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(217, 45);
+            this.label14.TabIndex = 13;
+            this.label14.Text = "Description here";
+            // 
+            // panel4
+            // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.label15);
+            this.panel4.Controls.Add(this.pictureBox3);
+            this.panel4.Location = new System.Drawing.Point(20, 42);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(254, 171);
+            this.panel4.TabIndex = 12;
+            // 
+            // label15
+            // 
+            this.label15.ForeColor = System.Drawing.Color.Black;
+            this.label15.Location = new System.Drawing.Point(12, 25);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(217, 101);
+            this.label15.TabIndex = 14;
+            this.label15.Text = "Image 240\\144px here";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Location = new System.Drawing.Point(3, 12);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(240, 144);
+            this.pictureBox3.TabIndex = 0;
+            this.pictureBox3.TabStop = false;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.label16);
+            this.panel5.Location = new System.Drawing.Point(310, 30);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(235, 94);
+            this.panel5.TabIndex = 1;
+            // 
+            // label16
+            // 
+            this.label16.ForeColor = System.Drawing.Color.Black;
+            this.label16.Location = new System.Drawing.Point(3, 9);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(214, 70);
+            this.label16.TabIndex = 14;
+            this.label16.Text = "Table(with scroll) with product name - weight here";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.panel3);
+            this.groupBox2.Controls.Add(this.panel2);
+            this.groupBox2.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(46, 22);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(564, 232);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Dish1";
+            // 
+            // label11
+            // 
+            this.label11.ForeColor = System.Drawing.Color.Black;
+            this.label11.Location = new System.Drawing.Point(306, 155);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(217, 45);
+            this.label11.TabIndex = 13;
+            this.label11.Text = "Description here";
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.label13);
+            this.panel3.Controls.Add(this.pictureBox2);
+            this.panel3.Location = new System.Drawing.Point(20, 42);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(254, 171);
+            this.panel3.TabIndex = 12;
+            // 
+            // label13
+            // 
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(12, 25);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(217, 101);
+            this.label13.TabIndex = 14;
+            this.label13.Text = "Image 240\\144px here";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(3, 12);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(240, 144);
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label12);
+            this.panel2.Location = new System.Drawing.Point(310, 30);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(235, 94);
+            this.panel2.TabIndex = 1;
+            // 
+            // label12
+            // 
+            this.label12.ForeColor = System.Drawing.Color.Black;
+            this.label12.Location = new System.Drawing.Point(3, 9);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(214, 70);
+            this.label12.TabIndex = 14;
+            this.label12.Text = "Table(with scroll) with product name - weight here";
+            // 
             // addingProductPage
             // 
             this.addingProductPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.addingProductPage.Controls.Add(this.label8);
+            this.addingProductPage.Controls.Add(this.label7);
+            this.addingProductPage.Controls.Add(this.label6);
             this.addingProductPage.Controls.Add(this.updete_createProductButton);
             this.addingProductPage.Controls.Add(this.label5);
             this.addingProductPage.Controls.Add(this.label4);
@@ -379,14 +578,44 @@
             this.addingProductPage.TabIndex = 2;
             this.addingProductPage.Text = "Adding Product";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(333, 383);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(25, 23);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "%";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(333, 330);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(25, 23);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "%";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(333, 274);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(25, 23);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "%";
+            // 
             // updete_createProductButton
             // 
             this.updete_createProductButton.Depth = 0;
-            this.updete_createProductButton.Location = new System.Drawing.Point(246, 440);
+            this.updete_createProductButton.Location = new System.Drawing.Point(359, 439);
             this.updete_createProductButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.updete_createProductButton.Name = "updete_createProductButton";
             this.updete_createProductButton.Primary = true;
-            this.updete_createProductButton.Size = new System.Drawing.Size(187, 55);
+            this.updete_createProductButton.Size = new System.Drawing.Size(176, 41);
             this.updete_createProductButton.TabIndex = 17;
             this.updete_createProductButton.Text = "Add product";
             this.updete_createProductButton.UseVisualStyleBackColor = true;
@@ -396,37 +625,37 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(111, 399);
+            this.label5.Location = new System.Drawing.Point(160, 385);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(247, 21);
+            this.label5.Size = new System.Drawing.Size(133, 21);
             this.label5.TabIndex = 16;
-            this.label5.Text = "Percentage of carbohydrates:";
+            this.label5.Text = "Carbohydrates:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(111, 343);
+            this.label4.Location = new System.Drawing.Point(160, 332);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(156, 21);
+            this.label4.Size = new System.Drawing.Size(49, 21);
             this.label4.TabIndex = 15;
-            this.label4.Text = "Percentage of fat:";
+            this.label4.Text = "Fats:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(111, 280);
+            this.label3.Location = new System.Drawing.Point(160, 279);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(189, 21);
+            this.label3.Size = new System.Drawing.Size(79, 21);
             this.label3.TabIndex = 14;
-            this.label3.Text = "Percentage of protein:";
+            this.label3.Text = "Proteins:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(198, 212);
+            this.label2.Location = new System.Drawing.Point(160, 211);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(102, 21);
             this.label2.TabIndex = 13;
@@ -436,12 +665,11 @@
             // 
             this.productNameAddMessageLabel.AutoSize = true;
             this.productNameAddMessageLabel.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productNameAddMessageLabel.Location = new System.Drawing.Point(198, 38);
+            this.productNameAddMessageLabel.Location = new System.Drawing.Point(160, 36);
             this.productNameAddMessageLabel.Name = "productNameAddMessageLabel";
             this.productNameAddMessageLabel.Size = new System.Drawing.Size(65, 21);
             this.productNameAddMessageLabel.TabIndex = 12;
             this.productNameAddMessageLabel.Text = "Name:";
-            this.productNameAddMessageLabel.Click += new System.EventHandler(this.productNameAddMessageLabel_Click);
             // 
             // creatingProductPhotoPanel
             // 
@@ -452,7 +680,6 @@
             this.creatingProductPhotoPanel.Name = "creatingProductPhotoPanel";
             this.creatingProductPhotoPanel.Size = new System.Drawing.Size(375, 110);
             this.creatingProductPhotoPanel.TabIndex = 11;
-            this.creatingProductPhotoPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.creatingProductPhotoPanel_Paint);
             // 
             // creatingProductPhoto
             // 
@@ -481,29 +708,30 @@
             // 
             this.creatingProductTypeSelector.AutoCompleteCustomSource.AddRange(new string[] {
             "No"});
-            this.creatingProductTypeSelector.BackColor = System.Drawing.SystemColors.Info;
+            this.creatingProductTypeSelector.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(235)))), ((int)(((byte)(180)))));
+            this.creatingProductTypeSelector.CausesValidation = false;
             this.creatingProductTypeSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.creatingProductTypeSelector.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.creatingProductTypeSelector.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.creatingProductTypeSelector.FormattingEnabled = true;
             this.creatingProductTypeSelector.Items.AddRange(new object[] {
             "No Type"});
-            this.creatingProductTypeSelector.Location = new System.Drawing.Point(359, 211);
+            this.creatingProductTypeSelector.Location = new System.Drawing.Point(299, 206);
             this.creatingProductTypeSelector.Name = "creatingProductTypeSelector";
-            this.creatingProductTypeSelector.Size = new System.Drawing.Size(176, 31);
+            this.creatingProductTypeSelector.Size = new System.Drawing.Size(236, 31);
             this.creatingProductTypeSelector.TabIndex = 9;
             // 
             // creatingProductNameTextField
             // 
             this.creatingProductNameTextField.Depth = 0;
             this.creatingProductNameTextField.Hint = "";
-            this.creatingProductNameTextField.Location = new System.Drawing.Point(359, 36);
+            this.creatingProductNameTextField.Location = new System.Drawing.Point(231, 34);
             this.creatingProductNameTextField.MouseState = MaterialSkin.MouseState.HOVER;
             this.creatingProductNameTextField.Name = "creatingProductNameTextField";
             this.creatingProductNameTextField.PasswordChar = '\0';
             this.creatingProductNameTextField.SelectedText = "";
             this.creatingProductNameTextField.SelectionLength = 0;
             this.creatingProductNameTextField.SelectionStart = 0;
-            this.creatingProductNameTextField.Size = new System.Drawing.Size(176, 23);
+            this.creatingProductNameTextField.Size = new System.Drawing.Size(304, 23);
             this.creatingProductNameTextField.TabIndex = 6;
             this.creatingProductNameTextField.UseSystemPasswordChar = false;
             // 
@@ -514,14 +742,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.creatingProductFatsTextField.Depth = 0;
             this.creatingProductFatsTextField.Hint = "";
-            this.creatingProductFatsTextField.Location = new System.Drawing.Point(359, 341);
+            this.creatingProductFatsTextField.Location = new System.Drawing.Point(299, 330);
             this.creatingProductFatsTextField.MouseState = MaterialSkin.MouseState.HOVER;
             this.creatingProductFatsTextField.Name = "creatingProductFatsTextField";
             this.creatingProductFatsTextField.PasswordChar = '\0';
             this.creatingProductFatsTextField.SelectedText = "";
             this.creatingProductFatsTextField.SelectionLength = 0;
             this.creatingProductFatsTextField.SelectionStart = 0;
-            this.creatingProductFatsTextField.Size = new System.Drawing.Size(176, 23);
+            this.creatingProductFatsTextField.Size = new System.Drawing.Size(37, 23);
             this.creatingProductFatsTextField.TabIndex = 2;
             this.creatingProductFatsTextField.Text = "0";
             this.creatingProductFatsTextField.UseSystemPasswordChar = false;
@@ -530,14 +758,14 @@
             // 
             this.creatingProductCarbsTextField.Depth = 0;
             this.creatingProductCarbsTextField.Hint = "";
-            this.creatingProductCarbsTextField.Location = new System.Drawing.Point(359, 399);
+            this.creatingProductCarbsTextField.Location = new System.Drawing.Point(299, 383);
             this.creatingProductCarbsTextField.MouseState = MaterialSkin.MouseState.HOVER;
             this.creatingProductCarbsTextField.Name = "creatingProductCarbsTextField";
             this.creatingProductCarbsTextField.PasswordChar = '\0';
             this.creatingProductCarbsTextField.SelectedText = "";
             this.creatingProductCarbsTextField.SelectionLength = 0;
             this.creatingProductCarbsTextField.SelectionStart = 0;
-            this.creatingProductCarbsTextField.Size = new System.Drawing.Size(176, 23);
+            this.creatingProductCarbsTextField.Size = new System.Drawing.Size(37, 23);
             this.creatingProductCarbsTextField.TabIndex = 1;
             this.creatingProductCarbsTextField.Text = "0";
             this.creatingProductCarbsTextField.UseSystemPasswordChar = false;
@@ -546,14 +774,14 @@
             // 
             this.creatingProductProteinsTextField.Depth = 0;
             this.creatingProductProteinsTextField.Hint = "";
-            this.creatingProductProteinsTextField.Location = new System.Drawing.Point(359, 280);
+            this.creatingProductProteinsTextField.Location = new System.Drawing.Point(299, 277);
             this.creatingProductProteinsTextField.MouseState = MaterialSkin.MouseState.HOVER;
             this.creatingProductProteinsTextField.Name = "creatingProductProteinsTextField";
             this.creatingProductProteinsTextField.PasswordChar = '\0';
             this.creatingProductProteinsTextField.SelectedText = "";
             this.creatingProductProteinsTextField.SelectionLength = 0;
             this.creatingProductProteinsTextField.SelectionStart = 0;
-            this.creatingProductProteinsTextField.Size = new System.Drawing.Size(176, 23);
+            this.creatingProductProteinsTextField.Size = new System.Drawing.Size(37, 23);
             this.creatingProductProteinsTextField.TabIndex = 0;
             this.creatingProductProteinsTextField.Text = "0";
             this.creatingProductProteinsTextField.UseSystemPasswordChar = false;
@@ -561,6 +789,9 @@
             // addingRecipePage
             // 
             this.addingRecipePage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.addingRecipePage.Controls.Add(this.label9);
+            this.addingRecipePage.Controls.Add(this.panel1);
+            this.addingRecipePage.Controls.Add(this.materialSingleLineTextField1);
             this.addingRecipePage.Controls.Add(this.addingRecipeMessageLabel);
             this.addingRecipePage.Location = new System.Drawing.Point(4, 22);
             this.addingRecipePage.Name = "addingRecipePage";
@@ -569,15 +800,72 @@
             this.addingRecipePage.Text = "Adding recipe";
             this.addingRecipePage.Click += new System.EventHandler(this.addingRecipePage_Click);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(153, 24);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(65, 21);
+            this.label9.TabIndex = 15;
+            this.label9.Text = "Name:";
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Location = new System.Drawing.Point(153, 64);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(375, 110);
+            this.panel1.TabIndex = 14;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(274, 21);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(80, 64);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.label10.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(-2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(258, 106);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Click here to add the image from computer";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // materialSingleLineTextField1
+            // 
+            this.materialSingleLineTextField1.Depth = 0;
+            this.materialSingleLineTextField1.Hint = "";
+            this.materialSingleLineTextField1.Location = new System.Drawing.Point(224, 22);
+            this.materialSingleLineTextField1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialSingleLineTextField1.Name = "materialSingleLineTextField1";
+            this.materialSingleLineTextField1.PasswordChar = '\0';
+            this.materialSingleLineTextField1.SelectedText = "";
+            this.materialSingleLineTextField1.SelectionLength = 0;
+            this.materialSingleLineTextField1.SelectionStart = 0;
+            this.materialSingleLineTextField1.Size = new System.Drawing.Size(192, 23);
+            this.materialSingleLineTextField1.TabIndex = 13;
+            this.materialSingleLineTextField1.UseSystemPasswordChar = false;
+            // 
             // addingRecipeMessageLabel
             // 
             this.addingRecipeMessageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.addingRecipeMessageLabel.Font = new System.Drawing.Font("Berlin Sans FB", 35F, System.Drawing.FontStyle.Underline);
-            this.addingRecipeMessageLabel.Location = new System.Drawing.Point(3, 0);
+            this.addingRecipeMessageLabel.Location = new System.Drawing.Point(3, 346);
             this.addingRecipeMessageLabel.Name = "addingRecipeMessageLabel";
-            this.addingRecipeMessageLabel.Size = new System.Drawing.Size(614, 527);
+            this.addingRecipeMessageLabel.Size = new System.Drawing.Size(614, 181);
             this.addingRecipeMessageLabel.TabIndex = 0;
             this.addingRecipeMessageLabel.Text = "Please select more than one product at the product list to form from them a dish " +
     "here.";
@@ -609,15 +897,28 @@
             this.Controls.Add(this.pages);
             this.Name = "MainForm";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.pages.ResumeLayout(false);
             this.productsPage.ResumeLayout(false);
             this.productsPage.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.dishesPage.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.addingProductPage.ResumeLayout(false);
             this.addingProductPage.PerformLayout();
             this.creatingProductPhotoPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.creatingProductPhoto)).EndInit();
             this.addingRecipePage.ResumeLayout(false);
+            this.addingRecipePage.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -663,5 +964,29 @@
         private System.Windows.Forms.Label label3;
         private MaterialSkin.Controls.MaterialRaisedButton updete_createProductButton;
         private System.Windows.Forms.PictureBox creatingProductPhoto;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label10;
+        private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextField1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private MaterialSkin.Controls.MaterialSingleLineTextField searchProductTextField;
     }
 }

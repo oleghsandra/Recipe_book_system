@@ -14,12 +14,12 @@ namespace RecipeBookSystem.UI
             private set;
         }
 
-        private UserProvider users;
+        private UserProvider userProvider;
 
         public LoginForm()
         {
             InitializeComponent();
-            users = new UserProvider();
+            userProvider = new UserProvider();
         }
 
         private void createNewAccountButton_Click(object sender, EventArgs e)
@@ -46,7 +46,7 @@ namespace RecipeBookSystem.UI
                 Password = password
             };
 
-            bool wasUserAdded = users.AddUser(newUser);
+            bool wasUserAdded = userProvider.AddUser(newUser);
 
             if (wasUserAdded)
             {
@@ -76,7 +76,7 @@ namespace RecipeBookSystem.UI
                 return;
             }
 
-            var user = users.GetUser(email, password);
+            var user = userProvider.GetUser(email, password);
 
             if(user != null)
             {
