@@ -27,7 +27,7 @@ namespace RecipeBookSystem.UI
         private string leftSideImagePath = @"D:\left.png";
         private string rightSideImagePath = @"D:\right.png";
 
-        private readonly UserModel currentUser;
+        private readonly UserModel loginedUser;
 
         private const int sortButtonCount = 4;
         private const int tableColumnCount = 7;
@@ -62,13 +62,13 @@ namespace RecipeBookSystem.UI
         Image spinner;
         Image productDefaultImage;
 
-        public MainForm(UserModel currentUser)
+        public MainForm(UserModel loginedUser)
         {
             InitializeComponent();
             
-            this.currentUser = currentUser;
-            label1.Text = currentUser.Id.ToString();
-            label1.Text += currentUser.Name;
+            this.loginedUser = loginedUser;
+            this.label1.Text = loginedUser.Id.ToString();
+            this.label1.Text += loginedUser.Name;
 
             productProvider = new ProductProvider();
             imageHelper = new ImageHelper();
@@ -77,10 +77,10 @@ namespace RecipeBookSystem.UI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            spinner = Image.FromFile(path);
-            productDefaultImage = Image.FromFile(standartImagePath);
+            this.spinner = Image.FromFile(path);
+            this.productDefaultImage = Image.FromFile(standartImagePath);
 
-            productsManipulationPlan = ProductsManipulationPlan.CreatingNewProduct;
+            this.productsManipulationPlan = ProductsManipulationPlan.CreatingNewProduct;
 
             InitializeProductList();
         }
@@ -88,16 +88,16 @@ namespace RecipeBookSystem.UI
         #region Product list view logic
         private void InitializeProductList()
         {
-            newProduct = new ProductModel();
-            updatingProduct = new ProductModel();
-            editIcom = Image.FromFile(editIconPath);
-            deleteIcon = Image.FromFile(deleteIconPath);
-            creatingProductPhoto.Image = productDefaultImage;
+            this.newProduct = new ProductModel();
+            this.updatingProduct = new ProductModel();
+            this.editIcom = Image.FromFile(editIconPath);
+            this.deleteIcon = Image.FromFile(deleteIconPath);
+            this.creatingProductPhoto.Image = productDefaultImage;
 
-            selectedProducts = new List<ProductModel>();
-            productItems = new List<ProductItem>();
+            this.selectedProducts = new List<ProductModel>();
+            this.productItems = new List<ProductItem>();
 
-            sortButtons = new Control[sortButtonCount];
+            this.sortButtons = new Control[sortButtonCount];
 
             productsGridOptions = new ProductsGridOptions()
             {
@@ -105,7 +105,7 @@ namespace RecipeBookSystem.UI
                 PageNumber = 1
             };
 
-            productTypes = productTypeProvider.GetAllProductTypes().ToList();
+            this.productTypes = productTypeProvider.GetAllProductTypes().ToList();
 
             foreach (var productType in productTypes)
             {
@@ -113,59 +113,59 @@ namespace RecipeBookSystem.UI
                 creatingProductTypeSelector.Items.Insert(productType.Id, productType.Name);
             }
 
-            sortButtons[nameSortButtonPosition] = nameSortButton;
-            sortButtons[proteinsSortButtonPosition] = proteinsSortButton;
-            sortButtons[fatsSortButtonPosition] = fatsSortButton;
-            sortButtons[carbsSortButtonPosition] = carbsSortButton;
+            this.sortButtons[nameSortButtonPosition] = nameSortButton;
+            this.sortButtons[proteinsSortButtonPosition] = proteinsSortButton;
+            this.sortButtons[fatsSortButtonPosition] = fatsSortButton;
+            this.sortButtons[carbsSortButtonPosition] = carbsSortButton;
 
             var leftSideImage = new Bitmap(leftSideImagePath);
             var rightSideImag = new Bitmap(rightSideImagePath);
 
-            leftSideButton.Image = leftSideImage;
-            rightSideButton.Image = rightSideImag;
-            leftSideButton.Enabled = false;
-            filterProductComboBox.SelectedIndex = 0;
-            creatingProductTypeSelector.SelectedIndex = 0;
+            this.leftSideButton.Image = leftSideImage;
+            this.rightSideButton.Image = rightSideImag;
+            this.leftSideButton.Enabled = false;
+            this.filterProductComboBox.SelectedIndex = 0;
+            this.creatingProductTypeSelector.SelectedIndex = 0;
 
-            makeRecipeButton.Hide();
+            this.makeRecipeButton.Hide();
 
-            filterProductComboBox.SelectedValueChanged += (sender, e) =>
+            this.filterProductComboBox.SelectedValueChanged += (sender, e) =>
             {
                 filterProducts();
             };
 
-            backgroundImageUploader.WorkerSupportsCancellation = true;
+            this.backgroundImageUploader.WorkerSupportsCancellation = true;
             showProducts();
-            backgroundImageUploader.RunWorkerAsync();
+            this.backgroundImageUploader.RunWorkerAsync();
         }
 
         private void clearTable()
         {
-            productTableView.Controls.Clear();
-            productItems = new List<ProductItem>();
+            this.productTableView.Controls.Clear();
+            this.productItems = new List<ProductItem>();
         }
 
         private void changePlan(ProductItem productItem)
         {
             if(selectedProducts.Count > 1)
             {
-                makeRecipeButton.Show();
+                this.makeRecipeButton.Show();
             }
             else if (selectedProducts.Count == 1)
             {
-                makeRecipeButton.Hide();
+                this.makeRecipeButton.Hide();
             }
             else
             {
-                makeRecipeButton.Hide();
+                this.makeRecipeButton.Hide();
             }
         }
 
         private void showProducts()
         {
-            backgroundImageUploader.CancelAsync();
+            this.backgroundImageUploader.CancelAsync();
             clearTable();
-            rightSideButton.Enabled = true;
+            this.rightSideButton.Enabled = true;
 
             int row = productItems.Count;
 
@@ -183,28 +183,28 @@ namespace RecipeBookSystem.UI
             }
             else
             {
-                productsGridOptions.PageNumber = 1;
-                leftSideButton.Enabled = false;
+                this.productsGridOptions.PageNumber = 1;
+                this.leftSideButton.Enabled = false;
                 filteredProducts = productProvider.SearchProductByName(
                     productsGridOptions.searchedProductName).ToList();
             }
 
             if(filteredProducts.Count == 0)
             {
-                noMoreProductMessageLabel.Visible = true;
-                rightSideButton.Enabled = false;
+                this.noMoreProductMessageLabel.Visible = true;
+                this.rightSideButton.Enabled = false;
                 return;
             }
 
-            noMoreProductMessageLabel.Visible = false;
-            rightSideButton.Enabled = true;
+            this.noMoreProductMessageLabel.Visible = false;
+            this.rightSideButton.Enabled = true;
 
             foreach (var product in filteredProducts)
             {
                 MaterialCheckBox productCheckBox = new MaterialCheckBox();
                 productCheckBox.Anchor = AnchorStyles.Bottom & AnchorStyles.None;
-                
-                rowLabels = new Control[tableColumnCount];
+
+                this.rowLabels = new Control[tableColumnCount];
 
                 foreach (var selectedProduct in selectedProducts)
                 {
@@ -214,15 +214,15 @@ namespace RecipeBookSystem.UI
                     }
                 }
 
-                rowLabels[0] = productCheckBox;
+                this.rowLabels[0] = productCheckBox;
                 int initialTableDataColIndex = 2;
                 for (int i = initialTableDataColIndex; i < rowLabels.Length; i++)
                 {
-                    rowLabels[i] = new Label();
-                    rowLabels[i].AutoSize = true;
-                    rowLabels[i].Anchor = AnchorStyles.None;
-                    rowLabels[i].Font = new Font("Berlin Sans FB", 14F);
-                    productTableView.Controls.Add(rowLabels[i], i, row);
+                    this.rowLabels[i] = new Label();
+                    this.rowLabels[i].AutoSize = true;
+                    this.rowLabels[i].Anchor = AnchorStyles.None;
+                    this.rowLabels[i].Font = new Font("Berlin Sans FB", 14F);
+                    this.productTableView.Controls.Add(rowLabels[i], i, row);
                 }
 
                 var productItem = new ProductItem(product);
@@ -240,25 +240,25 @@ namespace RecipeBookSystem.UI
                         {
                             selectedProductsListBox.Items.RemoveAt(0);
                         }
-                        selectedProductsListBox.Items.Insert(0, productItem.ProductModel.Name);
-                        selectedProducts.Add(productItem.ProductModel);
+                        this.selectedProductsListBox.Items.Insert(0, productItem.ProductModel.Name);
+                        this.selectedProducts.Add(productItem.ProductModel);
                     }
                     else if (!productItem.IsSelected)
                     {
-                        selectedProducts.RemoveAll((p) => (p.Id == productItem.ProductModel.Id));
-                        
-                        selectedProductsListBox.Items.Remove(productItem.ProductModel.Name);
+                        this.selectedProducts.RemoveAll((p) => (p.Id == productItem.ProductModel.Id));
+
+                        this.selectedProductsListBox.Items.Remove(productItem.ProductModel.Name);
                             
                         if (selectedProducts.Count == 0)
                         {
-                            selectedProductsListBox.Items.Insert(0, "No products yet");
+                            this.selectedProductsListBox.Items.Insert(0, "No products yet");
                         }
                     }
                     changePlan(productItem);
                 };
 
-                productTableView.Controls.Add(productCheckBox, 0, row);
-                productTableView.Controls.Add(rowLabels[0], 0, row);
+                this.productTableView.Controls.Add(productCheckBox, 0, row);
+                this.productTableView.Controls.Add(rowLabels[0], 0, row);
 
                 var deleteIconLabel = new Label();
                 var editIconLabel = new Label();
@@ -281,72 +281,72 @@ namespace RecipeBookSystem.UI
                     setProductToUpdate(productItem);
                 };
 
-                productTableView.Controls.Add(editIconLabel, 7, row);
-                productTableView.Controls.Add(deleteIconLabel, 8, row);
+                this.productTableView.Controls.Add(editIconLabel, 7, row);
+                this.productTableView.Controls.Add(deleteIconLabel, 8, row);
 
                 productItem.PictureLabel = new Label();
                 productItem.PictureLabel.AutoSize = true;
                 productItem.PictureLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 50F);
                 productItem.PictureLabel.Text = string.Format("{0,4}", string.Empty);
                 productItem.PictureLabel.Anchor = AnchorStyles.None;
-                productTableView.Controls.Add(productItem.PictureLabel, 1, row);
+                this.productTableView.Controls.Add(productItem.PictureLabel, 1, row);
 
-                rowLabels[2].Text = product.Name;
-                rowLabels[3].Text = product.ProductTypeName;
-                rowLabels[4].Text = product.Proteins.ToString();
-                rowLabels[5].Text = product.Fats.ToString();
-                rowLabels[6].Text = product.Carbohydrates.ToString();
+                this.rowLabels[2].Text = product.Name;
+                this.rowLabels[3].Text = product.ProductTypeName;
+                this.rowLabels[4].Text = product.Proteins.ToString();
+                this.rowLabels[5].Text = product.Fats.ToString();
+                this.rowLabels[6].Text = product.Carbohydrates.ToString();
                 row++;
-                productTableView.Refresh();
+                this.productTableView.Refresh();
 
             }
         }
 
         private void deleteProduct(ProductModel productToDelete)
         {
-            productProvider.DeleteProduct(productToDelete.Id);
+            this.productProvider.DeleteProduct(productToDelete.Id);
             
             foreach(var selectedProduct in selectedProducts)
             {
                 if(selectedProduct.Id == productToDelete.Id)
                 {
-                    selectedProductsListBox.Items.Remove(productToDelete.Name);
+                    this.selectedProductsListBox.Items.Remove(productToDelete.Name);
                     break;
                 }
             }
 
-            selectedProducts.RemoveAll((p) => (p.Id == productToDelete.Id));
+            this.selectedProducts.RemoveAll((p) => (p.Id == productToDelete.Id));
 
             if (selectedProductsListBox.Items.Count == 0)
             {
-                selectedProductsListBox.Items.Insert(0, "No products yet");
+                this.selectedProductsListBox.Items.Insert(0, "No products yet");
             }
 
             showProducts();
             if (!backgroundImageUploader.IsBusy)
             {
-                backgroundImageUploader.RunWorkerAsync();
+                this.backgroundImageUploader.RunWorkerAsync();
             }
         }
 
 
         private void setProductToUpdate(ProductItem productToUpdate)
         {
-            newProduct.SmallPhotoLink = productToUpdate.ProductModel.SmallPhotoLink;
-            updete_createProductButton.Text = "UPDATE";
+            this.newProduct.SmallPhotoLink = productToUpdate.ProductModel.SmallPhotoLink;
+            this.updete_createProductButton.Text = "UPDATE";
 
-            updatingProduct = productToUpdate.ProductModel;
-            productsManipulationPlan = ProductsManipulationPlan.UpdatingExistingProduct;
+            this.updatingProduct = productToUpdate.ProductModel;
+            this.productsManipulationPlan = ProductsManipulationPlan.UpdatingExistingProduct;
 
             creatingProductNameTextField.Text = productToUpdate.ProductModel.Name;
             creatingProductProteinsTextField.Text = productToUpdate.ProductModel.Proteins.ToString();
             creatingProductFatsTextField.Text = productToUpdate.ProductModel.Fats.ToString();
             creatingProductCarbsTextField.Text = productToUpdate.ProductModel.Carbohydrates.ToString();
             creatingProductPhoto.Image = productToUpdate.PictureLabel.Image;
-            
-            creatingProductTypeSelector.SelectedIndex = productToUpdate.ProductModel.productTypeId;
 
-            pages.SelectedTab = addingProductPage;
+            this.creatingProductTypeSelector.SelectedIndex = productToUpdate.ProductModel.productTypeId;
+
+            this.pages.SelectedTab = addingProductPage;
         }
 
         private void backgroundImageUploader_DoWork(object sender, DoWorkEventArgs e)
@@ -360,7 +360,7 @@ namespace RecipeBookSystem.UI
 
         private void showProductsImages()
         {
-            spinner = Image.FromFile(path);
+            this.spinner = Image.FromFile(path);
 
             foreach (var item in productItems)
             {
@@ -409,7 +409,7 @@ namespace RecipeBookSystem.UI
 
         private void sortProducts(Button clickedButton, string sortColumn)
         {
-            leftSideButton.Enabled = false;
+            this.leftSideButton.Enabled = false;
             clickedButton.Enabled = false;
             string upper = "⇑";
             string lower = "⇓";
@@ -422,31 +422,31 @@ namespace RecipeBookSystem.UI
                 }
             }
             clearTable();
-            productsGridOptions.SortColumnName = sortColumn;
-            productsGridOptions.PageNumber = 1;
+            this.productsGridOptions.SortColumnName = sortColumn;
+            this.productsGridOptions.PageNumber = 1;
             string[] buttonTextWords = clickedButton.Text.Split(' ');
             if (buttonTextWords.Length > 1)
             {
                 if (buttonTextWords[1] == upper)
                 {
                     clickedButton.Text = buttonTextWords[0] + " " + lower;
-                    productsGridOptions.SortOrder = "ASC";
+                    this.productsGridOptions.SortOrder = "ASC";
                 }
                 else if (buttonTextWords[1] == lower)
                 {
                     clickedButton.Text = buttonTextWords[0] + " " + upper;
-                    productsGridOptions.SortOrder = "DESC";
+                    this.productsGridOptions.SortOrder = "DESC";
                 }
             }
             else
             {
                 clickedButton.Text += " " + lower;
-                productsGridOptions.SortOrder = "ASC";
+                this.productsGridOptions.SortOrder = "ASC";
             }
             showProducts();
             if (!backgroundImageUploader.IsBusy)
             {
-                backgroundImageUploader.RunWorkerAsync();
+                this.backgroundImageUploader.RunWorkerAsync();
             }
             clickedButton.Enabled = true;
         }
@@ -456,11 +456,11 @@ namespace RecipeBookSystem.UI
         {
             var clicked = (Button)sender;
             clicked.Enabled = false;
-            productsGridOptions.PageNumber--;
+            this.productsGridOptions.PageNumber--;
             showProducts();
             if (!backgroundImageUploader.IsBusy)
             {
-                backgroundImageUploader.RunWorkerAsync();
+                this.backgroundImageUploader.RunWorkerAsync();
             }
             clicked.Enabled = (productsGridOptions.PageNumber != 1);
         }  
@@ -469,32 +469,32 @@ namespace RecipeBookSystem.UI
         {
             var clicked = (Button)sender;
             clicked.Enabled = false;
-            leftSideButton.Enabled = true;
-            productsGridOptions.PageNumber++;
+            this.leftSideButton.Enabled = true;
+            this.productsGridOptions.PageNumber++;
             showProducts();
             if (!backgroundImageUploader.IsBusy)
             {
-                backgroundImageUploader.RunWorkerAsync();
+                this.backgroundImageUploader.RunWorkerAsync();
             }
         }
 
         private void filterProducts()
         {
-            leftSideButton.Enabled = false;
+            this.leftSideButton.Enabled = false;
             var selectedTypeId = filterProductComboBox.SelectedIndex;
-            productsGridOptions.PageNumber = 1;
+            this.productsGridOptions.PageNumber = 1;
             if (selectedTypeId == 0)
             {
-                productsGridOptions.FilterProductTypeId = null;
+                this.productsGridOptions.FilterProductTypeId = null;
             }
             else
             {
-                productsGridOptions.FilterProductTypeId = selectedTypeId;
+                this.productsGridOptions.FilterProductTypeId = selectedTypeId;
             }
             showProducts();
             if (!backgroundImageUploader.IsBusy)
             {
-                backgroundImageUploader.RunWorkerAsync();
+                this.backgroundImageUploader.RunWorkerAsync();
             }
         }
         #endregion
@@ -502,42 +502,38 @@ namespace RecipeBookSystem.UI
         private void addNewProductButton_Click(object sender, EventArgs e)
         {
             clearAddingProductPage();
-            productsManipulationPlan = ProductsManipulationPlan.CreatingNewProduct;
-            pages.SelectedTab = addingProductPage;
+            this.productsManipulationPlan = ProductsManipulationPlan.CreatingNewProduct;
+            this.pages.SelectedTab = addingProductPage;
+            this.updete_createProductButton.Text = "ADD PRODUCT";
         }
 
         private void clearAddingProductPage()
         {
-            creatingProductTypeSelector.SelectedIndex = 0;
-            newProduct.SmallPhotoLink = null;
-            updatingProduct.SmallPhotoLink = null;
-            creatingProductPhoto.Image = productDefaultImage;
-            creatingProductNameTextField.Text = string.Empty;
-            creatingProductFatsTextField.Text = string.Empty;
-            creatingProductCarbsTextField.Text = string.Empty;
-            creatingProductProteinsTextField.Text = string.Empty;
+            this.creatingProductTypeSelector.SelectedIndex = 0;
+            this.newProduct.SmallPhotoLink = null;
+            this.updatingProduct.SmallPhotoLink = null;
+            this.creatingProductPhoto.Image = productDefaultImage;
+            this.creatingProductNameTextField.Text = string.Empty;
+            this.creatingProductFatsTextField.Text = string.Empty;
+            this.creatingProductCarbsTextField.Text = string.Empty;
+            this.creatingProductProteinsTextField.Text = string.Empty;
         }
 
         private void makeRecipeButton_Click(object sender, EventArgs e)
         {
-            pages.SelectedTab = addingRecipePage;
+            this.pages.SelectedTab = addingRecipePage;
         }
 
         private void addingRecipeMessageLabel_Click(object sender, EventArgs e)
         {
-            pages.SelectedTab = productsPage;
-        }
-
-        private void addingRecipePage_Click(object sender, EventArgs e)
-        {
-
+            this.pages.SelectedTab = productsPage;
         }
 
         private void pages_Selected(object sender, TabControlEventArgs e)
         {
             if(pages.SelectedTab == addingRecipePage)
             {
-                addingRecipeMessageLabel.Visible = (selectedProducts.Count < 2);
+                this.addingRecipeMessageLabel.Visible = (selectedProducts.Count < 2);
             }
         }
 
@@ -547,13 +543,19 @@ namespace RecipeBookSystem.UI
             int newProductTypeId = creatingProductTypeSelector.SelectedIndex;
 
             float newProductProteinsCount;
-            bool hasProteinsValue = Single.TryParse(creatingProductProteinsTextField.Text, out newProductProteinsCount);
+            bool hasProteinsValue = Single.TryParse(
+                this.creatingProductProteinsTextField.Text,
+                out newProductProteinsCount);
 
             float newProductFatsCount;
-            bool hasFatsValue = Single.TryParse(creatingProductFatsTextField.Text, out newProductFatsCount);
+            bool hasFatsValue = Single.TryParse(
+                this.creatingProductFatsTextField.Text,
+                out newProductFatsCount);
 
             float newProductCarbsCount;
-            bool hasCarbsValue = Single.TryParse(creatingProductCarbsTextField.Text, out newProductCarbsCount);
+            bool hasCarbsValue = Single.TryParse(
+                this.creatingProductCarbsTextField.Text, 
+                out newProductCarbsCount);
 
             if (newProductName == string.Empty)
             {
@@ -591,15 +593,15 @@ namespace RecipeBookSystem.UI
                 return;
             }
             
-            newProduct.Name = newProductName;
-            newProduct.Proteins = newProductProteinsCount;
-            newProduct.Fats = newProductFatsCount;
-            newProduct.Carbohydrates = newProductCarbsCount;
-            newProduct.productTypeId = newProductTypeId;
+            this.newProduct.Name = newProductName;
+            this.newProduct.Proteins = newProductProteinsCount;
+            this.newProduct.Fats = newProductFatsCount;
+            this.newProduct.Carbohydrates = newProductCarbsCount;
+            this.newProduct.productTypeId = newProductTypeId;
             
             if (productsManipulationPlan == ProductsManipulationPlan.UpdatingExistingProduct)
             {
-                newProduct.Id = updatingProduct.Id;
+                this.newProduct.Id = updatingProduct.Id;
 
                 productProvider.UpdateProduct(
                     newProduct.Id,
@@ -612,28 +614,24 @@ namespace RecipeBookSystem.UI
             }
             else
             {
-                productProvider.AddProduct(newProduct);
-                productsGridOptions.FilterProductTypeId = null;
-                productsGridOptions.PageNumber = 1;
+                this.productProvider.AddProduct(newProduct);
+                this.productsGridOptions.FilterProductTypeId = null;
+                this.productsGridOptions.PageNumber = 1;
             }
             clearTable();
             showProducts();
             pages.SelectedTab = productsPage;
             if (!backgroundImageUploader.IsBusy)
             {
-                backgroundImageUploader.RunWorkerAsync();
+                this.backgroundImageUploader.RunWorkerAsync();
             }
             clearAddingProductPage();
-            updete_createProductButton.Text = "ADD PRODUCT";
-        }
-        private void filterProductComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            this.updete_createProductButton.Text = "ADD PRODUCT";
         }
 
         private void photoAddMessageLabel_Click(object sender, EventArgs e)
         {
-            creatingProductPhoto.Image = spinner;
+            this.creatingProductPhoto.Image = spinner;
 
             var newPhoto = imageHelper.GetImageFromComputer();
 
@@ -641,7 +639,7 @@ namespace RecipeBookSystem.UI
             {
                 Thread newImageLoader = new Thread(() =>
                 {
-                    loadNewImage(creatingProductPhoto, newPhoto);
+                    loadNewImage(this.creatingProductPhoto, newPhoto);
                 });
                 newImageLoader.Start();
             }
@@ -656,7 +654,7 @@ namespace RecipeBookSystem.UI
                     productPhotoWeigth, 
                     productPhotoHeight);
 
-                newProduct.SmallPhotoLink = newImageLink;
+                this.newProduct.SmallPhotoLink = newImageLink;
 
                 element.Image = imageHelper.GetImage(newImageLink);
             }
@@ -674,28 +672,28 @@ namespace RecipeBookSystem.UI
         private void searchProductTextField_TextChanged(object sender, EventArgs e)
         {
             clearTable();
-            productItems = new List<ProductItem>();
+            this.productItems = new List<ProductItem>();
 
-            string name = searchProductTextField.Text;
+            string name = this.searchProductTextField.Text;
 
             bool isEmptyName = (name == string.Empty);
 
-            foreach (var sortButton in sortButtons)
+            foreach (var sortButton in this.sortButtons)
             {
                 sortButton.Visible = isEmptyName;
             }
 
-            filterProductComboBox.Visible = isEmptyName;
+            this.filterProductComboBox.Visible = isEmptyName;
 
-            var searchedProducts = productProvider.SearchProductByName(name);
+            var searchedProducts = this.productProvider.SearchProductByName(name);
 
-            productsGridOptions.searchedProductName = name;
+            this.productsGridOptions.searchedProductName = name;
 
             showProducts();
-            pages.SelectedTab = productsPage;
+            this.pages.SelectedTab = productsPage;
             if (!backgroundImageUploader.IsBusy)
             {
-                backgroundImageUploader.RunWorkerAsync();
+                this.backgroundImageUploader.RunWorkerAsync();
             }
         }
     }

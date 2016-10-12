@@ -129,7 +129,7 @@
             this.pageSelector.Location = new System.Drawing.Point(-12, 24);
             this.pageSelector.MouseState = MaterialSkin.MouseState.HOVER;
             this.pageSelector.Name = "pageSelector";
-            this.pageSelector.Size = new System.Drawing.Size(718, 21);
+            this.pageSelector.Size = new System.Drawing.Size(718, 43);
             this.pageSelector.TabIndex = 2;
             this.pageSelector.Text = "pageSelector";
             // 
@@ -405,7 +405,6 @@
             this.filterProductComboBox.Name = "filterProductComboBox";
             this.filterProductComboBox.Size = new System.Drawing.Size(97, 29);
             this.filterProductComboBox.TabIndex = 8;
-            this.filterProductComboBox.SelectedIndexChanged += new System.EventHandler(this.filterProductComboBox_SelectedIndexChanged);
             // 
             // dishesPage
             // 
@@ -798,7 +797,6 @@
             this.addingRecipePage.Size = new System.Drawing.Size(667, 514);
             this.addingRecipePage.TabIndex = 3;
             this.addingRecipePage.Text = "Adding recipe";
-            this.addingRecipePage.Click += new System.EventHandler(this.addingRecipePage_Click);
             // 
             // label9
             // 
