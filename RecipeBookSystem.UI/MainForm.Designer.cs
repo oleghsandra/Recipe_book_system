@@ -58,6 +58,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.productNameAddMessageLabel = new System.Windows.Forms.Label();
             this.creatingProductPhotoPanel = new System.Windows.Forms.Panel();
+            this.creatingProductPhoto = new System.Windows.Forms.PictureBox();
             this.photoAddMessageLabel = new System.Windows.Forms.Label();
             this.creatingProductTypeSelector = new System.Windows.Forms.ComboBox();
             this.creatingProductNameTextField = new MaterialSkin.Controls.MaterialSingleLineTextField();
@@ -67,14 +68,13 @@
             this.addingRecipePage = new System.Windows.Forms.TabPage();
             this.addingRecipeMessageLabel = new System.Windows.Forms.Label();
             this.labelWithMyName = new System.Windows.Forms.Label();
-            this.creatingProductPhoto = new System.Windows.Forms.PictureBox();
             this.pages.SuspendLayout();
             this.productsPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.addingProductPage.SuspendLayout();
             this.creatingProductPhotoPanel.SuspendLayout();
-            this.addingRecipePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.creatingProductPhoto)).BeginInit();
+            this.addingRecipePage.SuspendLayout();
             this.SuspendLayout();
             // 
             // backgroundImageUploader
@@ -454,6 +454,14 @@
             this.creatingProductPhotoPanel.TabIndex = 11;
             this.creatingProductPhotoPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.creatingProductPhotoPanel_Paint);
             // 
+            // creatingProductPhoto
+            // 
+            this.creatingProductPhoto.Location = new System.Drawing.Point(274, 21);
+            this.creatingProductPhoto.Name = "creatingProductPhoto";
+            this.creatingProductPhoto.Size = new System.Drawing.Size(80, 64);
+            this.creatingProductPhoto.TabIndex = 1;
+            this.creatingProductPhoto.TabStop = false;
+            // 
             // photoAddMessageLabel
             // 
             this.photoAddMessageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -471,16 +479,14 @@
             // 
             // creatingProductTypeSelector
             // 
+            this.creatingProductTypeSelector.AutoCompleteCustomSource.AddRange(new string[] {
+            "No"});
             this.creatingProductTypeSelector.BackColor = System.Drawing.SystemColors.Info;
             this.creatingProductTypeSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.creatingProductTypeSelector.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creatingProductTypeSelector.FormattingEnabled = true;
             this.creatingProductTypeSelector.Items.AddRange(new object[] {
-            "weagf",
-            "esg",
-            "sagrar",
-            "arg",
-            "arg"});
+            "No Type"});
             this.creatingProductTypeSelector.Location = new System.Drawing.Point(359, 211);
             this.creatingProductTypeSelector.Name = "creatingProductTypeSelector";
             this.creatingProductTypeSelector.Size = new System.Drawing.Size(176, 31);
@@ -591,14 +597,6 @@
             this.labelWithMyName.TabIndex = 3;
             this.labelWithMyName.Text = "Designed by Oleg";
             // 
-            // creatingProductPhoto
-            // 
-            this.creatingProductPhoto.Location = new System.Drawing.Point(274, 21);
-            this.creatingProductPhoto.Name = "creatingProductPhoto";
-            this.creatingProductPhoto.Size = new System.Drawing.Size(80, 64);
-            this.creatingProductPhoto.TabIndex = 1;
-            this.creatingProductPhoto.TabStop = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -618,8 +616,8 @@
             this.addingProductPage.ResumeLayout(false);
             this.addingProductPage.PerformLayout();
             this.creatingProductPhotoPanel.ResumeLayout(false);
-            this.addingRecipePage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.creatingProductPhoto)).EndInit();
+            this.addingRecipePage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

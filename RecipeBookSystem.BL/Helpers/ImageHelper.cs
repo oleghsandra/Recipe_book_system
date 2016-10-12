@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.IO;
 using System.Net;
 using System.Windows.Forms;
 
@@ -23,8 +24,8 @@ namespace RecipeBookSystem.BL.Helpers
                 var image = new Bitmap(openFileDialog.FileName);
                 var minimizedImage = new Bitmap(image, width, height);
 
-                string minimizedImagePath = @"D:\SmallImage.bmp";//Path.GetDirectoryName(Application.ExecutablePath);
-                //minimizedImagePath += @"SmallImage.bmp";
+                string minimizedImagePath = Path.GetDirectoryName(Application.ExecutablePath);
+                minimizedImagePath += @"SmallImage.bmp";
 
                 minimizedImage.Save(minimizedImagePath);
 

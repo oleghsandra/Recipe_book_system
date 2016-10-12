@@ -41,15 +41,22 @@ namespace RecipeBookSystem.UI
 
         private List<ProductItem> productItems;
         private List<ProductModel> selectedProducts;
-        
+        private List<ProductTypeModel> productTypes;
         private Control[] sortButtons;
         private ProductsGridOptions productsGridOptions;
+
+        private ProductModel updatingProduct;
+
+        ProductsManipulationPlan productsManipulationPlan;
 
         Control[] rowLabels;
 
         Image editIcom;
         Image deleteIcon;
-        Bitmap newProductSmallPhoto;
+        Image newProductSmallPhoto;
+
+        Image spinner;
+        Image productDefaultImage;
 
         public MainForm(UserModel currentUser)
         {
@@ -62,6 +69,11 @@ namespace RecipeBookSystem.UI
             productProvider = new ProductProvider();
             imageHelper = new ImageHelper();
             productTypeProvider = new ProductTypeProvider();
+
+            spinner = Image.FromFile(path);
+            productDefaultImage = Image.FromFile(standartImagePath);
+
+            productsManipulationPlan = ProductsManipulationPlan.CreatingNewProduct;
 
             InitializeProductList();
         }
@@ -82,9 +94,12 @@ namespace RecipeBookSystem.UI
                 PageNumber = 1
             };
 
-            foreach (var productType in productTypeProvider.GetAllProductTypes())
+            productTypes = productTypeProvider.GetAllProductTypes().ToList();
+
+            foreach (var productType in productTypes)
             {
                 filterProductComboBox.Items.Insert(productType.Id, productType.Name);
+                creatingProductTypeSelector.Items.Insert(productType.Id, productType.Name);
             }
 
             sortButtons[0] = nameSortButton;
@@ -98,7 +113,8 @@ namespace RecipeBookSystem.UI
             rightSideButton.Image = rightSideImag;
             leftSideButton.Enabled = false;
             filterProductComboBox.SelectedIndex = 0;
-            
+            creatingProductTypeSelector.SelectedIndex = 0;
+
             makeRecipeButton.Hide();
 
             filterProductComboBox.SelectedValueChanged += (sender, e) =>
@@ -235,6 +251,11 @@ namespace RecipeBookSystem.UI
                     deleteProduct(productItem.ProductModel.Id); 
                 };
 
+                editIconLabel.Click += (sender, e) =>
+                {
+                    setProductToUpdate(productItem);
+                };
+
                 productTableView.Controls.Add(editIconLabel, 7, row);
                 productTableView.Controls.Add(deleteIconLabel, 8, row);
 
@@ -266,7 +287,31 @@ namespace RecipeBookSystem.UI
                 backgroundImageUploader.RunWorkerAsync();
             }
         }
-        
+
+
+        private void setProductToUpdate(ProductItem productToUpdate)
+        {
+            
+            productsManipulationPlan = ProductsManipulationPlan.UpdatingExistingProduct;
+
+            creatingProductNameTextField.Text = productToUpdate.ProductModel.Name;
+            creatingProductProteinsTextField.Text = productToUpdate.ProductModel.Proteins.ToString();
+            creatingProductFatsTextField.Text = productToUpdate.ProductModel.Fats.ToString();
+            creatingProductCarbsTextField.Text = productToUpdate.ProductModel.Carbohydrates.ToString();
+            creatingProductPhoto.Image = productToUpdate.PictureLabel.Image;
+            
+            int updateProductTypeId = 0;
+            foreach(var type in productTypes)
+            {
+                if(type.Name == productToUpdate.ProductModel.ProductTypeName)
+                {
+                    updateProductTypeId = type.Id;
+                }
+            }
+            creatingProductTypeSelector.SelectedIndex = updateProductTypeId;
+
+            pages.SelectedTab = addingProductPage;
+        }
 
         private void backgroundImageUploader_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -279,20 +324,19 @@ namespace RecipeBookSystem.UI
 
         private void showProductsImages()
         {
-            Image gifImage = Image.FromFile(path);
-            Bitmap image2 = imageHelper.GetImage(standartImagePath);
+            spinner = Image.FromFile(path);
 
             foreach (var item in productItems)
             {
                 if (item.PictureLabel.Image == null)
                 {
-                    item.PictureLabel.Image = gifImage;
+                    item.PictureLabel.Image = spinner;
                 }
             }
 
             foreach (var item in productItems)
             {
-                if (item.PictureLabel.Image == gifImage || item.PictureLabel.Image == null)
+                if (item.PictureLabel.Image == spinner || item.PictureLabel.Image == null)
                 {
                     try
                     {
@@ -301,7 +345,7 @@ namespace RecipeBookSystem.UI
                     }
                     catch
                     {
-                        item.PictureLabel.Image = image2;
+                        item.PictureLabel.Image = productDefaultImage;
                     }
                 }
             }
@@ -431,7 +475,19 @@ namespace RecipeBookSystem.UI
 
         private void addNewProductButton_Click(object sender, EventArgs e)
         {
-            pages.SelectedTab = addingProductPage; 
+            clearAddingProductPage();
+            productsManipulationPlan = ProductsManipulationPlan.CreatingNewProduct;
+            pages.SelectedTab = addingProductPage;
+        }
+
+        private void clearAddingProductPage()
+        {
+            creatingProductTypeSelector.SelectedIndex = 0;
+            creatingProductPhoto.Image = null;
+            creatingProductNameTextField.Text = string.Empty;
+            creatingProductFatsTextField.Text = string.Empty;
+            creatingProductCarbsTextField.Text = string.Empty;
+            creatingProductProteinsTextField.Text = string.Empty;
         }
 
         private void makeRecipeButton_Click(object sender, EventArgs e)
@@ -488,7 +544,7 @@ namespace RecipeBookSystem.UI
                 MessageBox.Show("Do not leave a clear name field!", "Warning!");
                 return;
             }
-            else if(creatingProductTypeSelector.SelectedItem == null)
+            else if(creatingProductTypeSelector.SelectedIndex == 0)
             {
                 MessageBox.Show("Select the ptoduct type!", "Warning!");
                 return;
@@ -519,6 +575,8 @@ namespace RecipeBookSystem.UI
                 return;
             }
             
+
+
         }
 
         private void filterProductComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -528,11 +586,20 @@ namespace RecipeBookSystem.UI
 
         private void photoAddMessageLabel_Click(object sender, EventArgs e)
         {
-            string createdProductPhotoLink = imageHelper.AddImageFromComputer(
+            creatingProductPhoto.Image = spinner; 
+            
+            try
+            {
+                string createdProductPhotoLink = imageHelper.AddImageFromComputer(
                 productPhotoWeigth,
                 productPhotoHeight);
 
-            creatingProductPhoto.Image = imageHelper.GetImage(createdProductPhotoLink);
+                creatingProductPhoto.Image = imageHelper.GetImage(createdProductPhotoLink);
+            }
+            catch
+            {
+                creatingProductPhoto.Image = productDefaultImage;
+            }
         }
     }
 }

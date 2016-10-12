@@ -11,16 +11,15 @@ namespace RecipeBookSystem.BL.Helpers
 
         public CloudHelper()
         {
+            string apiKey = ConfigurationManager.AppSettings.Get("Api_Key");
             string cloudName = ConfigurationManager.AppSettings.Get("Cloud_Name");
-            string apiKey = ConfigurationManager.AppSettings.Get("API_Key");
-            string apiSecret = ConfigurationManager.AppSettings.Get("API_Secret");
+            string apiSecret = ConfigurationManager.AppSettings.Get("Api_Secret");
 
             _account = new Account(cloudName, apiKey, apiSecret);
 
             _cloudinary = new Cloudinary(_account);
         }
-
-        //Помилка тут, виправити!!!
+        
         public string UploadImage(string imagePath)
         {
             ImageUploadParams uploadParams = new ImageUploadParams()

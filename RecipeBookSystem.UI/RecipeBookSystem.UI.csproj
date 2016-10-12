@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="Models\ProductItem.cs" />
     <Compile Include="Models\ProductsGridOptions.cs" />
+    <Compile Include="Models\ProductsManipulationPlan.cs" />
     <Compile Include="Models\WindowsFormsModels\MaterialFormBaseModel.cs">
       <SubType>Form</SubType>
     </Compile>
