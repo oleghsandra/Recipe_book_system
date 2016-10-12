@@ -20,7 +20,7 @@ namespace RecipeBookSystem.BL.Helpers
             _cloudinary = new Cloudinary(_account);
         }
 
-        //Помилка тут, виправити!
+        //Помилка тут, виправити!!!
         public string UploadImage(string imagePath)
         {
             ImageUploadParams uploadParams = new ImageUploadParams()
