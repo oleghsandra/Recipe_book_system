@@ -1,5 +1,5 @@
-﻿--CREATE DATABASE [MealsManagementTest];
---GO
+﻿CREATE DATABASE [MealsManagementTest];
+GO
 
 USE [MealsManagementTest];
 GO
