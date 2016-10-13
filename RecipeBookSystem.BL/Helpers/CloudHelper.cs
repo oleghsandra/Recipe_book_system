@@ -7,7 +7,6 @@ namespace RecipeBookSystem.BL.Helpers
     class CloudHelper
     {
         Cloudinary _cloudinary;
-        Account _account;
 
         public CloudHelper()
         {
@@ -15,9 +14,9 @@ namespace RecipeBookSystem.BL.Helpers
             string cloudName = ConfigurationManager.AppSettings.Get("Cloud_Name");
             string apiSecret = ConfigurationManager.AppSettings.Get("Api_Secret");
 
-            _account = new Account(cloudName, apiKey, apiSecret);
+            var account = new Account(cloudName, apiKey, apiSecret);
 
-            _cloudinary = new Cloudinary(_account);
+            _cloudinary = new Cloudinary(account);
         }
         
         public string UploadImage(string imagePath)

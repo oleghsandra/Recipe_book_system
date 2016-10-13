@@ -360,7 +360,9 @@ GO
 -----------------------------------------------------------------
 
 CREATE PROC spDishes_Get(
-	@OwnerId INT
+	@OwnerId INT,
+	@ProductCount INT,
+	@PageNumber INT
 )
 AS
  SET NOCOUNT ON 
@@ -372,7 +374,9 @@ AS
 	LEFT JOIN PhotoLinks
 	ON (PhotoLinks.PhotoLinkId = Dishes.PhotoLinkId)
 	WHERE UsersDishes.UserId = @OwnerId
-
+	ORDER BY Dishes.DishId DESC
+	OFFSET (@ProductCount * (@PageNumber - 1)) ROWS -- skip rows
+	FETCH NEXT (@ProductCount) ROWS ONLY; -- take rows
 GO
 -----------------------------------------------------------------
 

@@ -19,7 +19,7 @@ namespace RecipeBookSystem.UI
         public LoginForm()
         {
             InitializeComponent();
-            userProvider = new UserProvider();
+            this.userProvider = new UserProvider();
         }
 
         private void createNewAccountButton_Click(object sender, EventArgs e)
@@ -52,11 +52,11 @@ namespace RecipeBookSystem.UI
             {
                 MessageBox.Show(this, (name + " Added"), "Success!");
                 clearFields();
-                nameTextField.Visible = false;
-                userNameLabel.Visible = false;
-                createNewAccountButton.Visible = true;
-                userLoginButton.Visible = true;
-                cancelButton.Visible = false;
+                this.nameTextField.Visible = false;
+                this.userNameLabel.Visible = false;
+                this.createNewAccountButton.Visible = true;
+                this.userLoginButton.Visible = true;
+                this.cancelButton.Visible = false;
             }
             else
             {
@@ -80,7 +80,7 @@ namespace RecipeBookSystem.UI
 
             if(user != null)
             {
-                CurrentUser = user;
+                this.CurrentUser = user;
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -100,28 +100,28 @@ namespace RecipeBookSystem.UI
         private void showRegisterMenu()
         {
             clearFields();
-            nameTextField.Visible = true;
-            userNameLabel.Visible = true;
-            createNewAccountButton.Visible = false;
-            userLoginButton.Visible = false;
-            cancelButton.Visible = true;
+            this.nameTextField.Visible = true;
+            this.userNameLabel.Visible = true;
+            this.createNewAccountButton.Visible = false;
+            this.userLoginButton.Visible = false;
+            this.cancelButton.Visible = true;
         }
 
         private void showLoginMenu()
         {
             clearFields();
-            nameTextField.Visible = false;
-            userNameLabel.Visible = false;
-            createNewAccountButton.Visible = true;
-            userLoginButton.Visible = true;
-            cancelButton.Visible = false;
+            this.nameTextField.Visible = false;
+            this.userNameLabel.Visible = false;
+            this.createNewAccountButton.Visible = true;
+            this.userLoginButton.Visible = true;
+            this.cancelButton.Visible = false;
         }
 
         private void clearFields()
         {
-            emailTextField.Text = string.Empty;
-            passwordTextField.Text = string.Empty;
-            nameTextField.Text = string.Empty;
+            this.emailTextField.Text = string.Empty;
+            this.passwordTextField.Text = string.Empty;
+            this.nameTextField.Text = string.Empty;
         }
     }
 }

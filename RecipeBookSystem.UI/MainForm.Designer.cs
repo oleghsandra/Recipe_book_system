@@ -34,9 +34,9 @@
             this.pageSelector = new MaterialSkin.Controls.MaterialTabSelector();
             this.pages = new MaterialSkin.Controls.MaterialTabControl();
             this.productsPage = new System.Windows.Forms.TabPage();
+            this.noMoreProductMessageLabel = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.searchProductTextField = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.noMoreProductMessageLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.selectedProductsListBox = new System.Windows.Forms.ListBox();
             this.makeRecipeButton = new MaterialSkin.Controls.MaterialRaisedButton();
@@ -77,7 +77,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.productNameAddMessageLabel = new System.Windows.Forms.Label();
             this.creatingProductPhotoPanel = new System.Windows.Forms.Panel();
-            this.creatingProductPhoto = new System.Windows.Forms.PictureBox();
+            this.creatingProductPhotoLabel = new System.Windows.Forms.Label();
             this.photoAddMessageLabel = new System.Windows.Forms.Label();
             this.creatingProductTypeSelector = new System.Windows.Forms.ComboBox();
             this.creatingProductNameTextField = new MaterialSkin.Controls.MaterialSingleLineTextField();
@@ -85,12 +85,18 @@
             this.creatingProductCarbsTextField = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.creatingProductProteinsTextField = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.addingRecipePage = new System.Windows.Forms.TabPage();
+            this.newRecipeErrorLabel = new System.Windows.Forms.Label();
+            this.addingRecipeMessageLabel = new System.Windows.Forms.Label();
+            this.ingredientsTableView = new System.Windows.Forms.TableLayoutPanel();
+            this.addRecipeButton = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.label19 = new System.Windows.Forms.Label();
+            this.newRecipeRichTextField = new System.Windows.Forms.RichTextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.materialSingleLineTextField1 = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.addingRecipeMessageLabel = new System.Windows.Forms.Label();
+            this.newRecipeImageLabel = new System.Windows.Forms.Label();
+            this.newRecipePhotoAddLabel = new System.Windows.Forms.Label();
+            this.newRecipeNameTextField = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.labelWithMyName = new System.Windows.Forms.Label();
             this.pages.SuspendLayout();
             this.productsPage.SuspendLayout();
@@ -106,10 +112,8 @@
             this.panel2.SuspendLayout();
             this.addingProductPage.SuspendLayout();
             this.creatingProductPhotoPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.creatingProductPhoto)).BeginInit();
             this.addingRecipePage.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // backgroundImageUploader
@@ -126,10 +130,10 @@
             this.pageSelector.BaseTabControl = this.pages;
             this.pageSelector.Depth = 0;
             this.pageSelector.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pageSelector.Location = new System.Drawing.Point(-12, 24);
+            this.pageSelector.Location = new System.Drawing.Point(-3, 24);
             this.pageSelector.MouseState = MaterialSkin.MouseState.HOVER;
             this.pageSelector.Name = "pageSelector";
-            this.pageSelector.Size = new System.Drawing.Size(718, 43);
+            this.pageSelector.Size = new System.Drawing.Size(709, 21);
             this.pageSelector.TabIndex = 2;
             this.pageSelector.Text = "pageSelector";
             // 
@@ -152,9 +156,9 @@
             // productsPage
             // 
             this.productsPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.productsPage.Controls.Add(this.noMoreProductMessageLabel);
             this.productsPage.Controls.Add(this.label17);
             this.productsPage.Controls.Add(this.searchProductTextField);
-            this.productsPage.Controls.Add(this.noMoreProductMessageLabel);
             this.productsPage.Controls.Add(this.groupBox1);
             this.productsPage.Controls.Add(this.makeRecipeButton);
             this.productsPage.Controls.Add(this.label1);
@@ -175,6 +179,20 @@
             this.productsPage.Size = new System.Drawing.Size(667, 514);
             this.productsPage.TabIndex = 0;
             this.productsPage.Text = "Product list";
+            // 
+            // noMoreProductMessageLabel
+            // 
+            this.noMoreProductMessageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.noMoreProductMessageLabel.Font = new System.Drawing.Font("Berlin Sans FB", 35F, System.Drawing.FontStyle.Underline);
+            this.noMoreProductMessageLabel.Location = new System.Drawing.Point(24, 47);
+            this.noMoreProductMessageLabel.Name = "noMoreProductMessageLabel";
+            this.noMoreProductMessageLabel.Size = new System.Drawing.Size(614, 263);
+            this.noMoreProductMessageLabel.TabIndex = 232;
+            this.noMoreProductMessageLabel.Text = "Oop\'s, no more products. If you have not found the needed product, add it.";
+            this.noMoreProductMessageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.noMoreProductMessageLabel.Visible = false;
             // 
             // label17
             // 
@@ -201,20 +219,6 @@
             this.searchProductTextField.TabIndex = 233;
             this.searchProductTextField.UseSystemPasswordChar = false;
             this.searchProductTextField.TextChanged += new System.EventHandler(this.searchProductTextField_TextChanged);
-            // 
-            // noMoreProductMessageLabel
-            // 
-            this.noMoreProductMessageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.noMoreProductMessageLabel.Font = new System.Drawing.Font("Berlin Sans FB", 35F, System.Drawing.FontStyle.Underline);
-            this.noMoreProductMessageLabel.Location = new System.Drawing.Point(39, 105);
-            this.noMoreProductMessageLabel.Name = "noMoreProductMessageLabel";
-            this.noMoreProductMessageLabel.Size = new System.Drawing.Size(520, 222);
-            this.noMoreProductMessageLabel.TabIndex = 232;
-            this.noMoreProductMessageLabel.Text = "Oop\'s, no more products. If you have not found the needed product, add it.";
-            this.noMoreProductMessageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.noMoreProductMessageLabel.Visible = false;
             // 
             // groupBox1
             // 
@@ -397,6 +401,7 @@
             // 
             this.filterProductComboBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.filterProductComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.filterProductComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.filterProductComboBox.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.filterProductComboBox.FormattingEnabled = true;
             this.filterProductComboBox.Items.AddRange(new object[] {
@@ -534,7 +539,6 @@
             this.pictureBox2.Size = new System.Drawing.Size(240, 144);
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // panel2
             // 
@@ -673,20 +677,23 @@
             // creatingProductPhotoPanel
             // 
             this.creatingProductPhotoPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.creatingProductPhotoPanel.Controls.Add(this.creatingProductPhoto);
+            this.creatingProductPhotoPanel.Controls.Add(this.creatingProductPhotoLabel);
             this.creatingProductPhotoPanel.Controls.Add(this.photoAddMessageLabel);
             this.creatingProductPhotoPanel.Location = new System.Drawing.Point(160, 76);
             this.creatingProductPhotoPanel.Name = "creatingProductPhotoPanel";
             this.creatingProductPhotoPanel.Size = new System.Drawing.Size(375, 110);
             this.creatingProductPhotoPanel.TabIndex = 11;
             // 
-            // creatingProductPhoto
+            // creatingProductPhotoLabel
             // 
-            this.creatingProductPhoto.Location = new System.Drawing.Point(274, 21);
-            this.creatingProductPhoto.Name = "creatingProductPhoto";
-            this.creatingProductPhoto.Size = new System.Drawing.Size(80, 64);
-            this.creatingProductPhoto.TabIndex = 1;
-            this.creatingProductPhoto.TabStop = false;
+            this.creatingProductPhotoLabel.AutoSize = true;
+            this.creatingProductPhotoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.creatingProductPhotoLabel.Location = new System.Drawing.Point(272, 16);
+            this.creatingProductPhotoLabel.Name = "creatingProductPhotoLabel";
+            this.creatingProductPhotoLabel.Size = new System.Drawing.Size(83, 73);
+            this.creatingProductPhotoLabel.TabIndex = 1;
+            this.creatingProductPhotoLabel.Text = "   ";
+            this.creatingProductPhotoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // photoAddMessageLabel
             // 
@@ -707,7 +714,7 @@
             // 
             this.creatingProductTypeSelector.AutoCompleteCustomSource.AddRange(new string[] {
             "No"});
-            this.creatingProductTypeSelector.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(235)))), ((int)(((byte)(180)))));
+            this.creatingProductTypeSelector.BackColor = System.Drawing.Color.White;
             this.creatingProductTypeSelector.CausesValidation = false;
             this.creatingProductTypeSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.creatingProductTypeSelector.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -788,15 +795,106 @@
             // addingRecipePage
             // 
             this.addingRecipePage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.addingRecipePage.Controls.Add(this.newRecipeErrorLabel);
+            this.addingRecipePage.Controls.Add(this.addingRecipeMessageLabel);
+            this.addingRecipePage.Controls.Add(this.ingredientsTableView);
+            this.addingRecipePage.Controls.Add(this.addRecipeButton);
+            this.addingRecipePage.Controls.Add(this.label19);
+            this.addingRecipePage.Controls.Add(this.newRecipeRichTextField);
+            this.addingRecipePage.Controls.Add(this.label18);
             this.addingRecipePage.Controls.Add(this.label9);
             this.addingRecipePage.Controls.Add(this.panel1);
-            this.addingRecipePage.Controls.Add(this.materialSingleLineTextField1);
-            this.addingRecipePage.Controls.Add(this.addingRecipeMessageLabel);
+            this.addingRecipePage.Controls.Add(this.newRecipeNameTextField);
             this.addingRecipePage.Location = new System.Drawing.Point(4, 22);
             this.addingRecipePage.Name = "addingRecipePage";
             this.addingRecipePage.Size = new System.Drawing.Size(667, 514);
             this.addingRecipePage.TabIndex = 3;
             this.addingRecipePage.Text = "Adding recipe";
+            this.addingRecipePage.Enter += new System.EventHandler(this.addingRecipePage_Enter);
+            // 
+            // newRecipeErrorLabel
+            // 
+            this.newRecipeErrorLabel.AutoSize = true;
+            this.newRecipeErrorLabel.ForeColor = System.Drawing.Color.Red;
+            this.newRecipeErrorLabel.Location = new System.Drawing.Point(586, 137);
+            this.newRecipeErrorLabel.Name = "newRecipeErrorLabel";
+            this.newRecipeErrorLabel.Size = new System.Drawing.Size(32, 13);
+            this.newRecipeErrorLabel.TabIndex = 23;
+            this.newRecipeErrorLabel.Text = "Error ";
+            this.newRecipeErrorLabel.Visible = false;
+            // 
+            // addingRecipeMessageLabel
+            // 
+            this.addingRecipeMessageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.addingRecipeMessageLabel.Font = new System.Drawing.Font("Berlin Sans FB", 35F, System.Drawing.FontStyle.Underline);
+            this.addingRecipeMessageLabel.Location = new System.Drawing.Point(3, 0);
+            this.addingRecipeMessageLabel.Name = "addingRecipeMessageLabel";
+            this.addingRecipeMessageLabel.Size = new System.Drawing.Size(70, 511);
+            this.addingRecipeMessageLabel.TabIndex = 0;
+            this.addingRecipeMessageLabel.Text = "Please select more than one product at the product list to form from them a dish " +
+    "here.";
+            this.addingRecipeMessageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.addingRecipeMessageLabel.Visible = false;
+            this.addingRecipeMessageLabel.Click += new System.EventHandler(this.addingRecipeMessageLabel_Click);
+            // 
+            // ingredientsTableView
+            // 
+            this.ingredientsTableView.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ingredientsTableView.ColumnCount = 2;
+            this.ingredientsTableView.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.10904F));
+            this.ingredientsTableView.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.89096F));
+            this.ingredientsTableView.Location = new System.Drawing.Point(224, 285);
+            this.ingredientsTableView.Name = "ingredientsTableView";
+            this.ingredientsTableView.RowCount = 2;
+            this.ingredientsTableView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.ingredientsTableView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.ingredientsTableView.Size = new System.Drawing.Size(265, 119);
+            this.ingredientsTableView.TabIndex = 18;
+            // 
+            // addRecipeButton
+            // 
+            this.addRecipeButton.Depth = 0;
+            this.addRecipeButton.Location = new System.Drawing.Point(476, 474);
+            this.addRecipeButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.addRecipeButton.Name = "addRecipeButton";
+            this.addRecipeButton.Primary = true;
+            this.addRecipeButton.Size = new System.Drawing.Size(188, 37);
+            this.addRecipeButton.TabIndex = 22;
+            this.addRecipeButton.Text = "Add Recipe";
+            this.addRecipeButton.UseVisualStyleBackColor = true;
+            this.addRecipeButton.Click += new System.EventHandler(this.addRecipeButton_Click);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(146, 407);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(103, 21);
+            this.label19.TabIndex = 21;
+            this.label19.Text = "Description:";
+            // 
+            // newRecipeRichTextField
+            // 
+            this.newRecipeRichTextField.Font = new System.Drawing.Font("Berlin Sans FB", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newRecipeRichTextField.Location = new System.Drawing.Point(150, 431);
+            this.newRecipeRichTextField.Name = "newRecipeRichTextField";
+            this.newRecipeRichTextField.Size = new System.Drawing.Size(278, 44);
+            this.newRecipeRichTextField.TabIndex = 20;
+            this.newRecipeRichTextField.Text = "";
+            // 
+            // label18
+            // 
+            this.label18.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(146, 221);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(449, 61);
+            this.label18.TabIndex = 17;
+            this.label18.Text = "Write please weight in front of every product, or leave 0 if you want to add the " +
+    "product to the dish to taste:";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label9
             // 
@@ -811,65 +909,53 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Location = new System.Drawing.Point(153, 64);
+            this.panel1.Controls.Add(this.newRecipeImageLabel);
+            this.panel1.Controls.Add(this.newRecipePhotoAddLabel);
+            this.panel1.Location = new System.Drawing.Point(150, 64);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(375, 110);
+            this.panel1.Size = new System.Drawing.Size(435, 154);
             this.panel1.TabIndex = 14;
             // 
-            // pictureBox1
+            // newRecipeImageLabel
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(274, 21);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(80, 64);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.newRecipeImageLabel.AutoSize = true;
+            this.newRecipeImageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 100F);
+            this.newRecipeImageLabel.Location = new System.Drawing.Point(183, -3);
+            this.newRecipeImageLabel.Name = "newRecipeImageLabel";
+            this.newRecipeImageLabel.Size = new System.Drawing.Size(245, 153);
+            this.newRecipeImageLabel.TabIndex = 24;
+            this.newRecipeImageLabel.Text = "     ";
+            this.newRecipeImageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label10
+            // newRecipePhotoAddLabel
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.newRecipePhotoAddLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.label10.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(-2, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(258, 106);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Click here to add the image from computer";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.newRecipePhotoAddLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.newRecipePhotoAddLabel.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newRecipePhotoAddLabel.Location = new System.Drawing.Point(-2, 0);
+            this.newRecipePhotoAddLabel.Name = "newRecipePhotoAddLabel";
+            this.newRecipePhotoAddLabel.Size = new System.Drawing.Size(184, 150);
+            this.newRecipePhotoAddLabel.TabIndex = 0;
+            this.newRecipePhotoAddLabel.Text = "Click here to add the image from computer";
+            this.newRecipePhotoAddLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.newRecipePhotoAddLabel.Click += new System.EventHandler(this.newRecipePhotoAddLabel_Click);
             // 
-            // materialSingleLineTextField1
+            // newRecipeNameTextField
             // 
-            this.materialSingleLineTextField1.Depth = 0;
-            this.materialSingleLineTextField1.Hint = "";
-            this.materialSingleLineTextField1.Location = new System.Drawing.Point(224, 22);
-            this.materialSingleLineTextField1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialSingleLineTextField1.Name = "materialSingleLineTextField1";
-            this.materialSingleLineTextField1.PasswordChar = '\0';
-            this.materialSingleLineTextField1.SelectedText = "";
-            this.materialSingleLineTextField1.SelectionLength = 0;
-            this.materialSingleLineTextField1.SelectionStart = 0;
-            this.materialSingleLineTextField1.Size = new System.Drawing.Size(192, 23);
-            this.materialSingleLineTextField1.TabIndex = 13;
-            this.materialSingleLineTextField1.UseSystemPasswordChar = false;
-            // 
-            // addingRecipeMessageLabel
-            // 
-            this.addingRecipeMessageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.addingRecipeMessageLabel.Font = new System.Drawing.Font("Berlin Sans FB", 35F, System.Drawing.FontStyle.Underline);
-            this.addingRecipeMessageLabel.Location = new System.Drawing.Point(3, 346);
-            this.addingRecipeMessageLabel.Name = "addingRecipeMessageLabel";
-            this.addingRecipeMessageLabel.Size = new System.Drawing.Size(614, 181);
-            this.addingRecipeMessageLabel.TabIndex = 0;
-            this.addingRecipeMessageLabel.Text = "Please select more than one product at the product list to form from them a dish " +
-    "here.";
-            this.addingRecipeMessageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.addingRecipeMessageLabel.Visible = false;
-            this.addingRecipeMessageLabel.Click += new System.EventHandler(this.addingRecipeMessageLabel_Click);
+            this.newRecipeNameTextField.Depth = 0;
+            this.newRecipeNameTextField.Hint = "";
+            this.newRecipeNameTextField.Location = new System.Drawing.Point(224, 22);
+            this.newRecipeNameTextField.MouseState = MaterialSkin.MouseState.HOVER;
+            this.newRecipeNameTextField.Name = "newRecipeNameTextField";
+            this.newRecipeNameTextField.PasswordChar = '\0';
+            this.newRecipeNameTextField.SelectedText = "";
+            this.newRecipeNameTextField.SelectionLength = 0;
+            this.newRecipeNameTextField.SelectionStart = 0;
+            this.newRecipeNameTextField.Size = new System.Drawing.Size(361, 23);
+            this.newRecipeNameTextField.TabIndex = 13;
+            this.newRecipeNameTextField.UseSystemPasswordChar = false;
             // 
             // labelWithMyName
             // 
@@ -912,11 +998,11 @@
             this.addingProductPage.ResumeLayout(false);
             this.addingProductPage.PerformLayout();
             this.creatingProductPhotoPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.creatingProductPhoto)).EndInit();
+            this.creatingProductPhotoPanel.PerformLayout();
             this.addingRecipePage.ResumeLayout(false);
             this.addingRecipePage.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -961,15 +1047,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private MaterialSkin.Controls.MaterialRaisedButton updete_createProductButton;
-        private System.Windows.Forms.PictureBox creatingProductPhoto;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label10;
-        private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextField1;
+        private System.Windows.Forms.Label newRecipePhotoAddLabel;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -986,5 +1069,14 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private MaterialSkin.Controls.MaterialSingleLineTextField searchProductTextField;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TableLayoutPanel ingredientsTableView;
+        private MaterialSkin.Controls.MaterialRaisedButton addRecipeButton;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.RichTextBox newRecipeRichTextField;
+        private MaterialSkin.Controls.MaterialSingleLineTextField newRecipeNameTextField;
+        private System.Windows.Forms.Label creatingProductPhotoLabel;
+        private System.Windows.Forms.Label newRecipeErrorLabel;
+        private System.Windows.Forms.Label newRecipeImageLabel;
     }
 }

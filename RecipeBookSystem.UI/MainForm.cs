@@ -7,12 +7,9 @@ using RecipeBookSystem.UI.Models.FormModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RecipeBookSystem.UI
@@ -22,8 +19,9 @@ namespace RecipeBookSystem.UI
         //Додати в ресурси
         private string deleteIconPath = @"D:\DeleteIcon.png";
         private string editIconPath = @"D:\AditIcon.png";
-        private string path = @"D:\default.gif";
-        private string standartImagePath = @"D:\Standart.png";
+        private string spinnerPath = @"D:\default.gif";
+        private string productStandartImagePath = @"D:\standart.png";
+        private string dishStandartImagePath = @"D:\DishStandart.jpg";
         private string leftSideImagePath = @"D:\left.png";
         private string rightSideImagePath = @"D:\right.png";
 
@@ -32,8 +30,10 @@ namespace RecipeBookSystem.UI
         private const int sortButtonCount = 4;
         private const int tableColumnCount = 7;
         private const int productsPerPageCount = 5;
-        private const int productPhotoWeigth = 80;
-        private const int productPhotoHeight = 64;
+        private const int productImageWigth = 80;
+        private const int productImageHeight = 64;
+        private const int dishImageWeigth = 240;
+        private const int dishImageHeight = 144;
         private const int nameSortButtonPosition = 0;
         private const int proteinsSortButtonPosition = 1;
         private const int fatsSortButtonPosition = 2;
@@ -48,6 +48,9 @@ namespace RecipeBookSystem.UI
         private List<ProductTypeModel> productTypes;
         private Control[] sortButtons;
         private ProductsGridOptions productsGridOptions;
+
+        private DishModel newDishModel;
+        private List<IngredientModel> newRecipeIngredients;
 
         private ProductModel updatingProduct;
         ProductModel newProduct;
@@ -77,13 +80,16 @@ namespace RecipeBookSystem.UI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            this.spinner = Image.FromFile(path);
-            this.productDefaultImage = Image.FromFile(standartImagePath);
+            this.spinner = Image.FromFile(spinnerPath);
+            this.productDefaultImage = Image.FromFile(productStandartImagePath);
 
             this.productsManipulationPlan = ProductsManipulationPlan.CreatingNewProduct;
 
             InitializeProductList();
+            InitializeRecipeAdding();
         }
+
+
 
         #region Product list view logic
         private void InitializeProductList()
@@ -92,7 +98,7 @@ namespace RecipeBookSystem.UI
             this.updatingProduct = new ProductModel();
             this.editIcom = Image.FromFile(editIconPath);
             this.deleteIcon = Image.FromFile(deleteIconPath);
-            this.creatingProductPhoto.Image = productDefaultImage;
+            this.creatingProductPhotoLabel.Image = productDefaultImage;
 
             this.selectedProducts = new List<ProductModel>();
             this.productItems = new List<ProductItem>();
@@ -338,11 +344,11 @@ namespace RecipeBookSystem.UI
             this.updatingProduct = productToUpdate.ProductModel;
             this.productsManipulationPlan = ProductsManipulationPlan.UpdatingExistingProduct;
 
-            creatingProductNameTextField.Text = productToUpdate.ProductModel.Name;
-            creatingProductProteinsTextField.Text = productToUpdate.ProductModel.Proteins.ToString();
-            creatingProductFatsTextField.Text = productToUpdate.ProductModel.Fats.ToString();
-            creatingProductCarbsTextField.Text = productToUpdate.ProductModel.Carbohydrates.ToString();
-            creatingProductPhoto.Image = productToUpdate.PictureLabel.Image;
+            this.creatingProductNameTextField.Text = productToUpdate.ProductModel.Name;
+            this.creatingProductProteinsTextField.Text = productToUpdate.ProductModel.Proteins.ToString();
+            this.creatingProductFatsTextField.Text = productToUpdate.ProductModel.Fats.ToString();
+            this.creatingProductCarbsTextField.Text = productToUpdate.ProductModel.Carbohydrates.ToString();
+            this.creatingProductPhotoLabel.Image = productToUpdate.PictureLabel.Image;
 
             this.creatingProductTypeSelector.SelectedIndex = productToUpdate.ProductModel.productTypeId;
 
@@ -360,7 +366,7 @@ namespace RecipeBookSystem.UI
 
         private void showProductsImages()
         {
-            this.spinner = Image.FromFile(path);
+            this.spinner = Image.FromFile(spinnerPath);
 
             foreach (var item in productItems)
             {
@@ -497,7 +503,34 @@ namespace RecipeBookSystem.UI
                 this.backgroundImageUploader.RunWorkerAsync();
             }
         }
-        #endregion
+
+
+        private void searchProductTextField_TextChanged(object sender, EventArgs e)
+        {
+            clearTable();
+
+            string name = this.searchProductTextField.Text;
+
+            bool isEmptyName = (name == string.Empty);
+
+            foreach (var sortButton in this.sortButtons)
+            {
+                sortButton.Visible = isEmptyName;
+            }
+
+            this.filterProductComboBox.Visible = isEmptyName;
+
+            var searchedProducts = this.productProvider.SearchProductByName(name);
+
+            this.productsGridOptions.searchedProductName = name;
+
+            showProducts();
+            this.pages.SelectedTab = productsPage;
+            if (!backgroundImageUploader.IsBusy)
+            {
+                this.backgroundImageUploader.RunWorkerAsync();
+            }
+        }
 
         private void addNewProductButton_Click(object sender, EventArgs e)
         {
@@ -506,13 +539,15 @@ namespace RecipeBookSystem.UI
             this.pages.SelectedTab = addingProductPage;
             this.updete_createProductButton.Text = "ADD PRODUCT";
         }
+        #endregion
 
+        #region Product update/add view logic
         private void clearAddingProductPage()
         {
             this.creatingProductTypeSelector.SelectedIndex = 0;
             this.newProduct.SmallPhotoLink = null;
             this.updatingProduct.SmallPhotoLink = null;
-            this.creatingProductPhoto.Image = productDefaultImage;
+            this.creatingProductPhotoLabel.Image = productDefaultImage;
             this.creatingProductNameTextField.Text = string.Empty;
             this.creatingProductFatsTextField.Text = string.Empty;
             this.creatingProductCarbsTextField.Text = string.Empty;
@@ -631,69 +666,110 @@ namespace RecipeBookSystem.UI
 
         private void photoAddMessageLabel_Click(object sender, EventArgs e)
         {
-            this.creatingProductPhoto.Image = spinner;
+            this.creatingProductPhotoLabel.Image = spinner;
+            
+            var newImage = imageHelper.GetImageFromComputer();
 
-            var newPhoto = imageHelper.GetImageFromComputer();
-
-            if (newPhoto != null)
+            if (newImage != null)
             {
                 Thread newImageLoader = new Thread(() =>
                 {
-                    loadNewImage(this.creatingProductPhoto, newPhoto);
+                    this.newProduct.SmallPhotoLink = loadNewImage(
+                        this.creatingProductPhotoLabel,
+                        newImage,
+                        productImageWigth,
+                        productImageHeight);
                 });
                 newImageLoader.Start();
             }
         }
 
-        private void loadNewImage(PictureBox element, Bitmap image)
+        private string loadNewImage(Label element, Bitmap image, int weidht, int heigth)
         {
             try
             {
-                string newImageLink = imageHelper.UploadImage(
-                    image,
-                    productPhotoWeigth, 
-                    productPhotoHeight);
-
-                this.newProduct.SmallPhotoLink = newImageLink;
-
+                string newImageLink = imageHelper.UploadImage(image, weidht, heigth);
+                
                 element.Image = imageHelper.GetImage(newImageLink);
+
+                return newImageLink;
             }
             catch
             {
                 element.Image = productDefaultImage;
+                return null;
+            }
+        }
+        #endregion
+
+
+        #region recipe add view logic
+        private void InitializeRecipeAdding()
+        {
+            ingredientsTableView.AutoScroll = true;
+            ingredientsTableView.Padding = new Padding(
+                0,
+                0,
+                System.Windows.Forms.SystemInformation.VerticalScrollBarWidth,
+                0);
+            this.newRecipeImageLabel.Image = new Bitmap(dishStandartImagePath);
+            this.newDishModel = new DishModel();
+        }
+
+
+        private void addingRecipePage_Enter(object sender, EventArgs e)
+        {
+            newRecipeIngredients = new List<IngredientModel>();
+            this.ingredientsTableView.Controls.Clear();
+            int row = 0;
+            foreach (var selectedProduct in selectedProducts)
+            {
+                var newIngredient = new IngredientModel();
+                newIngredient.ProductId = selectedProduct.Id;
+
+                var ingredientNameLabel = new Label();
+                ingredientNameLabel.AutoSize = true;
+                ingredientNameLabel.Anchor = AnchorStyles.Top;
+                ingredientNameLabel.Font = new Font("Berlin Sans FB", 14F);
+
+                ingredientNameLabel.Text = selectedProduct.Name;
+
+                this.ingredientsTableView.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+
+                this.ingredientsTableView.Controls.Add(ingredientNameLabel, 0, row);
+                row++;
             }
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void newRecipePhotoAddLabel_Click(object sender, EventArgs e)
         {
+            this.newRecipeImageLabel.Image = spinner;
 
-        }
+            var newImage = imageHelper.GetImageFromComputer();
 
-        private void searchProductTextField_TextChanged(object sender, EventArgs e)
-        {
-            clearTable();
-            this.productItems = new List<ProductItem>();
-
-            string name = this.searchProductTextField.Text;
-
-            bool isEmptyName = (name == string.Empty);
-
-            foreach (var sortButton in this.sortButtons)
+            if (newImage != null)
             {
-                sortButton.Visible = isEmptyName;
+                Thread newImageLoader = new Thread(() =>
+                {
+                    this.newDishModel.SmallPhotoLink = loadNewImage(
+                        this.newRecipeImageLabel,
+                        newImage,
+                        dishImageWeigth,
+                        dishImageHeight);
+                });
+                newImageLoader.Start();
             }
+        }
+        #endregion
 
-            this.filterProductComboBox.Visible = isEmptyName;
+        private void addRecipeButton_Click(object sender, EventArgs e)
+        {
+            string  newDishName = newRecipeNameTextField.Text;
 
-            var searchedProducts = this.productProvider.SearchProductByName(name);
-
-            this.productsGridOptions.searchedProductName = name;
-
-            showProducts();
-            this.pages.SelectedTab = productsPage;
-            if (!backgroundImageUploader.IsBusy)
+            if (newDishName == string.Empty)
             {
-                this.backgroundImageUploader.RunWorkerAsync();
+                MessageBox.Show("Do not leave a clear name field!", "Warning!");
+                return;
             }
         }
     }

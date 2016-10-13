@@ -24,7 +24,12 @@ namespace RecipeBookSystem.BL.ModelProviders
             string sortOrder = null,
             int? filterProductTypeId = null)
         {
-            var products = _productRepository.GetProducts(count, pageNumber, sortColumnName, sortOrder, filterProductTypeId);
+            var products = _productRepository.GetProducts(
+                count, 
+                pageNumber,
+                sortColumnName, 
+                sortOrder, 
+                filterProductTypeId);
 
             return products;
         }
@@ -62,6 +67,5 @@ namespace RecipeBookSystem.BL.ModelProviders
         {
             return _productRepository.SearchProductByName(name);
         }
-
     }
 }
