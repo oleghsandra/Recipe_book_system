@@ -10,9 +10,12 @@ namespace RecipeBookSystem.BL.Helpers
 
         public CloudHelper()
         {
-            string apiKey = ConfigurationManager.AppSettings.Get("Api_Key");
-            string cloudName = ConfigurationManager.AppSettings.Get("Cloud_Name");
-            string apiSecret = ConfigurationManager.AppSettings.Get("Api_Secret");
+            //// TODO: Create class ConfigurationManagerHelper that will
+            //// contain methods for getting configs and throw exceptions 
+            //// if config value does not exists.
+            string apiKey = ConfigurationManager.AppSettings["Api_Key"];
+            string cloudName = ConfigurationManager.AppSettings["Cloud_Name"];
+            string apiSecret = ConfigurationManager.AppSettings["Api_Secret"];
 
             var account = new Account(cloudName, apiKey, apiSecret);
 

@@ -4,9 +4,11 @@ using RecipeBookSystem.BL.ModelProviders;
 using RecipeBookSystem.Model.Models;
 using RecipeBookSystem.UI.Models;
 using RecipeBookSystem.UI.Models.FormModels;
+using RecipeBookSystem.UI.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
@@ -15,16 +17,7 @@ using System.Windows.Forms;
 namespace RecipeBookSystem.UI
 { 
     public partial class MainForm : MaterialFormBaseModel
-    {
-        //Додати в ресурси
-        private string deleteIconPath = @"D:\DeleteIcon.png";
-        private string editIconPath = @"D:\AditIcon.png";
-        private string spinnerPath = @"D:\default.gif";
-        private string productStandartImagePath = @"D:\standart.png";
-        private string dishStandartImagePath = @"D:\DishStandart.jpg";
-        private string leftSideImagePath = @"D:\left.png";
-        private string rightSideImagePath = @"D:\right.png";
-
+    {   
         private readonly UserModel loginedUser;
 
         private const int sortButtonCount = 4;
@@ -59,12 +52,6 @@ namespace RecipeBookSystem.UI
 
         Control[] rowLabels;
 
-        Image editIcom;
-        Image deleteIcon;
-
-        Image spinner;
-        Image productDefaultImage;
-
         public MainForm(UserModel loginedUser)
         {
             InitializeComponent();
@@ -80,9 +67,6 @@ namespace RecipeBookSystem.UI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            this.spinner = Image.FromFile(spinnerPath);
-            this.productDefaultImage = Image.FromFile(productStandartImagePath);
-
             this.productsManipulationPlan = ProductsManipulationPlan.CreatingNewProduct;
 
             InitializeProductList();
@@ -96,9 +80,7 @@ namespace RecipeBookSystem.UI
         {
             this.newProduct = new ProductModel();
             this.updatingProduct = new ProductModel();
-            this.editIcom = Image.FromFile(editIconPath);
-            this.deleteIcon = Image.FromFile(deleteIconPath);
-            this.creatingProductPhotoLabel.Image = productDefaultImage;
+            this.creatingProductPhotoLabel.Image = imageHelper.GetProductDefaultImage();
 
             this.selectedProducts = new List<ProductModel>();
             this.productItems = new List<ProductItem>();
@@ -124,8 +106,8 @@ namespace RecipeBookSystem.UI
             this.sortButtons[fatsSortButtonPosition] = fatsSortButton;
             this.sortButtons[carbsSortButtonPosition] = carbsSortButton;
 
-            var leftSideImage = new Bitmap(leftSideImagePath);
-            var rightSideImag = new Bitmap(rightSideImagePath);
+            var leftSideImage = Resources.LeftSideImage;
+            var rightSideImag = Resources.RightSideImage;
 
             this.leftSideButton.Image = leftSideImage;
             this.rightSideButton.Image = rightSideImag;
@@ -153,7 +135,7 @@ namespace RecipeBookSystem.UI
 
         private void changePlan(ProductItem productItem)
         {
-            if(selectedProducts.Count > 1)
+            if (selectedProducts.Count > 1)
             {
                 this.makeRecipeButton.Show();
             }
@@ -195,7 +177,7 @@ namespace RecipeBookSystem.UI
                     productsGridOptions.searchedProductName).ToList();
             }
 
-            if(filteredProducts.Count == 0)
+            if (filteredProducts.Count == 0)
             {
                 this.noMoreProductMessageLabel.Visible = true;
                 this.rightSideButton.Enabled = false;
@@ -222,6 +204,7 @@ namespace RecipeBookSystem.UI
 
                 this.rowLabels[0] = productCheckBox;
                 int initialTableDataColIndex = 2;
+
                 for (int i = initialTableDataColIndex; i < rowLabels.Length; i++)
                 {
                     this.rowLabels[i] = new Label();
@@ -246,6 +229,7 @@ namespace RecipeBookSystem.UI
                         {
                             selectedProductsListBox.Items.RemoveAt(0);
                         }
+
                         this.selectedProductsListBox.Items.Insert(0, productItem.ProductModel.Name);
                         this.selectedProducts.Add(productItem.ProductModel);
                     }
@@ -260,6 +244,7 @@ namespace RecipeBookSystem.UI
                             this.selectedProductsListBox.Items.Insert(0, "No products yet");
                         }
                     }
+
                     changePlan(productItem);
                 };
 
@@ -274,8 +259,8 @@ namespace RecipeBookSystem.UI
 
                 deleteIconLabel.Width = 25;
 
-                deleteIconLabel.Image = deleteIcon;
-                editIconLabel.Image = editIcom;
+                deleteIconLabel.Image = Resources.DeleteIcon;
+                editIconLabel.Image = Resources.EditIcon;
 
                 deleteIconLabel.Click += (sender, e) =>
                 {
@@ -312,9 +297,9 @@ namespace RecipeBookSystem.UI
         {
             this.productProvider.DeleteProduct(productToDelete.Id);
             
-            foreach(var selectedProduct in selectedProducts)
+            foreach (var selectedProduct in selectedProducts)
             {
-                if(selectedProduct.Id == productToDelete.Id)
+                if (selectedProduct.Id == productToDelete.Id)
                 {
                     this.selectedProductsListBox.Items.Remove(productToDelete.Name);
                     break;
@@ -366,30 +351,17 @@ namespace RecipeBookSystem.UI
 
         private void showProductsImages()
         {
-            this.spinner = Image.FromFile(spinnerPath);
-
             foreach (var item in productItems)
             {
                 if (item.PictureLabel.Image == null)
                 {
-                    item.PictureLabel.Image = spinner;
+                    item.PictureLabel.Image = Resources.Spinner;
                 }
             }
 
             foreach (var item in productItems)
             {
-                if (item.PictureLabel.Image == spinner || item.PictureLabel.Image == null)
-                {
-                    try
-                    {
-                        Bitmap image = imageHelper.GetImage(item.ProductModel.SmallPhotoLink);
-                        item.PictureLabel.Image = image;
-                    }
-                    catch
-                    {
-                        item.PictureLabel.Image = productDefaultImage;
-                    }
-                }
+                item.PictureLabel.Image = imageHelper.GetProductImage(item.ProductModel.SmallPhotoLink);
             }
         }
 
@@ -420,9 +392,9 @@ namespace RecipeBookSystem.UI
             string upper = "⇑";
             string lower = "⇓";
 
-            foreach(var button in sortButtons)
+            foreach (var button in sortButtons)
             {
-                if(button != clickedButton)
+                if (button != clickedButton)
                 {
                     button.Text = button.Text.Split(' ')[0];
                 }
@@ -547,7 +519,7 @@ namespace RecipeBookSystem.UI
             this.creatingProductTypeSelector.SelectedIndex = 0;
             this.newProduct.SmallPhotoLink = null;
             this.updatingProduct.SmallPhotoLink = null;
-            this.creatingProductPhotoLabel.Image = productDefaultImage;
+            this.creatingProductPhotoLabel.Image = imageHelper.GetProductDefaultImage();
             this.creatingProductNameTextField.Text = string.Empty;
             this.creatingProductFatsTextField.Text = string.Empty;
             this.creatingProductCarbsTextField.Text = string.Empty;
@@ -566,7 +538,7 @@ namespace RecipeBookSystem.UI
 
         private void pages_Selected(object sender, TabControlEventArgs e)
         {
-            if(pages.SelectedTab == addingRecipePage)
+            if (pages.SelectedTab == addingRecipePage)
             {
                 this.addingRecipeMessageLabel.Visible = (selectedProducts.Count < 2);
             }
@@ -597,12 +569,12 @@ namespace RecipeBookSystem.UI
                 MessageBox.Show("Do not leave a clear name field!", "Warning!");
                 return;
             }
-            else if(newProductTypeId == 0)
+            else if (newProductTypeId == 0)
             {
                 MessageBox.Show("Select the ptoduct type!", "Warning!");
                 return;
             }
-            else if(newProductName.Length > 20)
+            else if (newProductName.Length > 20)
             {
                 MessageBox.Show("Name is too long!", "Warning!");
                 return;
@@ -666,9 +638,16 @@ namespace RecipeBookSystem.UI
 
         private void photoAddMessageLabel_Click(object sender, EventArgs e)
         {
-            this.creatingProductPhotoLabel.Image = spinner;
-            
-            var newImage = imageHelper.GetImageFromComputer();
+            this.creatingProductPhotoLabel.Image = Resources.Spinner;
+
+            string newImagePath = getNewImagePath();
+
+            if (string.IsNullOrEmpty(newImagePath))
+            {
+                return;
+            }
+
+            var newImage = new Bitmap(newImagePath);
 
             if (newImage != null)
             {
@@ -677,6 +656,7 @@ namespace RecipeBookSystem.UI
                     this.newProduct.SmallPhotoLink = loadNewImage(
                         this.creatingProductPhotoLabel,
                         newImage,
+                        imageHelper.GetProductDefaultImage(),
                         productImageWigth,
                         productImageHeight);
                 });
@@ -684,19 +664,39 @@ namespace RecipeBookSystem.UI
             }
         }
 
-        private string loadNewImage(Label element, Bitmap image, int weidht, int heigth)
+        private string getNewImagePath()
+        {
+            var openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = ConfigurationManager.AppSettings["Support_Image_Filter"];
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                return openFileDialog.FileName;
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+        private string loadNewImage(
+            Label element, 
+            Bitmap image, 
+            Bitmap defaultImage, 
+            int weidht, 
+            int heigth)
         {
             try
             {
                 string newImageLink = imageHelper.UploadImage(image, weidht, heigth);
                 
-                element.Image = imageHelper.GetImage(newImageLink);
+                element.Image = imageHelper.GetProductImage(newImageLink);
 
                 return newImageLink;
             }
             catch
             {
-                element.Image = productDefaultImage;
+                element.Image = defaultImage;
                 return null;
             }
         }
@@ -712,7 +712,7 @@ namespace RecipeBookSystem.UI
                 0,
                 System.Windows.Forms.SystemInformation.VerticalScrollBarWidth,
                 0);
-            this.newRecipeImageLabel.Image = new Bitmap(dishStandartImagePath);
+            this.newRecipeImageLabel.Image = imageHelper.GetDishDefaultImage();
             this.newDishModel = new DishModel();
         }
 
@@ -743,9 +743,14 @@ namespace RecipeBookSystem.UI
 
         private void newRecipePhotoAddLabel_Click(object sender, EventArgs e)
         {
-            this.newRecipeImageLabel.Image = spinner;
+            this.newRecipeImageLabel.Image = Resources.Spinner;
+            string newImagePath = getNewImagePath();
 
-            var newImage = imageHelper.GetImageFromComputer();
+            if (string.IsNullOrEmpty(newImagePath))
+            {
+                return;
+            }
+            var newImage = new Bitmap(newImagePath);
 
             if (newImage != null)
             {
@@ -754,6 +759,7 @@ namespace RecipeBookSystem.UI
                     this.newDishModel.SmallPhotoLink = loadNewImage(
                         this.newRecipeImageLabel,
                         newImage,
+                        imageHelper.GetDishDefaultImage(),
                         dishImageWeigth,
                         dishImageHeight);
                 });

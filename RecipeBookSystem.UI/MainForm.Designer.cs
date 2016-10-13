@@ -133,7 +133,7 @@
             this.pageSelector.Location = new System.Drawing.Point(-3, 24);
             this.pageSelector.MouseState = MaterialSkin.MouseState.HOVER;
             this.pageSelector.Name = "pageSelector";
-            this.pageSelector.Size = new System.Drawing.Size(709, 21);
+            this.pageSelector.Size = new System.Drawing.Size(709, 43);
             this.pageSelector.TabIndex = 2;
             this.pageSelector.Text = "pageSelector";
             // 
@@ -198,7 +198,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(216, 409);
+            this.label17.Location = new System.Drawing.Point(297, 415);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(68, 21);
             this.label17.TabIndex = 234;
@@ -208,14 +208,14 @@
             // 
             this.searchProductTextField.Depth = 0;
             this.searchProductTextField.Hint = "";
-            this.searchProductTextField.Location = new System.Drawing.Point(301, 407);
+            this.searchProductTextField.Location = new System.Drawing.Point(371, 415);
             this.searchProductTextField.MouseState = MaterialSkin.MouseState.HOVER;
             this.searchProductTextField.Name = "searchProductTextField";
             this.searchProductTextField.PasswordChar = '\0';
             this.searchProductTextField.SelectedText = "";
             this.searchProductTextField.SelectionLength = 0;
             this.searchProductTextField.SelectionStart = 0;
-            this.searchProductTextField.Size = new System.Drawing.Size(161, 23);
+            this.searchProductTextField.Size = new System.Drawing.Size(185, 23);
             this.searchProductTextField.TabIndex = 233;
             this.searchProductTextField.UseSystemPasswordChar = false;
             this.searchProductTextField.TextChanged += new System.EventHandler(this.searchProductTextField_TextChanged);
@@ -246,11 +246,11 @@
             // makeRecipeButton
             // 
             this.makeRecipeButton.Depth = 0;
-            this.makeRecipeButton.Location = new System.Drawing.Point(301, 459);
+            this.makeRecipeButton.Location = new System.Drawing.Point(290, 446);
             this.makeRecipeButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.makeRecipeButton.Name = "makeRecipeButton";
             this.makeRecipeButton.Primary = true;
-            this.makeRecipeButton.Size = new System.Drawing.Size(258, 52);
+            this.makeRecipeButton.Size = new System.Drawing.Size(269, 62);
             this.makeRecipeButton.TabIndex = 16;
             this.makeRecipeButton.Text = "Make recipe from selected products";
             this.makeRecipeButton.UseVisualStyleBackColor = true;
@@ -325,11 +325,11 @@
             // addNewProductButton
             // 
             this.addNewProductButton.Depth = 0;
-            this.addNewProductButton.Location = new System.Drawing.Point(174, 459);
+            this.addNewProductButton.Location = new System.Drawing.Point(164, 446);
             this.addNewProductButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.addNewProductButton.Name = "addNewProductButton";
             this.addNewProductButton.Primary = true;
-            this.addNewProductButton.Size = new System.Drawing.Size(110, 52);
+            this.addNewProductButton.Size = new System.Drawing.Size(120, 62);
             this.addNewProductButton.TabIndex = 2;
             this.addNewProductButton.Text = "Add new product";
             this.addNewProductButton.UseVisualStyleBackColor = true;
@@ -831,7 +831,7 @@
             this.addingRecipeMessageLabel.Font = new System.Drawing.Font("Berlin Sans FB", 35F, System.Drawing.FontStyle.Underline);
             this.addingRecipeMessageLabel.Location = new System.Drawing.Point(3, 0);
             this.addingRecipeMessageLabel.Name = "addingRecipeMessageLabel";
-            this.addingRecipeMessageLabel.Size = new System.Drawing.Size(70, 511);
+            this.addingRecipeMessageLabel.Size = new System.Drawing.Size(661, 511);
             this.addingRecipeMessageLabel.TabIndex = 0;
             this.addingRecipeMessageLabel.Text = "Please select more than one product at the product list to form from them a dish " +
     "here.";

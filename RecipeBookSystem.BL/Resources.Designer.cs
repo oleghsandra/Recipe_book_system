@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RecipeBookSystem.UI.Properties {
+namespace RecipeBookSystem.BL {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace RecipeBookSystem.UI.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RecipeBookSystem.UI.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RecipeBookSystem.BL.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,9 +63,9 @@ namespace RecipeBookSystem.UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DeleteIcon {
+        internal static System.Drawing.Bitmap DishStandartImage {
             get {
-                object obj = ResourceManager.GetObject("DeleteIcon", resourceCulture);
+                object obj = ResourceManager.GetObject("DishStandartImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,39 +73,9 @@ namespace RecipeBookSystem.UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap EditIcon {
+        internal static System.Drawing.Bitmap ProductStandartImage {
             get {
-                object obj = ResourceManager.GetObject("EditIcon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap LeftSideImage {
-            get {
-                object obj = ResourceManager.GetObject("LeftSideImage", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap RightSideImage {
-            get {
-                object obj = ResourceManager.GetObject("RightSideImage", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Spinner {
-            get {
-                object obj = ResourceManager.GetObject("Spinner", resourceCulture);
+                object obj = ResourceManager.GetObject("ProductStandartImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
