@@ -2,6 +2,7 @@
 using RecipeBookSystem.DAL.Abstraction.UnitOfWork;
 using RecipeBookSystem.DAL.Concrete.UnitOfWork;
 using RecipeBookSystem.Model.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 
@@ -17,11 +18,19 @@ namespace RecipeBookSystem.BL.ModelProviders
             _dishRepository = unitOfWork.DishRepository;
         }
 
-        public IEnumerable<DishModel> GetUserDishes(int userId)
+        public IEnumerable<DishModel> GetUserDishes(int userId, int count, int pageNumber)
         {
-            var dishes = _dishRepository.GetUserDishes(userId);
+            try
+            {
+                IEnumerable<DishModel> dishes;
+                dishes = _dishRepository.GetUserDishes(userId, count, pageNumber);
 
-            return dishes;
+                return dishes;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("error while getting dishes: " + ex.Message, ex);  
+            }
         }
 
     }

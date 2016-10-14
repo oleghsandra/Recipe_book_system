@@ -13,6 +13,7 @@ namespace RecipeBookSystem.DAL.Concrete.Parsers
             model.Id = reader.Get<int>(ColumnNames.IngredientId);
             model.DishId = reader.Get<int>(ColumnNames.DishId);
             model.ProductId = reader.Get<int>(ColumnNames.ProductId);
+            model.ProductName = reader.Get<string>(ColumnNames.Name);
             model.Weight = reader.Get<float>(ColumnNames.Weight);
 
             return model;

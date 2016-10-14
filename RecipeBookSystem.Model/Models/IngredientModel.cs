@@ -18,6 +18,11 @@
         public int ProductId { get; set; }
 
         /// <summary>
+        /// Name of the product that is ingredient
+        /// </summary>
+        public string ProductName { get; set; }
+
+        /// <summary>
         /// Weight of Product that includes in the dish
         /// </summary>
         public double Weight { get; set; }

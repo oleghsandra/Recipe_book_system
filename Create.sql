@@ -361,7 +361,7 @@ GO
 
 CREATE PROC spDishes_Get(
 	@OwnerId INT,
-	@ProductCount INT,
+	@DishCount INT,
 	@PageNumber INT
 )
 AS
@@ -375,8 +375,8 @@ AS
 	ON (PhotoLinks.PhotoLinkId = Dishes.PhotoLinkId)
 	WHERE UsersDishes.UserId = @OwnerId
 	ORDER BY Dishes.DishId DESC
-	OFFSET (@ProductCount * (@PageNumber - 1)) ROWS -- skip rows
-	FETCH NEXT (@ProductCount) ROWS ONLY; -- take rows
+	OFFSET (@DishCount * (@PageNumber - 1)) ROWS -- skip rows
+	FETCH NEXT (@DishCount) ROWS ONLY; -- take rows
 GO
 -----------------------------------------------------------------
 
@@ -391,7 +391,9 @@ AS
  SET NOCOUNT ON 
 	DECLARE @AllProductCount INT;
 
-	SELECT IngredientId, DishId, ProductId, [Weight] FROM Ingredients
+	SELECT IngredientId, DishId, Products.ProductId, Name, [Weight] FROM Ingredients
+	INNER JOIN Products
+	ON Products.ProductId = Ingredients.ProductId
 	WHERE DishId = @DishId
 
 GO

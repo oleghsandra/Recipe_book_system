@@ -63,6 +63,8 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\DishGridOptions.cs" />
+    <Compile Include="Models\DishItem.cs" />
     <Compile Include="Models\ProductItem.cs" />
     <Compile Include="Models\ProductsGridOptions.cs" />
     <Compile Include="Models\ProductsManipulationPlan.cs" />

@@ -20,6 +20,9 @@ namespace RecipeBookSystem.UI
         {
             InitializeComponent();
             this.userProvider = new UserProvider();
+
+            emailTextField.Text = "test@gmail.com";
+            passwordTextField.Text = "1234";
         }
 
         private void createNewAccountButton_Click(object sender, EventArgs e)
@@ -89,7 +92,6 @@ namespace RecipeBookSystem.UI
             {
                 MessageBox.Show("Incorrect login or password", "Incorrect input!");
             }
-            
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

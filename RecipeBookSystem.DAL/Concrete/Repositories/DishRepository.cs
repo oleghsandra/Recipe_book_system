@@ -15,11 +15,13 @@ namespace RecipeBookSystem.DAL.Concrete.Repositories
 
         }
 
-        public IEnumerable<DishModel> GetUserDishes(int userId)
+        public IEnumerable<DishModel> GetUserDishes(int userId, int count, int pageNumber)
         {
             var parameters = new[]
             {
                 new SqlParameter(StoredProcedureParameters.OwnerId, userId),
+                new SqlParameter(StoredProcedureParameters.DishCount, count),
+                new SqlParameter(StoredProcedureParameters.PageNumber, pageNumber)
             };
 
             var dishIngredients = base.ExecuteReader(StoredProcedureNames.spGetUserDishes,

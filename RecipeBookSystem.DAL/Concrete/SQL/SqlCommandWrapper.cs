@@ -8,6 +8,7 @@ namespace RecipeBookSystem.DAL.Concrete.SQL
     public class SqlCommandWrapper
     {
         private readonly string _connectionString;
+
         public SqlCommandWrapper(string connectionString)
         {
             _connectionString = connectionString;

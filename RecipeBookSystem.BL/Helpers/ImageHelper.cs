@@ -1,10 +1,8 @@
-﻿using RecipeBookSystem.BL;
-using System;
-using System.Configuration;
+﻿using System;
 using System.Drawing;
 using System.IO;
 using System.Net;
-using System.Windows.Forms;
+using System.Reflection;
 
 namespace RecipeBookSystem.BL.Helpers
 {
@@ -12,7 +10,8 @@ namespace RecipeBookSystem.BL.Helpers
     {
         private CloudHelper _cloud;
         
-        private static object imageUploadLoadObject = new object();
+        private static object imageLoadLockObject = new object();
+        private static object imageUploadLockObject = new object();
 
         public ImageHelper()
         {
@@ -37,15 +36,23 @@ namespace RecipeBookSystem.BL.Helpers
         {
             var minimizedImage = new Bitmap(image, width, height);
 
-            lock(imageUploadLoadObject)
+            lock(imageUploadLockObject)
             {
-                string minimizedImagePath = Path.GetDirectoryName(Application.ExecutablePath);
+                string minimizedImagePath = getAssemblyDirectory();
                 minimizedImagePath += "Image.bmp";
 
                 minimizedImage.Save(minimizedImagePath);
 
                 return _cloud.UploadImage(minimizedImagePath);
             }
+        }
+
+        private string getAssemblyDirectory()
+        {
+            string codeBase = Assembly.GetExecutingAssembly().CodeBase;
+            UriBuilder uri = new UriBuilder(codeBase);
+            string path = Uri.UnescapeDataString(uri.Path);
+            return Path.GetDirectoryName(path);
         }
 
         public Bitmap GetProductDefaultImage()
@@ -102,12 +109,15 @@ namespace RecipeBookSystem.BL.Helpers
 
         private Bitmap getImageByUrl(string url)
         {
-            WebRequest request = WebRequest.Create(url);
-            WebResponse response = request.GetResponse();
-            var responseStream = response.GetResponseStream();
-            var image = new Bitmap(responseStream);
+            lock (imageLoadLockObject)
+            {
+                WebRequest request = WebRequest.Create(url);
+                WebResponse response = request.GetResponse();
+                var responseStream = response.GetResponseStream();
+                var image = new Bitmap(responseStream);
 
-            return image;
+                return image;
+            }
         }
     }
 }

@@ -34,7 +34,6 @@ namespace RecipeBookSystem.UI.Models.FormModels
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
-
         }
     }
 }
