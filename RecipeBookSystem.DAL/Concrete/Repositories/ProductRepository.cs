@@ -2,12 +2,8 @@
 using RecipeBookSystem.DAL.Concrete.Parsers;
 using RecipeBookSystem.DAL.Concrete.SQL;
 using RecipeBookSystem.Model.Models;
-using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RecipeBookSystem.DAL.Concrete.Repositories
 {

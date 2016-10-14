@@ -30,9 +30,10 @@
         public const string DishId = ColumnNames.DishId;
         public const string IngredientId = ColumnNames.IngredientId;
         public const string Weight = ColumnNames.Weight;
-
-
+        
         public const string OwnerId = "OwnerId";
         public const string DishCount = "DishCount";
+        public const string CookingInstructions = ColumnNames.CookingInstructions;
+        
     }
 }

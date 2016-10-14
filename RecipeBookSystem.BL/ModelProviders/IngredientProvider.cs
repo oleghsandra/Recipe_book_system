@@ -23,5 +23,10 @@ namespace RecipeBookSystem.BL.ModelProviders
 
             return ingredients;
         }
+
+        public void AddIngredient(IngredientModel ingredient)
+        {
+            _ingredientRepository.AddIngredient(ingredient);
+        }
     }
 }

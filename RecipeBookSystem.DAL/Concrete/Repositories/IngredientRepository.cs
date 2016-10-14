@@ -27,5 +27,17 @@ namespace RecipeBookSystem.DAL.Concrete.Repositories
 
             return dishIngredients;
         }
+
+        public void AddIngredient(IngredientModel ingredient)
+        {
+            var parameters = new[]
+            {
+                new SqlParameter(StoredProcedureParameters.DishId, ingredient.DishId),
+                new SqlParameter(StoredProcedureParameters.ProductId, ingredient.ProductId),
+                new SqlParameter(StoredProcedureParameters.Weight, ingredient.Weight),
+            };
+
+            base.ExecuteReader(StoredProcedureNames.spAddDishIngredients, null, parameters);
+        }
     }
 }

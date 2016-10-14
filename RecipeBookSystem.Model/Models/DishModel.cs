@@ -13,6 +13,11 @@
         public string Name { get; set; }
 
         /// <summary>
+        /// Identity of user that has the dish
+        /// </summary>
+        public int OwnerId { get; set; }
+
+        /// <summary>
         /// Description of cooking proccess
         /// </summary>
         public string CookingInstructions { get; set; }

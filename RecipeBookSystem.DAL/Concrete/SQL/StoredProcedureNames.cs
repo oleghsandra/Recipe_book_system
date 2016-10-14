@@ -20,13 +20,13 @@ namespace RecipeBookSystem.DAL.Concrete.SQL
         public const string spSearchProductByName = "[dbo].[spProduct_SearchByName]";
         public const string spDeleteProduct = "[dbo].[spProduct_Delete]";
 
-        //Dish
+        //Dish SP
         public const string spAddDish = "[dbo].[spDish_Add]";
         public const string spGetUserDishes = "[dbo].[spDishes_Get]";
         public const string spDeleteDish = "[dbo].[spDish_Delete]";
 
         //Ingredients SP
-        public const string spAddDishIngredients = "[dbo].[spIngrediends_Add]";
+        public const string spAddDishIngredients = "[dbo].[spIngredient_Add]";
         public const string spGetDishIngredients = "[dbo].[spDishIngrediends_Get]";
 
         //ProductTypes SP

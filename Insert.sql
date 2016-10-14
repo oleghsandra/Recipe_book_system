@@ -1,4 +1,4 @@
-﻿USE [MealsManagementTest];
+﻿USE [RecipeBookSystemTestDB];
 GO
 
 EXEC spUsers_Add 'TestUser', 'test@gmail.com', '1234';
@@ -84,19 +84,20 @@ EXEC spProduct_AddNew 'Bread', 7, 7.7, 2.4, 53.4, 'https://res.cloudinary.com/du
 
 
 --Adding Dishes and their ingredients to admin(with 1 id value)
-EXEC spDish_Add 'Сottage cheese with bananas', 1, NULL, NULL, 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1476366500/tf0lvf2nh1kz8zoxj1jp.png';
-EXEC spIngredient_Add 1, 36, 300;
-EXEC spIngredient_Add 1, 16, 400;
+DECLARE @DishId INT;
+EXEC spDish_Add 'Potato with meat', 1, NULL, NULL, 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1475928152/vgmot2qiwbhihmm35kew.png', @DishId OUT;
+EXEC spIngredient_Add @DishId, 25, 500;
+EXEC spIngredient_Add @DishId, 12, 200;
 
-EXEC spDish_Add 'Rice with vegetables', 1, 'Good and tasty dish which is easy to prepare', NULL, 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1476365705/jcl6liovchdvi2fardiy.png';
-EXEC spIngredient_Add 2, 53, 200;
-EXEC spIngredient_Add 2, 28, 20;
-EXEC spIngredient_Add 2, 27, 15;
-EXEC spIngredient_Add 2, 24, 40;
+EXEC spDish_Add 'Rice with vegetables', 1, 'Good and tasty dish which is easy to prepare', NULL, 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1476365705/jcl6liovchdvi2fardiy.png', @DishId OUT;
+EXEC spIngredient_Add @DishId, 53, 200;
+EXEC spIngredient_Add @DishId, 28, 20;
+EXEC spIngredient_Add @DishId, 27, 15;
+EXEC spIngredient_Add @DishId, 24, 40;
 
-EXEC spDish_Add 'Potato with meat', 1, NULL, NULL, 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1475928152/vgmot2qiwbhihmm35kew.png';
-EXEC spIngredient_Add 3, 25, 500;
-EXEC spIngredient_Add 3, 12, 200;
+EXEC spDish_Add 'Сottage cheese with bananas', 1, NULL, NULL, 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1476366500/tf0lvf2nh1kz8zoxj1jp.png', @DishId OUT;
+EXEC spIngredient_Add @DishId, 36, 300;
+EXEC spIngredient_Add @DishId, 16, 400;
 GO
 
 

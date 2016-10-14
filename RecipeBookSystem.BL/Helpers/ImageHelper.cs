@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RecipeBookSystem.BL.Helpers.Abstraction;
+using System;
 using System.Drawing;
 using System.IO;
 using System.Net;
@@ -8,14 +9,14 @@ namespace RecipeBookSystem.BL.Helpers
 {
     public class ImageHelper
     {
-        private CloudHelper _cloud;
+        private ICloudHelper _cloud;
         
         private static object imageLoadLockObject = new object();
         private static object imageUploadLockObject = new object();
 
-        public ImageHelper()
+        public ImageHelper(ICloudHelper cloud)
         {
-            _cloud = new CloudHelper();
+            _cloud = cloud;
         }
 
         public Bitmap UploadImageFromComputer(string path)

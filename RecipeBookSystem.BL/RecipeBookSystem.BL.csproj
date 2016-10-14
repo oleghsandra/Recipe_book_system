@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\Abstraction\ICloudHelper.cs" />
     <Compile Include="Helpers\CloudHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="ModelProviders\DishProvider.cs" />

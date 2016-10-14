@@ -1,10 +1,11 @@
 ﻿using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
+using RecipeBookSystem.BL.Helpers.Abstraction;
 using System.Configuration;
 
 namespace RecipeBookSystem.BL.Helpers
 {
-    class CloudHelper
+    public class CloudHelper : ICloudHelper
     {
         Cloudinary _cloudinary;
 
@@ -12,7 +13,7 @@ namespace RecipeBookSystem.BL.Helpers
         {
             //// TODO: Create class ConfigurationManagerHelper that will
             //// contain methods for getting configs and throw exceptions 
-            //// if config value does not exists.
+            //// if config value does not exists    .
             string apiKey = ConfigurationManager.AppSettings["Api_Key"];
             string cloudName = ConfigurationManager.AppSettings["Cloud_Name"];
             string apiSecret = ConfigurationManager.AppSettings["Api_Secret"];

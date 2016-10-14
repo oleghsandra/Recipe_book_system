@@ -6,5 +6,7 @@ namespace RecipeBookSystem.DAL.Abstraction.Repositories
     public interface IDishRepository : IGenericRepository<DishModel>
     {
         IEnumerable<DishModel> GetUserDishes(int userId, int count, int pageNumber);
+
+        int AddDish(DishModel dish);
     }
 }

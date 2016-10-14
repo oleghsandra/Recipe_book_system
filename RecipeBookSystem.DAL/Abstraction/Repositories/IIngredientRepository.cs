@@ -6,5 +6,7 @@ namespace RecipeBookSystem.DAL.Abstraction.Repositories
     public interface IIngredientRepository : IGenericRepository<IngredientModel>
     {
         IEnumerable<IngredientModel> GetIngredients(int dishId);
+
+        void AddIngredient(IngredientModel ingredient);
     }
 }

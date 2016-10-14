@@ -34,7 +34,6 @@ namespace RecipeBookSystem.UI
         private const int ingerdientWeightTablePosition = 1;
 
         private readonly UserModel loggedUser;
-
         private readonly ProductProvider productProvider;
         private readonly ProductTypeProvider productTypeProvider;
         private readonly ImageHelper imageHelper;
@@ -68,18 +67,14 @@ namespace RecipeBookSystem.UI
             this.loggedUser = loggedUser;
 
             productProvider = new ProductProvider();
-            imageHelper = new ImageHelper();
+            imageHelper = new ImageHelper(new CloudHelper());
             productTypeProvider = new ProductTypeProvider();
             ingredientProvider = new IngredientProvider();
             dishProvider = new DishProvider();
 
             commonFont = new Font("Berlin Sans FB", 14F);
 
-            commonTablePadding = new Padding(
-                0,
-                0,
-                System.Windows.Forms.SystemInformation.VerticalScrollBarWidth,
-                0);
+            commonTablePadding = new Padding(0, 0, SystemInformation.VerticalScrollBarWidth, 0);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -169,7 +164,7 @@ namespace RecipeBookSystem.UI
         {
             this.backgroundProductImageUploader.CancelAsync();
             clearTable();
-            this.rightSideProductListButton.Enabled = true;
+            //this.rightSideProductListButton.Enabled = true;
 
             int row = productItems.Count;
 
@@ -491,7 +486,6 @@ namespace RecipeBookSystem.UI
             }
         }
 
-
         private void searchProductTextField_TextChanged(object sender, EventArgs e)
         {
             clearTable();
@@ -520,6 +514,16 @@ namespace RecipeBookSystem.UI
         }
 
         private void addNewProductButton_Click(object sender, EventArgs e)
+        {
+            setAddProductPlan();
+        }
+
+        private void noMoreProductMessageLabel_Click(object sender, EventArgs e)
+        {
+            setAddProductPlan();
+        }
+
+        private void setAddProductPlan()
         {
             clearAddingProductPage();
             this.productsManipulationPlan = ProductsManipulationPlan.CreatingNewProduct;
@@ -717,7 +721,7 @@ namespace RecipeBookSystem.UI
         }
         #endregion
 
-        #region recipe add view logic
+        #region Recipe add view logic
         private void InitializeRecipeAdding()
         {
             ingredientsTableView.AutoScroll = true;
@@ -731,26 +735,48 @@ namespace RecipeBookSystem.UI
         {
             newRecipeIngredients = new List<IngredientModel>();
             this.ingredientsTableView.Controls.Clear();
+
+            int selectedProductsCount = selectedProducts.Count;
+                
             int row = 0;
+
             foreach (var selectedProduct in selectedProducts)
             {
                 var newIngredient = new IngredientModel();
                 newIngredient.ProductId = selectedProduct.Id;
 
+                newRecipeIngredients.Add(newIngredient);
+
                 var ingredientNameLabel = new Label();
                 ingredientNameLabel.AutoSize = true;
-                ingredientNameLabel.Anchor = AnchorStyles.Top;
+                ingredientNameLabel.Anchor = AnchorStyles.None;
                 ingredientNameLabel.Font = commonFont;
 
                 ingredientNameLabel.Text = selectedProduct.Name;
 
                 this.ingredientsTableView.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
 
+                NumericUpDown ingredientWeightNumericUpDown = new NumericUpDown();
+
+                ingredientWeightNumericUpDown.BorderStyle = BorderStyle.None;
+                ingredientWeightNumericUpDown.Font = commonFont;
+                ingredientWeightNumericUpDown.Anchor = AnchorStyles.None;
+                ingredientWeightNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
+                ingredientWeightNumericUpDown.Maximum = new decimal(new int[] { 2000, 0, 0, 0 });
+                ingredientWeightNumericUpDown.Size = new Size(66, 24);
+
+                ingredientWeightNumericUpDown.ValueChanged += (senderObj, args) =>
+                {
+                    newIngredient.Weight = (double)ingredientWeightNumericUpDown.Value;
+                };
+
                 this.ingredientsTableView.Controls.Add(ingredientNameLabel, 0, row);
+                this.ingredientsTableView.Controls.Add(ingredientWeightNumericUpDown, 1, row);
+
                 row++;
             }
         }
-
+        
         private void newRecipePhotoAddLabel_Click(object sender, EventArgs e)
         {
             this.newRecipeImageLabel.Image = Resources.Spinner;
@@ -766,7 +792,7 @@ namespace RecipeBookSystem.UI
             {
                 Thread newImageLoader = new Thread(() =>
                 {
-                    this.newDishModel.SmallPhotoLink = loadNewImage(
+                    this.newDishModel.BigPhotoLink = loadNewImage(
                         this.newRecipeImageLabel,
                         newImage,
                         imageHelper.GetDishDefaultImage(),
@@ -781,11 +807,24 @@ namespace RecipeBookSystem.UI
         {
             string newDishName = newRecipeNameTextField.Text;
 
-            if (newDishName == string.Empty)
+            if (newDishName == string.Empty)    
             {
                 MessageBox.Show("Do not leave a clear name field!", "Warning!");
                 return;
             }
+
+            newDishModel.Name = newDishName;
+            newDishModel.OwnerId = loggedUser.Id;
+            newDishModel.CookingInstructions = this.newRecipeDescriptionRichTextField.Text;
+
+            int newDishId = dishProvider.AddDish(newDishModel);
+
+            foreach (var ingredient in newRecipeIngredients)
+            {
+                ingredient.DishId = newDishId;
+                ingredientProvider.AddIngredient(ingredient);
+            }
+           
         }
         #endregion
 
@@ -801,8 +840,13 @@ namespace RecipeBookSystem.UI
    
             this.firstDishIngredientsTableView.Padding = commonTablePadding;
             this.secondDishIngredientsTableView.Padding = commonTablePadding;
-         
+
+            this.leftSideDishListButton.Image = Resources.LeftSideImage;
+            this.rightSideDishListButton.Image = Resources.RightSideImage;
+
             this.dishItems = new List<DishItem>();
+
+            this.leftSideDishListButton.Enabled = false;
         }
         
         private void ShowDishes()
@@ -813,7 +857,7 @@ namespace RecipeBookSystem.UI
                 loggedUser.Id,
                 dishGridOptions.ItemsCount,
                 dishGridOptions.PageNumber);
-
+            
             foreach (var dish in userDishes)
             {
                 dishItems.Add(new DishItem(dish)
@@ -821,15 +865,23 @@ namespace RecipeBookSystem.UI
                     Ingredients = ingredientProvider.GetIngredients(dish.Id).ToList()
                 });
             }
+            
+            if (dishItems.Count == 0)
+            {
+                this.rightSideDishListButton.Enabled = false;
+                return;
+            }
 
             if (dishItems.Count > 0)
             {
+                this.rightSideDishListButton.Enabled = true;
                 fillDishGroupBox(
                     firstDishGroupBox,
                     firstDishItemImageLabel,
                     firstDishDescriptionTextLabel,
                     firstDishIngredientsTableView,
                     dishItems[0]);
+                this.firstDishGroupBox.Visible = true;
             }
 
             if (dishItems.Count > 1)
@@ -840,14 +892,7 @@ namespace RecipeBookSystem.UI
                     secondDishDescriptionTextLabel,
                     secondDishIngredientsTableView,
                     dishItems[1]);
-            }
-
-            //Here will be others Dish Group Boxes
-            //...
-
-            else
-            {
-
+                this.secondDishGroupBox.Visible = true;
             }
         }
 
@@ -863,6 +908,12 @@ namespace RecipeBookSystem.UI
             dishGroupBox.Text = dishToShow.DishModel.Name;
             
             imageLabel.Image = dishToShow.Image;
+
+            Thread imageLoader = new Thread(() =>
+            {
+                showDisheImage(imageLabel, dishToShow);
+            });
+            imageLoader.Start();
 
             int row = 0;
             foreach(var ingredient in dishToShow.Ingredients)
@@ -883,30 +934,25 @@ namespace RecipeBookSystem.UI
                 ingredientsTable.Controls.Add(ingredientWeightLabel, ingerdientWeightTablePosition, row);
                 row++;
             }
-
-            Thread imageLoader = new Thread(() =>
-            {
-                showDisheImage(imageLabel, dishToShow);
-            });
-            imageLoader.Start();
         }
 
         private void showDisheImage(Label element, DishItem dishItem)
         {
-            if (element.Image == null)
-            {
-                element.Image = Resources.Spinner;
-            }
-
-            element.Image = imageHelper.GetProductImage(dishItem.DishModel.BigPhotoLink);
+            element.Image = Resources.Spinner;
+            element.Image = imageHelper.GetDishImage(dishItem.DishModel.BigPhotoLink);
         }
 
         private void clearDishesTableView()
         {
+            this.firstDishGroupBox.Visible = false;
+            this.secondDishGroupBox.Visible = false;
             this.firstDishIngredientsTableView.Controls.Clear();
             this.secondDishIngredientsTableView.Controls.Clear();
-            this.firstDishItemImageLabel.Image = null;
-            this.secondDishItemImageLabel.Image = null;
+
+            for(int row = firstDishIngredientsTableView.Controls.Count; row > 0; row++)
+            {
+                this.firstDishIngredientsTableView.RowStyles.RemoveAt(row);
+            }
             this.firstDishDescriptionTextLabel.Text = string.Empty;
             this.firstDishDescriptionTextLabel.Text = string.Empty;
             this.firstDishGroupBox.Visible = false;
@@ -915,17 +961,47 @@ namespace RecipeBookSystem.UI
 
         private void leftSideDishListButton_Click(object sender, EventArgs e)
         {
+            this.rightSideDishListButton.Enabled = true;
+            dishGridOptions.PageNumber--;
+            noDishMessageLabel.Visible = false;
 
+            clearDishesTableView();
+            ShowDishes();
+
+            if (dishGridOptions.PageNumber == 1)
+            {
+                this.leftSideDishListButton.Enabled = false;
+            }
         }
 
         private void rightSideDishListButton_Click(object sender, EventArgs e)
         {
+            this.rightSideDishListButton.Enabled = false;
+            this.leftSideDishListButton.Enabled = true;
+            dishGridOptions.PageNumber++;
 
+            clearDishesTableView();
+            ShowDishes();
+
+            if (dishItems.Count == 0)
+            {
+                noDishMessageLabel.Visible = true;
+            }
         }
 
         private void dishesPage_Enter(object sender, EventArgs e)
         {
+            if (dishItems.Count == 0)
+            {
+                dishGridOptions.PageNumber = 1;
+                this.noDishMessageLabel.Visible = false;
+            }
             ShowDishes();
+        }
+
+        private void noDishMessageLabel_Click(object sender, EventArgs e)
+        {
+            this.pages.SelectedTab = addingRecipePage;
         }
         #endregion
     }

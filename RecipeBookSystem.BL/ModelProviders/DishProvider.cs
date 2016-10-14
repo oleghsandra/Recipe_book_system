@@ -33,5 +33,17 @@ namespace RecipeBookSystem.BL.ModelProviders
             }
         }
 
+        public int AddDish(DishModel dish)
+        {
+            try
+            {
+                return _dishRepository.AddDish(dish);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("error while adding dish: " + ex.Message, ex);
+            }
+        }
+
     }
 }

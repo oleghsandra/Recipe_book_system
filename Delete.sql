@@ -3,12 +3,12 @@
 
 --IF EXISTS(SELECT * FROM sys.databases WHERE name='MealsManagementTest')
 	--BEGIN
-		--DROP DATABASE [MealsManagementTest];
+		--DROP DATABASE [RecipeBookSystemTestDB];
 	--END
 --GO
 
 
-USE [MealsManagementTest];
+USE [RecipeBookSystemTestDB];
 GO
 
 -----------------------------------------------------------

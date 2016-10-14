@@ -1,7 +1,7 @@
-﻿--CREATE DATABASE [MealsManagementTest];
+﻿--CREATE DATABASE [RecipeBookSystemTestDB];
 --GO
 
-USE [MealsManagementTest];
+USE [RecipeBookSystemTestDB];
 GO
 
 -----------------------------------------------------------
@@ -70,7 +70,7 @@ GO
 )
 
 -- SPROCS
-USE [MealsManagementTest]
+USE [RecipeBookSystemTestDB]
 GO
 
 -----------------------------------------------------------------
@@ -330,7 +330,8 @@ CREATE PROC spDish_Add(
 	@OwnerId INT,
 	@CookingInstructions NVARCHAR(MAX) = NULL,
 	@SmallPhotoLink NVARCHAR(MAX) = NULL,
-	@BigPhotoLink NVARCHAR(MAX) = NULL
+	@BigPhotoLink NVARCHAR(MAX) = NULL,
+	@DishId INT OUTPUT
 )
 AS
  SET NOCOUNT ON 
@@ -342,9 +343,9 @@ AS
 		VALUES(@Name, @CurrentDishPhotoLinkId, @CookingInstructions);
 
 	DECLARE @CurrentDishId INT = SCOPE_IDENTITY();
+	SELECT @DishId = @CurrentDishId;
 	INSERT INTO UsersDishes 
-		VALUES(@OwnerId, @CurrentDishId)
-
+		VALUES(@OwnerId, @CurrentDishId);
 GO
 -----------------------------------------------------------------
 
@@ -402,15 +403,13 @@ GO
 CREATE PROC spIngredient_Add(
 	@DishId INT,
 	@ProductId INT, 
-	@ProductWeight REAL
+	@Weight REAL
 )
 AS
  SET NOCOUNT ON 
 
 	INSERT INTO Ingredients
-		VALUES (@DishId, @ProductId, @ProductWeight)
-
-	RETURN SCOPE_IDENTITY();
+		VALUES (@DishId, @ProductId, @Weight)
 GO
 
 
