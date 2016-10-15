@@ -5,15 +5,30 @@ using System.Data.SqlClient;
 
 namespace RecipeBookSystem.DAL.Concrete.SQL
 {
+    /// <summary>
+    /// Wrapper for performing actions with database
+    /// </summary>
     public class SqlCommandWrapper
     {
         private readonly string _connectionString;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlCommandWrapper"/> class.
+        /// </summary>
+        /// <param name="connectionString">String fot connecting to DB</param>
         public SqlCommandWrapper(string connectionString)
         {
             _connectionString = connectionString;
         }
 
+        /// <summary>
+        /// Executes database query
+        /// </summary>
+        /// <typeparam name="T">Type of returning value</typeparam>
+        /// <param name="commandText">In this case - the name of the SP</param>
+        /// <param name="parameters">Parameters for executing queury</param>
+        /// <param name="callback">Function for parsing results</param>
+        /// <returns>Obgect as result of executing</returns>
         public object ExecuteReader<T>(
             string commandText,
             SqlParameter[] parameters,

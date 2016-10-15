@@ -38,7 +38,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.selectedProductsListBox = new System.Windows.Forms.ListBox();
             this.makeRecipeButton = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.label1 = new System.Windows.Forms.Label();
             this.leftSideProductListButton = new System.Windows.Forms.Button();
             this.rightSideProductListButton = new System.Windows.Forms.Button();
             this.leftSideLabel = new System.Windows.Forms.Label();
@@ -54,17 +53,17 @@
             this.leftSideDishListButton = new System.Windows.Forms.Button();
             this.rightSideDishListButton = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
-            this.materialSingleLineTextField1 = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.searchDishesTextField = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.secondDishGroupBox = new System.Windows.Forms.GroupBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.secondDishDeleteIconLabel = new System.Windows.Forms.Label();
+            this.secondDishIngredientsListBox = new System.Windows.Forms.ListBox();
             this.label13 = new System.Windows.Forms.Label();
             this.secondDishDescriptionTextLabel = new System.Windows.Forms.Label();
-            this.secondDishIngredientsTableView = new System.Windows.Forms.TableLayoutPanel();
             this.secondDishItemImageLabel = new System.Windows.Forms.Label();
             this.firstDishGroupBox = new System.Windows.Forms.GroupBox();
-            this.label11 = new System.Windows.Forms.Label();
+            this.firstDishDeleteIconLabel = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.firstDishIngredientsTableView = new System.Windows.Forms.TableLayoutPanel();
+            this.firstDishIngredientsListBox = new System.Windows.Forms.ListBox();
             this.firstDishItemImageLabel = new System.Windows.Forms.Label();
             this.firstDishDescriptionTextLabel = new System.Windows.Forms.Label();
             this.addingProductPage = new System.Windows.Forms.TabPage();
@@ -123,7 +122,7 @@
             this.pageSelector.Location = new System.Drawing.Point(-3, 24);
             this.pageSelector.MouseState = MaterialSkin.MouseState.HOVER;
             this.pageSelector.Name = "pageSelector";
-            this.pageSelector.Size = new System.Drawing.Size(709, 43);
+            this.pageSelector.Size = new System.Drawing.Size(709, 48);
             this.pageSelector.TabIndex = 2;
             this.pageSelector.Text = "pageSelector";
             // 
@@ -135,11 +134,11 @@
             this.pages.Controls.Add(this.addingProductPage);
             this.pages.Controls.Add(this.addingRecipePage);
             this.pages.Depth = 0;
-            this.pages.Location = new System.Drawing.Point(12, 51);
+            this.pages.Location = new System.Drawing.Point(12, 56);
             this.pages.MouseState = MaterialSkin.MouseState.HOVER;
             this.pages.Name = "pages";
             this.pages.SelectedIndex = 0;
-            this.pages.Size = new System.Drawing.Size(682, 540);
+            this.pages.Size = new System.Drawing.Size(682, 548);
             this.pages.TabIndex = 1;
             this.pages.Selected += new System.Windows.Forms.TabControlEventHandler(this.pages_Selected);
             // 
@@ -151,7 +150,6 @@
             this.productsPage.Controls.Add(this.searchProductTextField);
             this.productsPage.Controls.Add(this.groupBox1);
             this.productsPage.Controls.Add(this.makeRecipeButton);
-            this.productsPage.Controls.Add(this.label1);
             this.productsPage.Controls.Add(this.leftSideProductListButton);
             this.productsPage.Controls.Add(this.rightSideProductListButton);
             this.productsPage.Controls.Add(this.leftSideLabel);
@@ -166,7 +164,7 @@
             this.productsPage.Location = new System.Drawing.Point(4, 22);
             this.productsPage.Name = "productsPage";
             this.productsPage.Padding = new System.Windows.Forms.Padding(3);
-            this.productsPage.Size = new System.Drawing.Size(674, 514);
+            this.productsPage.Size = new System.Drawing.Size(674, 522);
             this.productsPage.TabIndex = 0;
             this.productsPage.Text = "Product list";
             // 
@@ -246,15 +244,6 @@
             this.makeRecipeButton.Text = "Make recipe from selected products";
             this.makeRecipeButton.UseVisualStyleBackColor = true;
             this.makeRecipeButton.Click += new System.EventHandler(this.makeRecipeButton_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 18);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "label1";
             // 
             // leftSideProductListButton
             // 
@@ -411,7 +400,7 @@
             this.dishesPage.Controls.Add(this.leftSideDishListButton);
             this.dishesPage.Controls.Add(this.rightSideDishListButton);
             this.dishesPage.Controls.Add(this.label16);
-            this.dishesPage.Controls.Add(this.materialSingleLineTextField1);
+            this.dishesPage.Controls.Add(this.searchDishesTextField);
             this.dishesPage.Controls.Add(this.secondDishGroupBox);
             this.dishesPage.Controls.Add(this.firstDishGroupBox);
             this.dishesPage.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -419,7 +408,7 @@
             this.dishesPage.Location = new System.Drawing.Point(4, 22);
             this.dishesPage.Name = "dishesPage";
             this.dishesPage.Padding = new System.Windows.Forms.Padding(3);
-            this.dishesPage.Size = new System.Drawing.Size(674, 514);
+            this.dishesPage.Size = new System.Drawing.Size(674, 522);
             this.dishesPage.TabIndex = 1;
             this.dishesPage.Text = "My dishes";
             this.dishesPage.Enter += new System.EventHandler(this.dishesPage_Enter);
@@ -430,9 +419,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.noDishMessageLabel.Font = new System.Drawing.Font("Berlin Sans FB", 36F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.noDishMessageLabel.Location = new System.Drawing.Point(49, 44);
+            this.noDishMessageLabel.Location = new System.Drawing.Point(60, 71);
             this.noDishMessageLabel.Name = "noDishMessageLabel";
-            this.noDishMessageLabel.Size = new System.Drawing.Size(568, 306);
+            this.noDishMessageLabel.Size = new System.Drawing.Size(562, 334);
             this.noDishMessageLabel.TabIndex = 239;
             this.noDishMessageLabel.Text = "Oop\'s, no more recipes. If you have not found the needed one, please add new one " +
     "from selected products.";
@@ -443,20 +432,21 @@
             // leftSideDishListButton
             // 
             this.leftSideDishListButton.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.leftSideDishListButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.leftSideDishListButton.Location = new System.Drawing.Point(3, 234);
+            this.leftSideDishListButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.leftSideDishListButton.Location = new System.Drawing.Point(-2, 60);
             this.leftSideDishListButton.Name = "leftSideDishListButton";
-            this.leftSideDishListButton.Size = new System.Drawing.Size(45, 116);
-            this.leftSideDishListButton.TabIndex = 238;
+            this.leftSideDishListButton.Size = new System.Drawing.Size(45, 479);
+            this.leftSideDishListButton.TabIndex = 240;
             this.leftSideDishListButton.UseVisualStyleBackColor = false;
             this.leftSideDishListButton.Click += new System.EventHandler(this.leftSideDishListButton_Click);
             // 
             // rightSideDishListButton
             // 
             this.rightSideDishListButton.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.rightSideDishListButton.Location = new System.Drawing.Point(626, 234);
+            this.rightSideDishListButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rightSideDishListButton.Location = new System.Drawing.Point(640, 60);
             this.rightSideDishListButton.Name = "rightSideDishListButton";
-            this.rightSideDishListButton.Size = new System.Drawing.Size(45, 116);
+            this.rightSideDishListButton.Size = new System.Drawing.Size(45, 479);
             this.rightSideDishListButton.TabIndex = 237;
             this.rightSideDishListButton.UseVisualStyleBackColor = false;
             this.rightSideDishListButton.Click += new System.EventHandler(this.rightSideDishListButton_Click);
@@ -471,53 +461,66 @@
             this.label16.TabIndex = 236;
             this.label16.Text = "Search:";
             // 
-            // materialSingleLineTextField1
+            // searchDishesTextField
             // 
-            this.materialSingleLineTextField1.Depth = 0;
-            this.materialSingleLineTextField1.Hint = "";
-            this.materialSingleLineTextField1.Location = new System.Drawing.Point(425, 18);
-            this.materialSingleLineTextField1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialSingleLineTextField1.Name = "materialSingleLineTextField1";
-            this.materialSingleLineTextField1.PasswordChar = '\0';
-            this.materialSingleLineTextField1.SelectedText = "";
-            this.materialSingleLineTextField1.SelectionLength = 0;
-            this.materialSingleLineTextField1.SelectionStart = 0;
-            this.materialSingleLineTextField1.Size = new System.Drawing.Size(185, 23);
-            this.materialSingleLineTextField1.TabIndex = 235;
-            this.materialSingleLineTextField1.UseSystemPasswordChar = false;
+            this.searchDishesTextField.Depth = 0;
+            this.searchDishesTextField.Hint = "";
+            this.searchDishesTextField.Location = new System.Drawing.Point(425, 18);
+            this.searchDishesTextField.MouseState = MaterialSkin.MouseState.HOVER;
+            this.searchDishesTextField.Name = "searchDishesTextField";
+            this.searchDishesTextField.PasswordChar = '\0';
+            this.searchDishesTextField.SelectedText = "";
+            this.searchDishesTextField.SelectionLength = 0;
+            this.searchDishesTextField.SelectionStart = 0;
+            this.searchDishesTextField.Size = new System.Drawing.Size(185, 23);
+            this.searchDishesTextField.TabIndex = 235;
+            this.searchDishesTextField.UseSystemPasswordChar = false;
+            this.searchDishesTextField.TextChanged += new System.EventHandler(this.searchDishesTextField_TextChanged);
             // 
             // secondDishGroupBox
             // 
-            this.secondDishGroupBox.Controls.Add(this.label12);
+            this.secondDishGroupBox.Controls.Add(this.secondDishDeleteIconLabel);
+            this.secondDishGroupBox.Controls.Add(this.secondDishIngredientsListBox);
             this.secondDishGroupBox.Controls.Add(this.label13);
             this.secondDishGroupBox.Controls.Add(this.secondDishDescriptionTextLabel);
-            this.secondDishGroupBox.Controls.Add(this.secondDishIngredientsTableView);
             this.secondDishGroupBox.Controls.Add(this.secondDishItemImageLabel);
             this.secondDishGroupBox.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.secondDishGroupBox.Location = new System.Drawing.Point(49, 297);
+            this.secondDishGroupBox.Location = new System.Drawing.Point(54, 297);
             this.secondDishGroupBox.Name = "secondDishGroupBox";
             this.secondDishGroupBox.Size = new System.Drawing.Size(574, 242);
             this.secondDishGroupBox.TabIndex = 1;
             this.secondDishGroupBox.TabStop = false;
             this.secondDishGroupBox.Text = "Dish1";
             // 
-            // label12
+            // secondDishDeleteIconLabel
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(425, 15);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(133, 23);
-            this.label12.TabIndex = 239;
-            this.label12.Text = "Weight(gram)";
+            this.secondDishDeleteIconLabel.AutoSize = true;
+            this.secondDishDeleteIconLabel.Location = new System.Drawing.Point(533, 216);
+            this.secondDishDeleteIconLabel.Name = "secondDishDeleteIconLabel";
+            this.secondDishDeleteIconLabel.Size = new System.Drawing.Size(35, 23);
+            this.secondDishDeleteIconLabel.TabIndex = 243;
+            this.secondDishDeleteIconLabel.Text = "     ";
+            this.secondDishDeleteIconLabel.Click += new System.EventHandler(this.secondDishDeleteIconLabel_Click);
+            // 
+            // secondDishIngredientsListBox
+            // 
+            this.secondDishIngredientsListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.secondDishIngredientsListBox.FormattingEnabled = true;
+            this.secondDishIngredientsListBox.ItemHeight = 23;
+            this.secondDishIngredientsListBox.Location = new System.Drawing.Point(306, 60);
+            this.secondDishIngredientsListBox.Name = "secondDishIngredientsListBox";
+            this.secondDishIngredientsListBox.Size = new System.Drawing.Size(241, 69);
+            this.secondDishIngredientsListBox.TabIndex = 240;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(313, 15);
+            this.label13.Font = new System.Drawing.Font("Berlin Sans FB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(303, 35);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(97, 23);
+            this.label13.Size = new System.Drawing.Size(179, 18);
             this.label13.TabIndex = 29;
-            this.label13.Text = "Ingredient";
+            this.label13.Text = "Ingredient - weight(gram)";
             // 
             // secondDishDescriptionTextLabel
             // 
@@ -528,20 +531,6 @@
             this.secondDishDescriptionTextLabel.Size = new System.Drawing.Size(283, 75);
             this.secondDishDescriptionTextLabel.TabIndex = 238;
             this.secondDishDescriptionTextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // secondDishIngredientsTableView
-            // 
-            this.secondDishIngredientsTableView.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.secondDishIngredientsTableView.ColumnCount = 2;
-            this.secondDishIngredientsTableView.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.42857F));
-            this.secondDishIngredientsTableView.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.57143F));
-            this.secondDishIngredientsTableView.Location = new System.Drawing.Point(278, 52);
-            this.secondDishIngredientsTableView.Name = "secondDishIngredientsTableView";
-            this.secondDishIngredientsTableView.RowCount = 2;
-            this.secondDishIngredientsTableView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.secondDishIngredientsTableView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.secondDishIngredientsTableView.Size = new System.Drawing.Size(259, 86);
-            this.secondDishIngredientsTableView.TabIndex = 237;
             // 
             // secondDishItemImageLabel
             // 
@@ -556,50 +545,48 @@
             // 
             // firstDishGroupBox
             // 
-            this.firstDishGroupBox.Controls.Add(this.label11);
+            this.firstDishGroupBox.Controls.Add(this.firstDishDeleteIconLabel);
             this.firstDishGroupBox.Controls.Add(this.label10);
-            this.firstDishGroupBox.Controls.Add(this.firstDishIngredientsTableView);
+            this.firstDishGroupBox.Controls.Add(this.firstDishIngredientsListBox);
             this.firstDishGroupBox.Controls.Add(this.firstDishItemImageLabel);
             this.firstDishGroupBox.Controls.Add(this.firstDishDescriptionTextLabel);
             this.firstDishGroupBox.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.firstDishGroupBox.Location = new System.Drawing.Point(49, 44);
+            this.firstDishGroupBox.Location = new System.Drawing.Point(54, 44);
             this.firstDishGroupBox.Name = "firstDishGroupBox";
             this.firstDishGroupBox.Size = new System.Drawing.Size(574, 247);
             this.firstDishGroupBox.TabIndex = 0;
             this.firstDishGroupBox.TabStop = false;
             this.firstDishGroupBox.Text = "Dish1";
             // 
-            // label11
+            // firstDishDeleteIconLabel
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(425, 15);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(133, 23);
-            this.label11.TabIndex = 28;
-            this.label11.Text = "Weight(gram)";
+            this.firstDishDeleteIconLabel.AutoSize = true;
+            this.firstDishDeleteIconLabel.Location = new System.Drawing.Point(533, 221);
+            this.firstDishDeleteIconLabel.Name = "firstDishDeleteIconLabel";
+            this.firstDishDeleteIconLabel.Size = new System.Drawing.Size(35, 23);
+            this.firstDishDeleteIconLabel.TabIndex = 242;
+            this.firstDishDeleteIconLabel.Text = "     ";
+            this.firstDishDeleteIconLabel.Click += new System.EventHandler(this.firstDishDeleteIconLabel_Click);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(313, 15);
+            this.label10.Font = new System.Drawing.Font("Berlin Sans FB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(303, 37);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(97, 23);
-            this.label10.TabIndex = 27;
-            this.label10.Text = "Ingredient";
+            this.label10.Size = new System.Drawing.Size(179, 18);
+            this.label10.TabIndex = 241;
+            this.label10.Text = "Ingredient - weight(gram)";
             // 
-            // firstDishIngredientsTableView
+            // firstDishIngredientsListBox
             // 
-            this.firstDishIngredientsTableView.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.firstDishIngredientsTableView.ColumnCount = 2;
-            this.firstDishIngredientsTableView.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.83673F));
-            this.firstDishIngredientsTableView.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.16327F));
-            this.firstDishIngredientsTableView.Location = new System.Drawing.Point(278, 54);
-            this.firstDishIngredientsTableView.Name = "firstDishIngredientsTableView";
-            this.firstDishIngredientsTableView.RowCount = 2;
-            this.firstDishIngredientsTableView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.firstDishIngredientsTableView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.firstDishIngredientsTableView.Size = new System.Drawing.Size(259, 86);
-            this.firstDishIngredientsTableView.TabIndex = 26;
+            this.firstDishIngredientsListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.firstDishIngredientsListBox.FormattingEnabled = true;
+            this.firstDishIngredientsListBox.ItemHeight = 23;
+            this.firstDishIngredientsListBox.Location = new System.Drawing.Point(306, 58);
+            this.firstDishIngredientsListBox.Name = "firstDishIngredientsListBox";
+            this.firstDishIngredientsListBox.Size = new System.Drawing.Size(241, 69);
+            this.firstDishIngredientsListBox.TabIndex = 29;
             // 
             // firstDishItemImageLabel
             // 
@@ -642,7 +629,7 @@
             this.addingProductPage.Controls.Add(this.creatingProductProteinsTextField);
             this.addingProductPage.Location = new System.Drawing.Point(4, 22);
             this.addingProductPage.Name = "addingProductPage";
-            this.addingProductPage.Size = new System.Drawing.Size(674, 514);
+            this.addingProductPage.Size = new System.Drawing.Size(674, 522);
             this.addingProductPage.TabIndex = 2;
             this.addingProductPage.Text = "Adding Product";
             // 
@@ -871,7 +858,7 @@
             this.addingRecipePage.Controls.Add(this.newRecipeNameTextField);
             this.addingRecipePage.Location = new System.Drawing.Point(4, 22);
             this.addingRecipePage.Name = "addingRecipePage";
-            this.addingRecipePage.Size = new System.Drawing.Size(674, 514);
+            this.addingRecipePage.Size = new System.Drawing.Size(674, 522);
             this.addingRecipePage.TabIndex = 3;
             this.addingRecipePage.Text = "Adding recipe";
             this.addingRecipePage.Enter += new System.EventHandler(this.addingRecipePage_Enter);
@@ -884,7 +871,7 @@
             this.addingRecipeMessageLabel.Font = new System.Drawing.Font("Berlin Sans FB", 35F, System.Drawing.FontStyle.Underline);
             this.addingRecipeMessageLabel.Location = new System.Drawing.Point(3, 0);
             this.addingRecipeMessageLabel.Name = "addingRecipeMessageLabel";
-            this.addingRecipeMessageLabel.Size = new System.Drawing.Size(668, 511);
+            this.addingRecipeMessageLabel.Size = new System.Drawing.Size(675, 522);
             this.addingRecipeMessageLabel.TabIndex = 0;
             this.addingRecipeMessageLabel.Text = "Please select more than one product at the product list to form from them a dish " +
     "here.";
@@ -896,24 +883,30 @@
             // 
             this.ingredientsTableView.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ingredientsTableView.ColumnCount = 2;
-            this.ingredientsTableView.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.10904F));
-            this.ingredientsTableView.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.89096F));
-            this.ingredientsTableView.Location = new System.Drawing.Point(224, 285);
+            this.ingredientsTableView.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.76526F));
+            this.ingredientsTableView.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.23474F));
+            this.ingredientsTableView.Location = new System.Drawing.Point(154, 262);
             this.ingredientsTableView.Name = "ingredientsTableView";
-            this.ingredientsTableView.RowCount = 2;
-            this.ingredientsTableView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.ingredientsTableView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.ingredientsTableView.Size = new System.Drawing.Size(265, 119);
+            this.ingredientsTableView.RowCount = 8;
+            this.ingredientsTableView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.ingredientsTableView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.ingredientsTableView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.ingredientsTableView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.ingredientsTableView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.ingredientsTableView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.ingredientsTableView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.ingredientsTableView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.ingredientsTableView.Size = new System.Drawing.Size(426, 103);
             this.ingredientsTableView.TabIndex = 18;
             // 
             // addRecipeButton
             // 
             this.addRecipeButton.Depth = 0;
-            this.addRecipeButton.Location = new System.Drawing.Point(476, 474);
+            this.addRecipeButton.Location = new System.Drawing.Point(154, 474);
             this.addRecipeButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.addRecipeButton.Name = "addRecipeButton";
             this.addRecipeButton.Primary = true;
-            this.addRecipeButton.Size = new System.Drawing.Size(188, 37);
+            this.addRecipeButton.Size = new System.Drawing.Size(431, 37);
             this.addRecipeButton.TabIndex = 22;
             this.addRecipeButton.Text = "Add Recipe";
             this.addRecipeButton.UseVisualStyleBackColor = true;
@@ -923,7 +916,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(146, 407);
+            this.label19.Location = new System.Drawing.Point(150, 381);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(103, 21);
             this.label19.TabIndex = 21;
@@ -931,23 +924,22 @@
             // 
             // newRecipeDescriptionRichTextField
             // 
-            this.newRecipeDescriptionRichTextField.Font = new System.Drawing.Font("Berlin Sans FB", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newRecipeDescriptionRichTextField.Location = new System.Drawing.Point(150, 431);
+            this.newRecipeDescriptionRichTextField.Font = new System.Drawing.Font("Berlin Sans FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newRecipeDescriptionRichTextField.Location = new System.Drawing.Point(154, 405);
             this.newRecipeDescriptionRichTextField.Name = "newRecipeDescriptionRichTextField";
-            this.newRecipeDescriptionRichTextField.Size = new System.Drawing.Size(278, 44);
+            this.newRecipeDescriptionRichTextField.Size = new System.Drawing.Size(427, 51);
             this.newRecipeDescriptionRichTextField.TabIndex = 20;
             this.newRecipeDescriptionRichTextField.Text = "";
             // 
             // label18
             // 
-            this.label18.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(100, 221);
+            this.label18.Font = new System.Drawing.Font("Berlin Sans FB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(150, 221);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(518, 61);
+            this.label18.Size = new System.Drawing.Size(435, 38);
             this.label18.TabIndex = 17;
             this.label18.Text = "Write please weight(in grams) in front of every product, or leave zero if you wan" +
     "t to add the product to the dish to taste:";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label9
             // 
@@ -1016,7 +1008,7 @@
             this.labelWithMyName.AutoEllipsis = true;
             this.labelWithMyName.AutoSize = true;
             this.labelWithMyName.Font = new System.Drawing.Font("Brush Script MT", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelWithMyName.Location = new System.Drawing.Point(602, 594);
+            this.labelWithMyName.Location = new System.Drawing.Point(602, 607);
             this.labelWithMyName.Name = "labelWithMyName";
             this.labelWithMyName.Size = new System.Drawing.Size(92, 18);
             this.labelWithMyName.TabIndex = 3;
@@ -1028,7 +1020,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoScrollMinSize = new System.Drawing.Size(0, 24);
-            this.ClientSize = new System.Drawing.Size(706, 605);
+            this.ClientSize = new System.Drawing.Size(706, 614);
             this.Controls.Add(this.pageSelector);
             this.Controls.Add(this.labelWithMyName);
             this.Controls.Add(this.pages);
@@ -1075,7 +1067,6 @@
         private System.Windows.Forms.Label leftSideLabel;
         private System.Windows.Forms.Button rightSideProductListButton;
         private System.Windows.Forms.Button leftSideProductListButton;
-        private System.Windows.Forms.Label label1;
         private MaterialSkin.Controls.MaterialRaisedButton makeRecipeButton;
         private System.Windows.Forms.ListBox selectedProductsListBox;
         private System.Windows.Forms.TabPage addingProductPage;
@@ -1115,19 +1106,19 @@
         private System.Windows.Forms.Label creatingProductPhotoLabel;
         private System.Windows.Forms.Label newRecipeImageLabel;
         private System.Windows.Forms.Label label16;
-        private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextField1;
+        private MaterialSkin.Controls.MaterialSingleLineTextField searchDishesTextField;
         private System.Windows.Forms.GroupBox secondDishGroupBox;
         private System.Windows.Forms.Label secondDishItemImageLabel;
         private System.Windows.Forms.Label firstDishItemImageLabel;
-        private System.Windows.Forms.TableLayoutPanel secondDishIngredientsTableView;
-        private System.Windows.Forms.TableLayoutPanel firstDishIngredientsTableView;
         private System.Windows.Forms.Label secondDishDescriptionTextLabel;
-        private System.Windows.Forms.Button leftSideDishListButton;
         private System.Windows.Forms.Button rightSideDishListButton;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label noDishMessageLabel;
+        private System.Windows.Forms.ListBox firstDishIngredientsListBox;
+        private System.Windows.Forms.ListBox secondDishIngredientsListBox;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button leftSideDishListButton;
+        private System.Windows.Forms.Label secondDishDeleteIconLabel;
+        private System.Windows.Forms.Label firstDishDeleteIconLabel;
     }
 }

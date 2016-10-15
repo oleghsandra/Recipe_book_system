@@ -49,6 +49,10 @@ namespace RecipeBookSystem.DAL.Concrete.Repositories
 
         }
 
+        /// <summary>
+        /// Method removes product
+        /// </summary>
+        /// <param name="dishId">Id of product to delete</param>
         public void DeleteProduct(int productId)
         {
             var parameters = new[]
@@ -62,6 +66,16 @@ namespace RecipeBookSystem.DAL.Concrete.Repositories
                 parameters);
         }
 
+        /// <summary>
+        /// Updates available product in DB
+        /// </summary>
+        /// <param name="updateProductId">Id of the product to update</param>
+        /// <param name="name">New name of the product</param>
+        /// <param name="productTypeId">New product type id of the product</param>
+        /// <param name="proteins">New proteins value of the product</param>
+        /// <param name="fats">New fsts value of the product</param>
+        /// <param name="carbohydrates">New carbohybrades value of the product</param>
+        /// <param name="smallPhotoLink">New image link of the product</param>
         public void UpdateProduct(
             int updateProductId,
             string name,
@@ -85,6 +99,10 @@ namespace RecipeBookSystem.DAL.Concrete.Repositories
             base.ExecuteReader(StoredProcedureNames.spUpdateProduct, null, parameters);
         }
 
+        /// <summary>
+        /// Adds new product to Data Base
+        /// </summary>
+        /// <param name="newProduct">New product model</param>
         public void AddProduct(ProductModel newProduct)
         { 
             var parameters = new[]
@@ -99,7 +117,12 @@ namespace RecipeBookSystem.DAL.Concrete.Repositories
 
             base.ExecuteReader(StoredProcedureNames.spAddProduct, null, parameters);
         }
-        
+
+        /// <summary>
+        /// Method searchs all products that begin from some name
+        /// </summary>
+        /// <param name="name">Name to search</param>
+        /// <returns>List of product models that begin from "name"</returns>
         public IEnumerable<ProductModel>SearchProductByName(string name)
         {
             var parameters = new[]

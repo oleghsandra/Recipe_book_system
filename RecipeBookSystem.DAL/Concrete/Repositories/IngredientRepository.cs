@@ -15,6 +15,13 @@ namespace RecipeBookSystem.DAL.Concrete.Repositories
 
         }
 
+        /// <summary>
+        /// Executes database query
+        /// </summary>
+        /// <param name="spName">Name of the SP</param>
+        /// <param name="callback">Function for parsing results</param>
+        /// <param name="parameters">Parameters for executing queury</param>
+        /// <returns>List of <TEntity></returns>
         public IEnumerable<IngredientModel> GetIngredients(int dishId)
         {
             var parameters = new[]

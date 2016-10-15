@@ -1,5 +1,8 @@
 ﻿namespace RecipeBookSystem.Model.Models
 {
+    /// <summary>
+    /// The class that describes model of the ingredient
+    /// </summary>
     public class IngredientModel
     {
         /// <summary>

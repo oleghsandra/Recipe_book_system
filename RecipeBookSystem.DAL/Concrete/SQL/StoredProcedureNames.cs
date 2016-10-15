@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RecipeBookSystem.DAL.Concrete.SQL
+﻿namespace RecipeBookSystem.DAL.Concrete.SQL
 {
-    public class StoredProcedureNames
+    /// <summary>
+    /// Class that contains names of the all
+    /// stored procedures in the data base.
+    /// </summary>
+    public static class StoredProcedureNames
     {
         //Users SP
         public const string spAddUser = "[dbo].[spUsers_Add]";

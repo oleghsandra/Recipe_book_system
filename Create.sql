@@ -55,7 +55,7 @@ GO
  CREATE TABLE Ingredients
  (
 	IngredientId INT NOT NULL PRIMARY KEY IDENTITY(1, 1), 
-	DishId INT NOT NULL FOREIGN KEY REFERENCES Dishes(DishId),
+	DishId INT NOT NULL FOREIGN KEY REFERENCES Dishes(DishId) ON DELETE CASCADE,
 	ProductId INT NULL FOREIGN KEY REFERENCES Products(ProductId) ON DELETE SET NULL,
 	[Weight] REAL NULL
  )
@@ -65,8 +65,8 @@ GO
  CREATE TABLE UsersDishes
 (
 	UserDisheId INT NOT NULL PRIMARY KEY IDENTITY(1, 1), 
-	UserId INT NOT NULL FOREIGN KEY REFERENCES Users(UserId),
-	DishId INT NULL FOREIGN KEY REFERENCES Dishes(DishId)
+	UserId INT NOT NULL FOREIGN KEY REFERENCES Users(UserId) ON DELETE CASCADE,
+	DishId INT NOT NULL FOREIGN KEY REFERENCES Dishes(DishId) ON DELETE CASCADE
 )
 
 -- SPROCS
@@ -337,7 +337,11 @@ AS
  SET NOCOUNT ON 
 
 	DECLARE @CurrentDishPhotoLinkId INT = NULL;
-    EXECUTE @CurrentDishPhotoLinkId = spPhotoLinks_Add @SmallPhotoLink, @BigPhotoLink;
+
+	IF ((@SmallPhotoLink IS NOT NULL) OR (@BigPhotoLink IS NOT NULL))
+	  BEGIN
+		 EXECUTE @CurrentDishPhotoLinkId = spPhotoLinks_Add @SmallPhotoLink, @BigPhotoLink;
+	  END
 
 	INSERT INTO Dishes
 		VALUES(@Name, @CurrentDishPhotoLinkId, @CookingInstructions);
@@ -363,7 +367,8 @@ GO
 CREATE PROC spDishes_Get(
 	@OwnerId INT,
 	@DishCount INT,
-	@PageNumber INT
+	@PageNumber INT,
+	@Name NVARCHAR(100) = ''
 )
 AS
  SET NOCOUNT ON 
@@ -374,7 +379,7 @@ AS
 	ON Dishes.DishId = UsersDishes.DishId
 	LEFT JOIN PhotoLinks
 	ON (PhotoLinks.PhotoLinkId = Dishes.PhotoLinkId)
-	WHERE UsersDishes.UserId = @OwnerId
+	WHERE (UsersDishes.UserId = @OwnerId) AND (Name LIKE (@Name + '%'))
 	ORDER BY Dishes.DishId DESC
 	OFFSET (@DishCount * (@PageNumber - 1)) ROWS -- skip rows
 	FETCH NEXT (@DishCount) ROWS ONLY; -- take rows

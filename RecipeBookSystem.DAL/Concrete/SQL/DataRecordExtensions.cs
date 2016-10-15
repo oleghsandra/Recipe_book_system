@@ -17,7 +17,7 @@ namespace RecipeBookSystem.DAL.Concrete.SQL
         /// <param name="columnName">Column name</param>
         /// <returns>
         /// Returns value of column. 
-        /// If value is null - returns default value for specified type.
+        /// If value is null - returns default value for specific type.
         /// </returns>
         public static T Get<T>(this IDataRecord record, string columnName)
         {
@@ -33,9 +33,9 @@ namespace RecipeBookSystem.DAL.Concrete.SQL
         }
 
         /// <summary>
-        /// 
+        /// The method checks for columns in DB record
         /// </summary>
-        /// <param name="reader"></param>
+        /// <param name="record">Record object to search for value </param>
         /// <param name="columnName"></param>
         /// <returns>Returns true if column is existed in record, otherwise - false</returns>
         private static bool HasColumn(IDataRecord record, string columnName)

@@ -61,6 +61,15 @@ namespace RecipeBookSystem.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  Added.
+        /// </summary>
+        internal static string AddedMessame {
+            get {
+                return ResourceManager.GetString("AddedMessame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap DeleteIcon {
@@ -77,6 +86,42 @@ namespace RecipeBookSystem.UI.Properties {
             get {
                 object obj = ResourceManager.GetObject("EditIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter all fields!.
+        /// </summary>
+        internal static string EnterAllFieldsMessage {
+            get {
+                return ResourceManager.GetString("EnterAllFieldsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error!.
+        /// </summary>
+        internal static string ErrorMessage {
+            get {
+                return ResourceManager.GetString("ErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect input!.
+        /// </summary>
+        internal static string IncorrectInputMessage {
+            get {
+                return ResourceManager.GetString("IncorrectInputMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect login or password.
+        /// </summary>
+        internal static string IncorrectLoginPasswordMessage {
+            get {
+                return ResourceManager.GetString("IncorrectLoginPasswordMessage", resourceCulture);
             }
         }
         
@@ -107,6 +152,42 @@ namespace RecipeBookSystem.UI.Properties {
             get {
                 object obj = ResourceManager.GetObject("Spinner", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter all fields!.
+        /// </summary>
+        internal static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Success.
+        /// </summary>
+        internal static string SuccessMessage {
+            get {
+                return ResourceManager.GetString("SuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User already exists!.
+        /// </summary>
+        internal static string UserExistsMessage {
+            get {
+                return ResourceManager.GetString("UserExistsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning!.
+        /// </summary>
+        internal static string WarningMessage {
+            get {
+                return ResourceManager.GetString("WarningMessage", resourceCulture);
             }
         }
     }

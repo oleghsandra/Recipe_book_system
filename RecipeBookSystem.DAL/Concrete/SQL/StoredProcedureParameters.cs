@@ -1,11 +1,15 @@
 ﻿namespace RecipeBookSystem.DAL.Concrete.SQL
 {
-    public class StoredProcedureParameters
+    /// <summary>
+    /// Class that contains parameters to all
+    /// stored procedures in data base.
+    /// </summary>
+    public static class StoredProcedureParameters
     {
         //Common paramerets
         public const string Name = ColumnNames.Name;
 
-        //Paramerets for getting product stored procedure
+        //Paramerets for product SP
         public const string ProductId = ColumnNames.ProductId;
         public const string UpdateProductId = "UpdateProductId";
         public const string ProductTypeId = "ProductTypeId";
@@ -22,15 +26,16 @@
         public const string SmallPhotoLink = ColumnNames.SmallPhotoLink;
         public const string BigPhotoLink = ColumnNames.BigPhotoLink;
 
-        //Paramerets for getting user stored procedure
+        //Paramerets for user SP
         public const string Email = ColumnNames.Email;
         public const string Password = ColumnNames.Password;
 
-        //Paramerets for getting ingredient stored procedure
+        //Paramerets for ingredient SP
         public const string DishId = ColumnNames.DishId;
         public const string IngredientId = ColumnNames.IngredientId;
         public const string Weight = ColumnNames.Weight;
-        
+
+        //Paramerets for dish SP
         public const string OwnerId = "OwnerId";
         public const string DishCount = "DishCount";
         public const string CookingInstructions = ColumnNames.CookingInstructions;

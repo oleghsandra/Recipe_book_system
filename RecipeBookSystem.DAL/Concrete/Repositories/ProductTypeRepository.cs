@@ -14,6 +14,10 @@ namespace RecipeBookSystem.DAL.Concrete.Repositories
 
         }
 
+        /// <summary>
+        /// Gets all types of products
+        /// </summary>
+        /// <returns>List of all available product types</returns>
         public IEnumerable<ProductTypeModel> GetAllProductTypes()
         {
             var productTypes = base.ExecuteReader(StoredProcedureNames.spGetAllProductTypes,

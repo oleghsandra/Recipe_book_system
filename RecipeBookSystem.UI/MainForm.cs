@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -18,20 +19,20 @@ namespace RecipeBookSystem.UI
 { 
     public partial class MainForm : MaterialFormBaseModel
     {   
-        private const int sortButtonCount = 4;
-        private const int tableColumnCount = 7;
-        private const int productsPerPageCount = 5;
-        private const int dishesPerPageCount = 2;
-        private const int productImageWigth = 80;
-        private const int productImageHeight = 64;
-        private const int dishImageWeigth = 240;
-        private const int dishImageHeight = 144;
-        private const int nameSortButtonPosition = 0;
-        private const int proteinsSortButtonPosition = 1;
-        private const int fatsSortButtonPosition = 2;
-        private const int carbsSortButtonPosition = 3;
-        private const int ingredientNameTablePosition = 0;
-        private const int ingerdientWeightTablePosition = 1;
+        private const byte sortButtonCount = 4;
+        private const byte tableColumnCount = 7;
+        private const byte productsPerPageCount = 5;
+        private const byte dishesPerPageCount = 2;
+        private const byte productImageWigth = 80;
+        private const byte productImageHeight = 64;
+        private const byte dishImageWeigth = 240;
+        private const byte dishImageHeight = 144;
+        private const byte nameSortButtonPosition = 0;
+        private const byte proteinsSortButtonPosition = 1;
+        private const byte fatsSortButtonPosition = 2;
+        private const byte carbsSortButtonPosition = 3;
+        private const byte ingredientNameTablePosition = 0;
+        private const byte ingerdientWeightTablePosition = 1;
 
         private readonly UserModel loggedUser;
         private readonly ProductProvider productProvider;
@@ -104,7 +105,14 @@ namespace RecipeBookSystem.UI
                 PageNumber = 1
             };
 
-            this.productTypes = productTypeProvider.GetAllProductTypes().ToList();
+            try
+            {
+                this.productTypes = productTypeProvider.GetAllProductTypes().ToList();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
 
             foreach (var productType in productTypes)
             {
@@ -168,24 +176,39 @@ namespace RecipeBookSystem.UI
 
             int row = productItems.Count;
 
-            List<ProductModel> filteredProducts;
+            List<ProductModel> filteredProducts = new List<ProductModel>();
 
-            if (productsGridOptions.searchProductName == null
-                || productsGridOptions.searchProductName == string.Empty)
+            if (string.IsNullOrEmpty(productsGridOptions.searchProductName))
             {
-                filteredProducts = productProvider.GetProducts(
-                productsPerPageCount,
-                productsGridOptions.PageNumber,
-                productsGridOptions.SortColumnName,
-                productsGridOptions.SortOrder, 
-                productsGridOptions.FilterProductTypeId).ToList();
+                try
+                {
+                    filteredProducts = productProvider.GetProducts(
+                        productsPerPageCount,
+                        productsGridOptions.PageNumber,
+                        productsGridOptions.SortColumnName,
+                        productsGridOptions.SortOrder,
+                        productsGridOptions.FilterProductTypeId).ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error");
+                    return;
+                }
             }
             else
             {
                 this.productsGridOptions.PageNumber = 1;
                 this.leftSideProductListButton.Enabled = false;
-                filteredProducts = productProvider.SearchProductByName(
-                    productsGridOptions.searchProductName).ToList();
+                try
+                {
+                    filteredProducts = productProvider.SearchProductByName(
+                        productsGridOptions.searchProductName).ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error");
+                    return;
+                }
             }
 
             if (filteredProducts.Count == 0)
@@ -228,7 +251,6 @@ namespace RecipeBookSystem.UI
                 var productItem = new ProductItem(product);
                 productItems.Add(productItem);
                 
-                //Перенести у функцію з (sender, e)
                 productCheckBox.CheckedChanged += (sender, e) =>
                 {
                     var chackBox = (MaterialCheckBox)sender;
@@ -245,7 +267,6 @@ namespace RecipeBookSystem.UI
                     else
                     {
                         this.selectedProducts.RemoveAll((p) => (p.Id == productItem.ProductModel.Id));
-
                         this.selectedProductsListBox.Items.Remove(productItem.ProductModel.Name);
                             
                         if (selectedProducts.Count == 0)
@@ -304,7 +325,15 @@ namespace RecipeBookSystem.UI
 
         private void deleteProduct(ProductModel productToDelete)
         {
-            this.productProvider.DeleteProduct(productToDelete.Id);
+            try
+            {
+                this.productProvider.DeleteProduct(productToDelete.Id);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+                return;
+            }
             
             foreach (var selectedProduct in selectedProducts)
             {
@@ -501,7 +530,17 @@ namespace RecipeBookSystem.UI
 
             this.filterProductComboBox.Visible = isEmptyName;
 
-            var searchedProducts = this.productProvider.SearchProductByName(name);
+            IEnumerable<ProductModel> searchedProducts;
+
+            try
+            {
+                searchedProducts = this.productProvider.SearchProductByName(name);
+            } 
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+                return;
+            }
 
             this.productsGridOptions.searchProductName = name;
 
@@ -629,18 +668,35 @@ namespace RecipeBookSystem.UI
             {
                 this.newProduct.Id = updatingProduct.Id;
 
-                productProvider.UpdateProduct(
-                    newProduct.Id,
-                    newProduct.Name,
-                    newProduct.productTypeId,
-                    newProduct.Proteins,
-                    newProduct.Fats,
-                    newProduct.Carbohydrates,
-                    newProduct.SmallPhotoLink);
+                try
+                {
+                    productProvider.UpdateProduct(
+                        newProduct.Id,
+                        newProduct.Name,
+                        newProduct.productTypeId,
+                        newProduct.Proteins,
+                        newProduct.Fats,
+                        newProduct.Carbohydrates,
+                        newProduct.SmallPhotoLink);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error");
+                    return;
+                }
             }
             else
             {
-                this.productProvider.AddProduct(newProduct);
+                try
+                {
+                    this.productProvider.AddProduct(newProduct);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error");
+                    return;
+                }
+
                 this.productsGridOptions.FilterProductTypeId = null;
                 this.productsGridOptions.PageNumber = 1;
             }
@@ -728,14 +784,15 @@ namespace RecipeBookSystem.UI
             ingredientsTableView.Padding = commonTablePadding;
             this.newRecipeImageLabel.Image = imageHelper.GetDishDefaultImage();
             this.newDishModel = new DishModel();
-        }
 
+            this.firstDishDeleteIconLabel.Image = Resources.DeleteIcon;
+            this.secondDishDeleteIconLabel.Image = Resources.DeleteIcon;
+        }
 
         private void addingRecipePage_Enter(object sender, EventArgs e)
         {
             newRecipeIngredients = new List<IngredientModel>();
             this.ingredientsTableView.Controls.Clear();
-
             int selectedProductsCount = selectedProducts.Count;
                 
             int row = 0;
@@ -749,18 +806,16 @@ namespace RecipeBookSystem.UI
 
                 var ingredientNameLabel = new Label();
                 ingredientNameLabel.AutoSize = true;
-                ingredientNameLabel.Anchor = AnchorStyles.None;
-                ingredientNameLabel.Font = commonFont;
+                ingredientNameLabel.Anchor = AnchorStyles.Left;
+                ingredientNameLabel.Font = new Font("Berlin Sans FB", 12F); ;
 
                 ingredientNameLabel.Text = selectedProduct.Name;
-
-                this.ingredientsTableView.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
 
                 NumericUpDown ingredientWeightNumericUpDown = new NumericUpDown();
 
                 ingredientWeightNumericUpDown.BorderStyle = BorderStyle.None;
                 ingredientWeightNumericUpDown.Font = commonFont;
-                ingredientWeightNumericUpDown.Anchor = AnchorStyles.None;
+                ingredientWeightNumericUpDown.Anchor = AnchorStyles.Left;
                 ingredientWeightNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
                 ingredientWeightNumericUpDown.Maximum = new decimal(new int[] { 2000, 0, 0, 0 });
                 ingredientWeightNumericUpDown.Size = new Size(66, 24);
@@ -817,14 +872,44 @@ namespace RecipeBookSystem.UI
             newDishModel.OwnerId = loggedUser.Id;
             newDishModel.CookingInstructions = this.newRecipeDescriptionRichTextField.Text;
 
-            int newDishId = dishProvider.AddDish(newDishModel);
+            int newDishId = 0;
 
-            foreach (var ingredient in newRecipeIngredients)
+            try
             {
-                ingredient.DishId = newDishId;
-                ingredientProvider.AddIngredient(ingredient);
+                newDishId = dishProvider.AddDish(newDishModel);
             }
-           
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+                return;
+            }
+
+            try
+            {
+                foreach (var ingredient in newRecipeIngredients)
+                {
+                    ingredient.DishId = newDishId;
+                    ingredientProvider.AddIngredient(ingredient);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+                return;
+            }
+
+            clearAddRecipePage();
+            dishGridOptions.PageNumber = 1;
+            this.pages.SelectedTab = dishesPage;
+        }
+
+        private void clearAddRecipePage()
+        {
+            this.newDishModel = new DishModel();
+            this.newRecipeIngredients = new List<IngredientModel>();
+            this.newRecipeNameTextField.Text = string.Empty;
+            this.newRecipeDescriptionRichTextField.Text = string.Empty;
+            this.newRecipeImageLabel.Image = imageHelper.GetDishDefaultImage();
         }
         #endregion
 
@@ -835,51 +920,67 @@ namespace RecipeBookSystem.UI
             this.dishGridOptions.PageNumber = 1;
             this.dishGridOptions.ItemsCount = dishesPerPageCount;
 
-            this.firstDishIngredientsTableView.AutoScroll = true;
-            this.secondDishIngredientsTableView.AutoScroll = true;
-   
-            this.firstDishIngredientsTableView.Padding = commonTablePadding;
-            this.secondDishIngredientsTableView.Padding = commonTablePadding;
-
             this.leftSideDishListButton.Image = Resources.LeftSideImage;
             this.rightSideDishListButton.Image = Resources.RightSideImage;
 
             this.dishItems = new List<DishItem>();
 
-            this.leftSideDishListButton.Enabled = false;
+            this.leftSideDishListButton.Visible = false;
         }
         
         private void ShowDishes()
         {
             clearDishesTableView();
             dishItems = new List<DishItem>();
-            var userDishes = dishProvider.GetUserDishes(
-                loggedUser.Id,
-                dishGridOptions.ItemsCount,
-                dishGridOptions.PageNumber);
-            
-            foreach (var dish in userDishes)
+            List<DishModel> userDishes = new List<DishModel>();
+
+            try
             {
-                dishItems.Add(new DishItem(dish)
+                userDishes = dishProvider.GetUserDishes(
+                    loggedUser.Id,
+                    dishGridOptions.ItemsCount,
+                    dishGridOptions.PageNumber,
+                    dishGridOptions.DishName).ToList();
+
+                foreach (var dish in userDishes)
                 {
-                    Ingredients = ingredientProvider.GetIngredients(dish.Id).ToList()
-                });
+                    dishItems.Add(new DishItem(dish)
+                    {
+                        Ingredients = ingredientProvider.GetIngredients(dish.Id).ToList()
+                    });
+                }
             }
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+                return;
+            }
+
+            if (dishGridOptions.PageNumber == 1)
+            {
+                this.leftSideDishListButton.Visible = false;
+            }
+            else
+            {
+                this.leftSideDishListButton.Visible = true;
+            }
+
             if (dishItems.Count == 0)
             {
-                this.rightSideDishListButton.Enabled = false;
+                this.rightSideDishListButton.Visible = false;
+                this.noDishMessageLabel.Visible = true;
                 return;
             }
 
             if (dishItems.Count > 0)
             {
-                this.rightSideDishListButton.Enabled = true;
+                this.noDishMessageLabel.Visible = false;
+                this.rightSideDishListButton.Visible = true;
                 fillDishGroupBox(
                     firstDishGroupBox,
                     firstDishItemImageLabel,
                     firstDishDescriptionTextLabel,
-                    firstDishIngredientsTableView,
+                    firstDishIngredientsListBox,
                     dishItems[0]);
                 this.firstDishGroupBox.Visible = true;
             }
@@ -890,7 +991,7 @@ namespace RecipeBookSystem.UI
                     secondDishGroupBox,
                     secondDishItemImageLabel,
                     secondDishDescriptionTextLabel,
-                    secondDishIngredientsTableView,
+                    secondDishIngredientsListBox,
                     dishItems[1]);
                 this.secondDishGroupBox.Visible = true;
             }
@@ -900,7 +1001,7 @@ namespace RecipeBookSystem.UI
             (GroupBox dishGroupBox,
             Label imageLabel,
             Label descriptionLabel,
-            TableLayoutPanel ingredientsTable,
+            ListBox ingredientsListBox,
             DishItem dishToShow)
         {
             dishGroupBox.Visible = true;
@@ -908,32 +1009,22 @@ namespace RecipeBookSystem.UI
             dishGroupBox.Text = dishToShow.DishModel.Name;
             
             imageLabel.Image = dishToShow.Image;
+            
+            foreach(var ingredient in dishToShow.Ingredients)
+            {
+                StringBuilder ingredientInfo = new StringBuilder();
+                ingredientInfo.Append(ingredient.ProductName);
+                ingredientInfo.Append(" - ");
+                ingredientInfo.Append(ingredient.Weight);
+                ingredientsListBox.Items.Add(ingredientInfo.ToString());
+            }
 
             Thread imageLoader = new Thread(() =>
             {
                 showDisheImage(imageLabel, dishToShow);
             });
+
             imageLoader.Start();
-
-            int row = 0;
-            foreach(var ingredient in dishToShow.Ingredients)
-            {
-                Label ingredientNameLabel = new Label();
-                Label ingredientWeightLabel = new Label();
-
-                ingredientNameLabel.Font = commonFont;
-                ingredientWeightLabel.Font = commonFont;
-
-                ingredientNameLabel.Anchor = AnchorStyles.None;
-                ingredientWeightLabel.Anchor = AnchorStyles.None;
-
-                ingredientNameLabel.Text = ingredient.ProductName;
-                ingredientWeightLabel.Text = ingredient.Weight.ToString();
-
-                ingredientsTable.Controls.Add(ingredientNameLabel, ingredientNameTablePosition,row);
-                ingredientsTable.Controls.Add(ingredientWeightLabel, ingerdientWeightTablePosition, row);
-                row++;
-            }
         }
 
         private void showDisheImage(Label element, DishItem dishItem)
@@ -944,64 +1035,127 @@ namespace RecipeBookSystem.UI
 
         private void clearDishesTableView()
         {
+            clearListBox(this.firstDishIngredientsListBox);
+            clearListBox(this.secondDishIngredientsListBox);
             this.firstDishGroupBox.Visible = false;
             this.secondDishGroupBox.Visible = false;
-            this.firstDishIngredientsTableView.Controls.Clear();
-            this.secondDishIngredientsTableView.Controls.Clear();
+            this.firstDishDescriptionTextLabel.Text = string.Empty;
+            this.firstDishDescriptionTextLabel.Text = string.Empty;
+            this.firstDishGroupBox.Visible = false;
+            this.secondDishGroupBox.Visible = false;
+        }
 
-            for(int row = firstDishIngredientsTableView.Controls.Count; row > 0; row++)
+        private void clearListBox(ListBox listBox)
+        {
+            while(listBox.Items.Count > 0)
             {
-                this.firstDishIngredientsTableView.RowStyles.RemoveAt(row);
+                listBox.Items.RemoveAt(0);
             }
-            this.firstDishDescriptionTextLabel.Text = string.Empty;
-            this.firstDishDescriptionTextLabel.Text = string.Empty;
-            this.firstDishGroupBox.Visible = false;
-            this.secondDishGroupBox.Visible = false;
         }
 
         private void leftSideDishListButton_Click(object sender, EventArgs e)
         {
-            this.rightSideDishListButton.Enabled = true;
             dishGridOptions.PageNumber--;
-            noDishMessageLabel.Visible = false;
-
-            clearDishesTableView();
             ShowDishes();
-
-            if (dishGridOptions.PageNumber == 1)
-            {
-                this.leftSideDishListButton.Enabled = false;
-            }
         }
 
         private void rightSideDishListButton_Click(object sender, EventArgs e)
         {
-            this.rightSideDishListButton.Enabled = false;
-            this.leftSideDishListButton.Enabled = true;
             dishGridOptions.PageNumber++;
-
-            clearDishesTableView();
             ShowDishes();
-
-            if (dishItems.Count == 0)
-            {
-                noDishMessageLabel.Visible = true;
-            }
         }
 
         private void dishesPage_Enter(object sender, EventArgs e)
         {
+            searchDishesTextField.Text = string.Empty;
             if (dishItems.Count == 0)
             {
                 dishGridOptions.PageNumber = 1;
-                this.noDishMessageLabel.Visible = false;
             }
+           
             ShowDishes();
         }
 
         private void noDishMessageLabel_Click(object sender, EventArgs e)
         {
             this.pages.SelectedTab = addingRecipePage;
+        }
+        
+        private void searchDishesTextField_TextChanged(object sender, EventArgs e)
+        {
+            dishGridOptions.DishName = searchDishesTextField.Text;
+            dishGridOptions.PageNumber = 1;
+            ShowDishes();
+            if(dishItems.Count > 0)
+            {
+                this.noDishMessageLabel.Visible = false;
+            }
+            else
+            {
+                this.noDishMessageLabel.Visible = true;
+            }
+            if (!string.IsNullOrEmpty(searchDishesTextField.Text))
+            {
+                this.noDishMessageLabel.Visible = false;
+                this.leftSideDishListButton.Visible = false;
+                this.rightSideDishListButton.Visible = false;
+            }
+        }
+
+        private void firstDishDeleteIconLabel_Click(object sender, EventArgs e)
+        {
+            var dishToDelete = dishItems[0].DishModel;
+            if (isConfirmedDishRemoving(dishToDelete))
+            {
+                try
+                {
+                    dishProvider.DeleteDish(dishToDelete.Id);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error");
+                    return;
+                }
+
+                ShowDishes();
+            }
+        }
+
+        private void secondDishDeleteIconLabel_Click(object sender, EventArgs e)
+        {
+            var dishToDelete = dishItems[1].DishModel;
+            if (isConfirmedDishRemoving(dishToDelete))
+            {
+                try
+                {
+                    dishProvider.DeleteDish(dishToDelete.Id);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error");
+                    return;
+                }
+
+                ShowDishes();
+            }
+        }
+
+        bool isConfirmedDishRemoving(DishModel dishToDelete)
+        {
+            StringBuilder confirmMessage = new StringBuilder();
+            confirmMessage.Append("Do you really want to delete \"");
+            confirmMessage.Append(dishToDelete.Name);
+            confirmMessage.Append("\" recipe?");
+            DialogResult confirmResult = MessageBox.Show(
+                confirmMessage.ToString(), 
+                "Confirm deleting",
+                MessageBoxButtons.YesNo);
+
+            if (confirmResult == DialogResult.Yes)
+            {
+                return true;
+            }
+            return false;
         }
         #endregion
     }

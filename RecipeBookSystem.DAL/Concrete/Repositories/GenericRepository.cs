@@ -29,6 +29,10 @@ namespace RecipeBookSystem.DAL.Concrete.Repositories
             return (IEnumerable<TEntity>)result;
         }
 
+        /// <summary>
+        /// Method for getting all <TEntity> models 
+        /// </summary>
+        /// <returns>List of <TEntity></returns>
         public IEnumerable<TEntity> GetAll()
         {
             throw new NotImplementedException();

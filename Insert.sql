@@ -53,7 +53,7 @@ EXEC spProduct_AddNew 'Radish', 4, 1.2, 0.1, 4.1, 'https://res.cloudinary.com/du
 EXEC spProduct_AddNew 'Garlic', 4, 6.5, 0.1, 21.2, 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1475347465/sfzxngjeej6wxkpon5h2.png', NULL;
 
 --Adding Fruits
-EXEC spProduct_AddNew 'Apricots', 5, 0.9, 0, 10.5, 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1475348591/ot0v8cnwlrjnsl5rkwyj.png', NULL;
+EXEC spProduct_AddNew 'Abricots', 5, 0.9, 0, 10.5, 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1475348591/ot0v8cnwlrjnsl5rkwyj.png', NULL;
 EXEC spProduct_AddNew 'Ananas', 5, 0.4, 0, 11.8, 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1475348623/qhptwn5a8p9tv2oh6vha.png', NULL;
 EXEC spProduct_AddNew 'Bananas', 5, 1.5, 0, 22.4, 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1475348685/lfcewlzery2xqub1m503.png', NULL;
 EXEC spProduct_AddNew 'Cherry', 5, 0.8, 0, 11.3,  'https://res.cloudinary.com/dubbhhxmr/image/upload/v1475348769/bbkiz1al4w4fwnx9h64g.png', NULL;
@@ -85,9 +85,20 @@ EXEC spProduct_AddNew 'Bread', 7, 7.7, 2.4, 53.4, 'https://res.cloudinary.com/du
 
 --Adding Dishes and their ingredients to admin(with 1 id value)
 DECLARE @DishId INT;
+
+EXEC spDish_Add 'Buckwheat with milk', 1, 'Healthy food that will give you a boost of energy', NULL, 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1476549112/lbqqxbqeqhswy1zxyoy5.png', @DishId OUT;
+EXEC spIngredient_Add @DishId, 55, 100;
+EXEC spIngredient_Add @DishId, 15, 150;
+
 EXEC spDish_Add 'Potato with meat', 1, NULL, NULL, 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1475928152/vgmot2qiwbhihmm35kew.png', @DishId OUT;
 EXEC spIngredient_Add @DishId, 25, 500;
 EXEC spIngredient_Add @DishId, 12, 200;
+
+EXEC spDish_Add 'Protein shake with bananas', 1, 'A delicious cocktail that will help you to gain weight', NULL, 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1476548441/x9rgkirah1xx5fkgbbon.png', @DishId OUT;
+EXEC spIngredient_Add @DishId, 16, 300;
+EXEC spIngredient_Add @DishId, 14, 200;
+EXEC spIngredient_Add @DishId, 36, 100;
+EXEC spIngredient_Add @DishId, 56, 50;
 
 EXEC spDish_Add 'Rice with vegetables', 1, 'Good and tasty dish which is easy to prepare', NULL, 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1476365705/jcl6liovchdvi2fardiy.png', @DishId OUT;
 EXEC spIngredient_Add @DishId, 53, 200;
@@ -99,5 +110,7 @@ EXEC spDish_Add 'Сottage cheese with bananas', 1, NULL, NULL, 'https://res.clou
 EXEC spIngredient_Add @DishId, 36, 300;
 EXEC spIngredient_Add @DishId, 16, 400;
 GO
+
+
 
 

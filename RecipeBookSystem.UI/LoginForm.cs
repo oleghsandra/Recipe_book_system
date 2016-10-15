@@ -1,26 +1,35 @@
 ﻿using RecipeBookSystem.BL.ModelProviders;
 using RecipeBookSystem.Model.Models;
 using RecipeBookSystem.UI.Models.FormModels;
+using RecipeBookSystem.UI.Properties;
 using System;
 using System.Windows.Forms;
 
 namespace RecipeBookSystem.UI
 {
+    /// <summary>
+    /// The form that enables the user to sign up and log in
+    /// </summary>
     public partial class LoginForm : MaterialFormBaseModel
     {
+        /// <summary>
+        /// A user who is using the program
+        /// </summary>
         public UserModel CurrentUser
         {
             get;
             private set;
         }
 
-        private UserProvider userProvider;
+        private readonly UserProvider userProvider;
 
         public LoginForm()
         {
             InitializeComponent();
+            
             this.userProvider = new UserProvider();
 
+            //Test user(login info) who already has a list of available recipes
             emailTextField.Text = "test@gmail.com";
             passwordTextField.Text = "1234";
         }
@@ -38,8 +47,7 @@ namespace RecipeBookSystem.UI
 
             if(password == string.Empty || email == string.Empty || name == string.Empty)
             {
-                // використати це - Resources.SomeMessahe
-                MessageBox.Show(this, "Enter all fields!", "Warning!");
+                MessageBox.Show(Resources.EnterAllFieldsMessage, Resources.WarningMessage);
                 return;
             }
 
@@ -49,11 +57,21 @@ namespace RecipeBookSystem.UI
                 Password = password
             };
 
-            bool wasUserAdded = userProvider.AddUser(newUser);
+            bool wasUserAdded;
+
+            try
+            {
+                wasUserAdded = userProvider.AddUser(newUser);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Resources.ErrorMessage);
+                return;
+            }
 
             if (wasUserAdded)
             {
-                MessageBox.Show(this, (name + " Added"), "Success!");
+                MessageBox.Show((name + Resources.AddedMessame), Resources.SuccessMessage);
                 clearFields();
                 this.nameTextField.Visible = false;
                 this.userNameLabel.Visible = false;
@@ -63,7 +81,7 @@ namespace RecipeBookSystem.UI
             }
             else
             {
-                MessageBox.Show("User exists", "Error!");
+                MessageBox.Show(Resources.UserExistsMessage, Resources.ErrorMessage);
             }
             
         }
@@ -75,11 +93,21 @@ namespace RecipeBookSystem.UI
 
             if (password == string.Empty || email == string.Empty)
             {
-                MessageBox.Show(this, "Enter all fields!", "Warning!");
+                MessageBox.Show(Resources.EnterAllFieldsMessage, Resources.WarningMessage);
                 return;
             }
 
-            var user = userProvider.GetUser(email, password);
+            UserModel user;
+
+            try
+            {
+                user = userProvider.GetUser(email, password);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Resources.ErrorMessage);
+                return;
+            }
 
             if(user != null)
             {
@@ -90,7 +118,7 @@ namespace RecipeBookSystem.UI
             }
             else
             {
-                MessageBox.Show("Incorrect login or password", "Incorrect input!");
+                MessageBox.Show(Resources.IncorrectLoginPasswordMessage, Resources.IncorrectInputMessage);
             }
         }
 

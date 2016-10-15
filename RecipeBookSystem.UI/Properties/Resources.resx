@@ -117,12 +117,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddedMessame" xml:space="preserve">
+    <value> Added</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="DeleteIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeleteIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="EditIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AditIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EnterAllFieldsMessage" xml:space="preserve">
+    <value>Enter all fields!</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>Error!</value>
+  </data>
+  <data name="IncorrectInputMessage" xml:space="preserve">
+    <value>Incorrect input!</value>
+  </data>
+  <data name="IncorrectLoginPasswordMessage" xml:space="preserve">
+    <value>Incorrect login or password</value>
   </data>
   <data name="LeftSideImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -132,5 +147,17 @@
   </data>
   <data name="Spinner" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\default.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>Enter all fields!</value>
+  </data>
+  <data name="SuccessMessage" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="UserExistsMessage" xml:space="preserve">
+    <value>User already exists!</value>
+  </data>
+  <data name="WarningMessage" xml:space="preserve">
+    <value>Warning!</value>
   </data>
 </root>

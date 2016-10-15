@@ -3,6 +3,10 @@ using MaterialSkin.Controls;
 
 namespace RecipeBookSystem.UI.Models.FormModels
 {
+    /// <summary>
+    /// The basic form for other forms of application
+    /// containing common properties and design.
+    /// </summary>
     public class MaterialFormBaseModel : MaterialForm
     {
         private MaterialSkinManager skipManager;

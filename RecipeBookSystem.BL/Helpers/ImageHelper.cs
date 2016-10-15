@@ -7,18 +7,31 @@ using System.Reflection;
 
 namespace RecipeBookSystem.BL.Helpers
 {
+    /// <summary>
+    /// The class that provides an opportunity to work with images
+    /// </summary>
     public class ImageHelper
     {
         private ICloudHelper _cloud;
-        
-        private static object imageLoadLockObject = new object();
-        private static object imageUploadLockObject = new object();
 
+        //Objects blocking concurrent operations on remote pictures
+        private static object imageUploadLockObject = new object();
+        private static object imageLoadLockObject = new object();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImageHelper"/> class.
+        /// </summary>
+        /// <param name="cloud">Instance of cloud helper</param>
         public ImageHelper(ICloudHelper cloud)
         {
             _cloud = cloud;
         }
 
+        /// <summary>
+        /// Gets image from local computer
+        /// </summary>
+        /// <param name="path">Path to the local image</param>
+        /// <returns>Local image</returns>
         public Bitmap UploadImageFromComputer(string path)
         {
             Bitmap image;
@@ -33,6 +46,13 @@ namespace RecipeBookSystem.BL.Helpers
             return image;
         }
 
+        /// <summary>
+        /// Method upload image to the cloud
+        /// </summary>
+        /// <param name="image">Image to upload</param>
+        /// <param name="width">Target width of image</param>
+        /// <param name="height">Target height of image</param>
+        /// <returns>String - ling on image in the internet</returns>
         public string UploadImage(Bitmap image, int width, int height)
         {
             var minimizedImage = new Bitmap(image, width, height);
@@ -48,24 +68,33 @@ namespace RecipeBookSystem.BL.Helpers
             }
         }
 
-        private string getAssemblyDirectory()
-        {
-            string codeBase = Assembly.GetExecutingAssembly().CodeBase;
-            UriBuilder uri = new UriBuilder(codeBase);
-            string path = Uri.UnescapeDataString(uri.Path);
-            return Path.GetDirectoryName(path);
-        }
-
+        /// <summary>
+        /// Method for getting Product Default 
+        /// Image from resources
+        /// </summary>
+        /// <returns>Product Default image</returns>
         public Bitmap GetProductDefaultImage()
         {
             return Resources.ProductStandartImage;
         }
 
+        /// <summary>
+        /// Method for getting Dish Default 
+        /// Image from resources
+        /// </summary>
+        /// <returns>Dish Default image</returns>
         public Bitmap GetDishDefaultImage()
         {
             return Resources.DishStandartImage;
         }
 
+        /// <summary>
+        /// Method gets product image from cloud
+        /// if no eny errors
+        /// </summary>
+        /// <param name="url">Link on the image</param>
+        /// <returns>Remove image - if no errors while loading image,
+        /// otherwise - defoult product image</returns>
         public Bitmap GetProductImage(string url)
         {
             try
@@ -77,16 +106,19 @@ namespace RecipeBookSystem.BL.Helpers
 
                 return getImageByUrl(url);
             }
-            catch (WebException)
+            catch
             {
                 return Resources.ProductStandartImage;
             }
-            catch (Exception ex)
-            {
-                throw new Exception("error while getting product image: " + ex.Message, ex);
-            }
         }
 
+        /// <summary>
+        /// Method gets dish image from cloud
+        /// if no eny errors
+        /// </summary>
+        /// <param name="url">Link on the image</param>
+        /// <returns>Remove image - if no errors while loading image,
+        /// otherwise - defoult dish image</returns>
         public Bitmap GetDishImage(string url)
         {
             try
@@ -98,13 +130,9 @@ namespace RecipeBookSystem.BL.Helpers
 
                 return getImageByUrl(url);
             }
-            catch (WebException)
+            catch 
             {
                 return Resources.DishStandartImage;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("error while getting dish image: " + ex.Message, ex);
             }
         }
 
@@ -119,6 +147,15 @@ namespace RecipeBookSystem.BL.Helpers
 
                 return image;
             }
+        }
+
+        private string getAssemblyDirectory()
+        {
+            string codeBase = Assembly.GetExecutingAssembly().CodeBase;
+            UriBuilder uri = new UriBuilder(codeBase);
+            string path = Uri.UnescapeDataString(uri.Path);
+
+            return Path.GetDirectoryName(path);
         }
     }
 }

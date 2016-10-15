@@ -15,6 +15,12 @@ namespace RecipeBookSystem.DAL.Concrete.Repositories
 
         }
 
+        /// <summary>
+        /// Gets user from DB
+        /// </summary>
+        /// <param name="email">Email of the user</param>
+        /// <param name="password">Password of the user</param>
+        /// <returns></returns>
         public UserModel GetUser(string email, string password)
         {
             var parameters = new[]
@@ -37,6 +43,12 @@ namespace RecipeBookSystem.DAL.Concrete.Repositories
 
         }
 
+        /// <summary>
+        /// Adds new user to DB
+        /// </summary>
+        /// <param name="user">user to add</param>
+        /// <returns>True - if the user does not exist and it has been
+        /// successfully added, otherwise - false</returns>
         public bool AddUser(UserModel user)
         {
             var existedUser = GetUser(user.Email, user.Password);

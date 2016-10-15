@@ -8,24 +8,35 @@ using System.Configuration;
 
 namespace RecipeBookSystem.BL.ModelProviders
 {
+    /// <summary>
+    /// The class provides the opportunity to work with dishes from database
+    /// </summary>
     public class DishProvider
     {
         private IDishRepository _dishRepository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DishProvider"/> class.
+        /// </summary>
         public DishProvider()
         {
             IUnitOfWork unitOfWork = new UnitOfWork(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
             _dishRepository = unitOfWork.DishRepository;
         }
 
-        public IEnumerable<DishModel> GetUserDishes(int userId, int count, int pageNumber)
+        /// <summary>
+        /// Gets dishes for some user
+        /// </summary>
+        /// <param name="userId">Owner id</param>
+        /// <param name="count">Count of products to retrieve</param>
+        /// <param name="pageNumber">Page index</param>
+        /// <param name="name">Name for searching</param>
+        /// <returns>List of dishes</returns>
+        public IEnumerable<DishModel> GetUserDishes(int userId, int count, int pageNumber, string name = null)
         {
             try
             {
-                IEnumerable<DishModel> dishes;
-                dishes = _dishRepository.GetUserDishes(userId, count, pageNumber);
-
-                return dishes;
+                return _dishRepository.GetUserDishes(userId, count, pageNumber, name);
             }
             catch(Exception ex)
             {
@@ -33,6 +44,11 @@ namespace RecipeBookSystem.BL.ModelProviders
             }
         }
 
+        /// <summary>
+        /// Adds new user model to DB
+        /// </summary>
+        /// <param name="dish">Dish model to add</param>
+        /// <returns>Id of new dish</returns>
         public int AddDish(DishModel dish)
         {
             try
@@ -45,5 +61,20 @@ namespace RecipeBookSystem.BL.ModelProviders
             }
         }
 
+        /// <summary>
+        /// Method removes dish
+        /// </summary>
+        /// <param name="dishId">Id of user to delete</param>
+        public void DeleteDish(int dishId)
+        {
+            try
+            {
+                _dishRepository.DeleteDish(dishId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("error while deleting dish: " + ex.Message, ex);
+            }
+        }
     }
 }
