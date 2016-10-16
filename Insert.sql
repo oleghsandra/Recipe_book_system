@@ -1,8 +1,10 @@
 ﻿USE [RecipeBookSystemTestDB];
 GO
 
+--Adding test user
 EXEC spUsers_Add 'TestUser', 'test@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055';
 
+--Adding product types
 EXEC spProductType_Add 'Fish', 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1475326464/kzmh7l9e1d2qlrhamapq.png', NULL;
 EXEC spProductType_Add 'Meat', 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1475326507/qex3tsixufmhk0x5bc9u.png', NULL;
 EXEC spProductType_Add 'Dairy products', 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1475326564/vvicm31ucws0rtppisjc.png', NULL;
@@ -83,7 +85,7 @@ EXEC spProduct_AddNew 'Oat', 7, 11.9, 5.8, 65.4, 'https://res.cloudinary.com/dub
 EXEC spProduct_AddNew 'Bread', 7, 7.7, 2.4, 53.4, 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1475356674/buj4uqvuksdd6vz9uwiy.png', NULL;
 
 
---Adding Dishes and their ingredients to admin(with 1 id value)
+--Adding Dishes and their ingredients to test user(with 1 id value)
 DECLARE @DishId INT;
 
 EXEC spDish_Add 'Buckwheat with milk', 1, 'Healthy food that will give you a boost of energy', NULL, 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1476549112/lbqqxbqeqhswy1zxyoy5.png', @DishId OUT;

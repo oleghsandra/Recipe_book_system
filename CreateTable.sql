@@ -1,9 +1,5 @@
-﻿--CREATE DATABASE [RecipeBookSystemTestDB];
---GO
-
-USE [RecipeBookSystemTestDB];
+﻿USE [RecipeBookSystemTestDB];
 GO
-
 -----------------------------------------------------------
 
 CREATE TABLE Users

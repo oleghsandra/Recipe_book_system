@@ -1,5 +1,4 @@
-﻿
--- SPROCS
+﻿-- SPROCS
 USE [RecipeBookSystemTestDB]
 GO
 
@@ -29,7 +28,6 @@ AS
   SELECT * FROM Users
   WHERE @Email = Users.Email AND @Password = Users.[Password];
 GO
-
 
 -----------------------------------------------------------------
 

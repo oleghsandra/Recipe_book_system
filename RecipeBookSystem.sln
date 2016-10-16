@@ -7,10 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBookSystem.Model", "R
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RecipeBookSystem.SqlQueries", "RecipeBookSystem.SqlQueries", "{58DDECC9-3DE6-4E03-85F9-0FDA6D3B919C}"
 	ProjectSection(SolutionItems) = preProject
-		Create.sql = Create.sql
+		CreateDB.sql = CreateDB.sql
+		CreateProcs.sql = CreateProcs.sql
+		CreateTable.sql = CreateTable.sql
 		Delete.sql = Delete.sql
 		Insert.sql = Insert.sql
-		Procs.sql = Procs.sql
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBookSystem.DAL", "RecipeBookSystem.DAL\RecipeBookSystem.DAL.csproj", "{F2C33962-1787-4CDD-8C25-815A7DE0E457}"
