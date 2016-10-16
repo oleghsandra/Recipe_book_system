@@ -1,6 +1,6 @@
 ﻿USE [RecipeBookSystemTestDB];
 GO
------------------------------------------------------------
+----------------------------------------------------------
 --Delete and create tables considering the FOREIGN keys
 IF OBJECT_ID('UsersDishes', 'U') IS NOT NULL 
     DROP TABLE UsersDishes
