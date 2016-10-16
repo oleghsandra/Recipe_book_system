@@ -15,6 +15,9 @@ namespace RecipeBookSystem.UI.Models
             private set;
         }
 
+        /// <summary>
+        /// Image of item
+        /// </summary>
         public Bitmap Image { get; set; }
 
         /// <summary>

@@ -16,15 +16,10 @@
         public string Name { get; set; }
 
         /// <summary>
-        /// Identity of type that is this product
+        /// Type of the product
         /// </summary>
-        public int productTypeId { get; set; }
-
-        /// <summary>
-        /// Name of type that is this product
-        /// </summary>
-        public string ProductTypeName { get; set; }
-
+        public ProductTypeModel ProductTypeModel { get; set; }
+        
         /// <summary>
         /// Weight of proteins that contains in this product
         /// </summary>

@@ -36,7 +36,7 @@ namespace RecipeBookSystem.BL.ModelProviders
             }
             catch (Exception ex)
             {
-                throw new Exception("error while  geting all product types: " + ex.Message, ex);
+                throw new Exception("Error while  geting all product types: " + ex.Message, ex);
             }
         }
     }

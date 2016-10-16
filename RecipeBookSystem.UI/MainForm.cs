@@ -19,20 +19,20 @@ namespace RecipeBookSystem.UI
 { 
     public partial class MainForm : MaterialFormBaseModel
     {   
-        private const byte sortButtonCount = 4;
-        private const byte tableColumnCount = 7;
-        private const byte productsPerPageCount = 5;
-        private const byte dishesPerPageCount = 2;
-        private const byte productImageWigth = 80;
-        private const byte productImageHeight = 64;
-        private const byte dishImageWeigth = 240;
-        private const byte dishImageHeight = 144;
-        private const byte nameSortButtonPosition = 0;
-        private const byte proteinsSortButtonPosition = 1;
-        private const byte fatsSortButtonPosition = 2;
-        private const byte carbsSortButtonPosition = 3;
-        private const byte ingredientNameTablePosition = 0;
-        private const byte ingerdientWeightTablePosition = 1;
+        private const int sortButtonCount = 4;
+        private const int tableColumnCount = 7;
+        private const int productsPerPageCount = 5;
+        private const int dishesPerPageCount = 2;
+        private const int productImageWigth = 80;
+        private const int productImageHeight = 64;
+        private const int dishImageWeigth = 240;
+        private const int dishImageHeight = 144;
+        private const int nameSortButtonPosition = 0;
+        private const int proteinsSortButtonPosition = 1;
+        private const int fatsSortButtonPosition = 2;
+        private const int carbsSortButtonPosition = 3;
+        private const int ingredientNameTablePosition = 0;
+        private const int ingerdientWeightTablePosition = 1;
 
         private readonly UserModel loggedUser;
         private readonly ProductProvider productProvider;
@@ -94,7 +94,9 @@ namespace RecipeBookSystem.UI
         private void InitializeProductList()
         {
             this.newProduct = new ProductModel();
+            this.newProduct.ProductTypeModel = new ProductTypeModel();
             this.updatingProduct = new ProductModel();
+            this.updatingProduct.ProductTypeModel = new ProductTypeModel();
             this.creatingProductPhotoLabel.Image = imageHelper.GetProductDefaultImage();
 
             this.selectedProducts = new List<ProductModel>();
@@ -114,7 +116,7 @@ namespace RecipeBookSystem.UI
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                MessageBox.Show(ex.Message, Resources.ErrorMessage);
             }
 
             //Fill filterProductComboBox with all available product type
@@ -184,6 +186,7 @@ namespace RecipeBookSystem.UI
 
             List<ProductModel> filteredProducts = new List<ProductModel>();
 
+            //In case when there are no 
             if (string.IsNullOrEmpty(productsGridOptions.searchProductName))
             {
                 try
@@ -197,7 +200,7 @@ namespace RecipeBookSystem.UI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error");
+                    MessageBox.Show(ex.Message, Resources.ErrorMessage);
                     return;
                 }
             }
@@ -213,7 +216,7 @@ namespace RecipeBookSystem.UI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error");
+                    MessageBox.Show(ex.Message, Resources.ErrorMessage);
                     return;
                 }
             }
@@ -257,7 +260,8 @@ namespace RecipeBookSystem.UI
 
                 var productItem = new ProductItem(product);
                 productItems.Add(productItem);
-                
+
+                //Each time will be selecting an item in front of the Check box
                 productCheckBox.CheckedChanged += (sender, e) =>
                 {
                     var chackBox = (MaterialCheckBox)sender;
@@ -278,7 +282,7 @@ namespace RecipeBookSystem.UI
                             
                         if (selectedProducts.Count == 0)
                         {
-                            this.selectedProductsListBox.Items.Insert(0, "No products yet");
+                            this.selectedProductsListBox.Items.Insert(0, Resources.NoProductsYetMessage);
                         }
                     }
 
@@ -312,6 +316,7 @@ namespace RecipeBookSystem.UI
                 this.productTableView.Controls.Add(editIconLabel, 7, row);
                 this.productTableView.Controls.Add(deleteIconLabel, 8, row);
 
+                //Configure Label element, so that there could put the picture there
                 productItem.PictureLabel = new Label();
                 productItem.PictureLabel.AutoSize = true;
                 productItem.PictureLabel.Font = new Font("Microsoft Sans Serif", 50F);
@@ -319,14 +324,15 @@ namespace RecipeBookSystem.UI
                 productItem.PictureLabel.Anchor = AnchorStyles.None;
                 this.productTableView.Controls.Add(productItem.PictureLabel, 1, row);
 
+                //Set the text values of Label content in the correct order
                 this.productTableRowLabels[2].Text = product.Name;
-                this.productTableRowLabels[3].Text = product.ProductTypeName;
+                this.productTableRowLabels[3].Text = product.ProductTypeModel.Name;
                 this.productTableRowLabels[4].Text = product.Proteins.ToString();
                 this.productTableRowLabels[5].Text = product.Fats.ToString();
                 this.productTableRowLabels[6].Text = product.Carbohydrates.ToString();
                 row++;
-                this.productTableView.Refresh();
 
+                this.productTableView.Refresh();
             }
         }
 
@@ -338,7 +344,7 @@ namespace RecipeBookSystem.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                MessageBox.Show(ex.Message, Resources.ErrorMessage);
                 return;
             }
             
@@ -355,7 +361,7 @@ namespace RecipeBookSystem.UI
 
             if (selectedProductsListBox.Items.Count == 0)
             {
-                this.selectedProductsListBox.Items.Insert(0, "No products yet");
+                this.selectedProductsListBox.Items.Insert(0, Resources.NoProductsYetMessage);
             }
 
             showProducts();
@@ -369,18 +375,19 @@ namespace RecipeBookSystem.UI
         private void setProductToUpdate(ProductItem productToUpdate)
         {
             this.newProduct.SmallPhotoLink = productToUpdate.ProductModel.SmallPhotoLink;
-            this.updete_createProductButton.Text = "UPDATE";
+            this.updete_createProductButton.Text = Resources.UpdateText;
 
             this.updatingProduct = productToUpdate.ProductModel;
             this.productsManipulationPlan = ProductsManipulationPlan.UpdatingExistingProduct;
 
+            //Fill fields whith values of available product
             this.creatingProductNameTextField.Text = productToUpdate.ProductModel.Name;
             this.creatingProductProteinsTextField.Text = productToUpdate.ProductModel.Proteins.ToString();
             this.creatingProductFatsTextField.Text = productToUpdate.ProductModel.Fats.ToString();
             this.creatingProductCarbsTextField.Text = productToUpdate.ProductModel.Carbohydrates.ToString();
             this.creatingProductPhotoLabel.Image = productToUpdate.PictureLabel.Image;
 
-            this.creatingProductTypeSelector.SelectedIndex = productToUpdate.ProductModel.productTypeId;
+            this.creatingProductTypeSelector.SelectedIndex = productToUpdate.ProductModel.ProductTypeModel.Id;
 
             this.pages.SelectedTab = addingProductPage;
         }
@@ -388,6 +395,8 @@ namespace RecipeBookSystem.UI
 
         private void backgroundProductImageUploader_DoWork(object sender, DoWorkEventArgs e)
         {
+            //New Thread created to provide releasing the background 
+            //worker for next image loading process.
             Thread imageLoader = new Thread(() =>
             {
                 showProductsImages();
@@ -413,30 +422,30 @@ namespace RecipeBookSystem.UI
 
         private void nameSortButton_Click(object sender, EventArgs e)
         {
-            sortProducts((Button)sender, "Name");
+            sortProducts((Button)sender, Resources.NameText);
         }
 
         private void proteinsSortButton_Click(object sender, EventArgs e)
         {
-            sortProducts((Button)sender, "Proteins");
+            sortProducts((Button)sender, Resources.ProteinsText);
         }
 
         private void fatsSortButton_Click(object sender, EventArgs e)
         {
-            sortProducts((Button)sender, "Fats");
+            sortProducts((Button)sender, Resources.FatsText);
         }
 
         private void carbsSortButton_Click(object sender, EventArgs e)
         {
-            sortProducts((Button)sender, "Carbohydrates");
+            sortProducts((Button)sender, Resources.CarbohydratesText);
         }
 
         private void sortProducts(Button clickedButton, string sortColumn)
         {
             this.leftSideProductListButton.Enabled = false;
             clickedButton.Enabled = false;
-            string upper = "⇑";
-            string lower = "⇓";
+            string upper = Resources.UpperSymbol;
+            string lower = Resources.LowerSymbol;
 
             foreach (var button in sortButtons)
             {
@@ -454,18 +463,18 @@ namespace RecipeBookSystem.UI
                 if (buttonTextWords[1] == upper)
                 {
                     clickedButton.Text = buttonTextWords[0] + " " + lower;
-                    this.productsGridOptions.SortOrder = "ASC";
+                    this.productsGridOptions.SortOrder = Resources.ASCOrder;
                 }
                 else if (buttonTextWords[1] == lower)
                 {
                     clickedButton.Text = buttonTextWords[0] + " " + upper;
-                    this.productsGridOptions.SortOrder = "DESC";
+                    this.productsGridOptions.SortOrder = Resources.DESCOrder;
                 }
             }
             else
             {
                 clickedButton.Text += " " + lower;
-                this.productsGridOptions.SortOrder = "ASC";
+                this.productsGridOptions.SortOrder = Resources.ASCOrder;
             }
             showProducts();
             if (!backgroundProductImageUploader.IsBusy)
@@ -545,7 +554,7 @@ namespace RecipeBookSystem.UI
             } 
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                MessageBox.Show(ex.Message, Resources.ErrorMessage);
                 return;
             }
 
@@ -574,7 +583,7 @@ namespace RecipeBookSystem.UI
             clearAddingProductPage();
             this.productsManipulationPlan = ProductsManipulationPlan.CreatingNewProduct;
             this.pages.SelectedTab = addingProductPage;
-            this.updete_createProductButton.Text = "ADD PRODUCT";
+            this.updete_createProductButton.Text = Resources.AddProductMessage;
         }
         #endregion
 
@@ -631,37 +640,37 @@ namespace RecipeBookSystem.UI
 
             if (newProductName == string.Empty)
             {
-                MessageBox.Show("Do not leave a clear name field!", "Warning!");
+                MessageBox.Show("Do not leave a clear name field!", Resources.WarningMessage);
                 return;
             }
             else if (newProductTypeId == 0)
             {
-                MessageBox.Show("Select the ptoduct type!", "Warning!");
+                MessageBox.Show("Select the ptoduct type!", Resources.WarningMessage);
                 return;
             }
             else if (newProductName.Length > 20)
             {
-                MessageBox.Show("Name is too long!", "Warning!");
+                MessageBox.Show("Name is too long!", Resources.WarningMessage);
                 return;
             }
             else if (!hasProteinsValue)
             {
-                MessageBox.Show("Incorrect input in proteins field", "Warning!");
+                MessageBox.Show("Incorrect input in proteins field", Resources.WarningMessage);
                 return;
             }
             else if (!hasFatsValue)
             {
-                MessageBox.Show("Incorrect input in fats field", "Warning!");
+                MessageBox.Show("Incorrect input in fats field", Resources.WarningMessage);
                 return;
             }
             else if (!hasCarbsValue)
             {
-                MessageBox.Show("Incorrect input in carbohydrades field", "Warning!");
+                MessageBox.Show("Incorrect input in carbohydrades field", Resources.WarningMessage);
                 return;
             }
             else if ((newProductProteinsCount + newProductCarbsCount + newProductFatsCount) > 100)
             {
-                MessageBox.Show("The sum of all product parameters can not be more than 100!", "Warning!");
+                MessageBox.Show("The sum of all product parameters can not be more than 100!", Resources.WarningMessage);
                 return;
             }
             
@@ -669,7 +678,7 @@ namespace RecipeBookSystem.UI
             this.newProduct.Proteins = newProductProteinsCount;
             this.newProduct.Fats = newProductFatsCount;
             this.newProduct.Carbohydrates = newProductCarbsCount;
-            this.newProduct.productTypeId = newProductTypeId;
+            this.newProduct.ProductTypeModel.Id = newProductTypeId;
             
             if (productsManipulationPlan == ProductsManipulationPlan.UpdatingExistingProduct)
             {
@@ -680,7 +689,7 @@ namespace RecipeBookSystem.UI
                     productProvider.UpdateProduct(
                         newProduct.Id,
                         newProduct.Name,
-                        newProduct.productTypeId,
+                        newProduct.ProductTypeModel.Id,
                         newProduct.Proteins,
                         newProduct.Fats,
                         newProduct.Carbohydrates,
@@ -688,7 +697,7 @@ namespace RecipeBookSystem.UI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error");
+                    MessageBox.Show(ex.Message, Resources.ErrorMessage);
                     return;
                 }
             }
@@ -700,7 +709,7 @@ namespace RecipeBookSystem.UI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error");
+                    MessageBox.Show(ex.Message, Resources.ErrorMessage);
                     return;
                 }
 
@@ -715,7 +724,7 @@ namespace RecipeBookSystem.UI
                 this.backgroundProductImageUploader.RunWorkerAsync();
             }
             clearAddingProductPage();
-            this.updete_createProductButton.Text = "ADD PRODUCT";
+            this.updete_createProductButton.Text = Resources.AddProductMessage;
         }
 
         private void photoAddMessageLabel_Click(object sender, EventArgs e)
@@ -820,6 +829,7 @@ namespace RecipeBookSystem.UI
 
                 NumericUpDown ingredientWeightNumericUpDown = new NumericUpDown();
 
+                //Set common style for every created NumericUpDown
                 ingredientWeightNumericUpDown.BorderStyle = BorderStyle.None;
                 ingredientWeightNumericUpDown.Font = commonFont;
                 ingredientWeightNumericUpDown.Anchor = AnchorStyles.Left;
@@ -832,6 +842,7 @@ namespace RecipeBookSystem.UI
                     newIngredient.Weight = (double)ingredientWeightNumericUpDown.Value;
                 };
 
+                //Set lables in TableView in fixed positions of columns
                 this.ingredientsTableView.Controls.Add(ingredientNameLabel, 0, row);
                 this.ingredientsTableView.Controls.Add(ingredientWeightNumericUpDown, 1, row);
 
@@ -871,7 +882,7 @@ namespace RecipeBookSystem.UI
 
             if (newDishName == string.Empty)    
             {
-                MessageBox.Show("Do not leave a clear name field!", "Warning!");
+                MessageBox.Show(Resources.DontLeaveNameFieldMessage, Resources.WarningMessage);
                 return;
             }
 
@@ -887,7 +898,7 @@ namespace RecipeBookSystem.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                MessageBox.Show(ex.Message, Resources.ErrorMessage);
                 return;
             }
 
@@ -901,7 +912,7 @@ namespace RecipeBookSystem.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                MessageBox.Show(ex.Message, Resources.ErrorMessage);
                 return;
             }
 
@@ -959,7 +970,7 @@ namespace RecipeBookSystem.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                MessageBox.Show(ex.Message, Resources.ErrorMessage);
                 return;
             }
 
@@ -1120,7 +1131,7 @@ namespace RecipeBookSystem.UI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error");
+                    MessageBox.Show(ex.Message, Resources.ErrorMessage);
                     return;
                 }
 
@@ -1139,7 +1150,7 @@ namespace RecipeBookSystem.UI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error");
+                    MessageBox.Show(ex.Message, Resources.ErrorMessage);
                     return;
                 }
 

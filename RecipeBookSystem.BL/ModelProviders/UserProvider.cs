@@ -37,7 +37,7 @@ namespace RecipeBookSystem.BL.ModelProviders
             }
             catch (Exception ex)
             {
-                throw new Exception("error while geting user: " + ex.Message, ex);
+                throw new Exception("Error while geting user: " + ex.Message, ex);
             }
         }
 
@@ -55,7 +55,7 @@ namespace RecipeBookSystem.BL.ModelProviders
             }
             catch (Exception ex)
             {
-                throw new Exception("error while adding user: " + ex.Message, ex);
+                throw new Exception("Error while adding user: " + ex.Message, ex);
             }
         }
     }

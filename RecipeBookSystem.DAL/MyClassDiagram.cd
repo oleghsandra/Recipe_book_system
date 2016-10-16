@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RecipeBookSystem.Model.Models.DishModel">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="RecipeBookSystem.Model.Models.IngredientModel">
+    <Position X="4.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="RecipeBookSystem.Model.Models.ProductModel">
+    <Position X="2.75" Y="3" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="RecipeBookSystem.Model.Models.ProductTypeModel">
+    <Position X="6" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="RecipeBookSystem.Model.Models.UserModel">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="RecipeBookSystem.DAL.Concrete.Repositories.DishRepository">
+    <Position X="8" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAIEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concrete\Repositories\DishRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RecipeBookSystem.DAL.Concrete.Repositories.GenericRepository&lt;TEntity&gt;" Collapsed="true">
+    <Position X="12.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAIAAAAAACAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Concrete\Repositories\GenericRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RecipeBookSystem.DAL.Concrete.Repositories.IngredientRepository">
+    <Position X="14.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAICAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concrete\Repositories\IngredientRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RecipeBookSystem.DAL.Concrete.Repositories.ProductRepository">
+    <Position X="10.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAiAAAAAAAAAQEAAAAAAAAA=</HashCode>
+      <FileName>Concrete\Repositories\ProductRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RecipeBookSystem.DAL.Concrete.Repositories.ProductTypeRepository">
+    <Position X="12.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concrete\Repositories\ProductTypeRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RecipeBookSystem.DAL.Concrete.Repositories.UserRepository">
+    <Position X="17" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgEAAAAAAAAAA=</HashCode>
+      <FileName>Concrete\Repositories\UserRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="RecipeBookSystem.DAL.Abstraction.Repositories.IIngredientRepository">
+    <Position X="14.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAICAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstraction\Repositories\IIngredientRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RecipeBookSystem.DAL.Abstraction.Repositories.IProductTypeRepository">
+    <Position X="19.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstraction\Repositories\IProductTypeRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RecipeBookSystem.DAL.Abstraction.Repositories.IGenericRepository&lt;TEntity&gt;" Collapsed="true">
+    <Position X="19.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Abstraction\Repositories\IGenericRepositoy.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RecipeBookSystem.DAL.Abstraction.Repositories.IDishRepository">
+    <Position X="17" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAIEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstraction\Repositories\IDishRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RecipeBookSystem.DAL.Abstraction.Repositories.IProductRepository">
+    <Position X="21.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAiAAAAAAAAAQEAAAAAAAAA=</HashCode>
+      <FileName>Abstraction\Repositories\IProductRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RecipeBookSystem.DAL.Abstraction.Repositories.IUserRepository">
+    <Position X="23.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgEAAAAAAAAAA=</HashCode>
+      <FileName>Abstraction\Repositories\IUserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -30,6 +30,6 @@ namespace RecipeBookSystem.Model.Models
         /// <summary>
         /// List of the personal dishes
         /// </summary>
-        public List<DishModel> Ingredients { get; set; }
+        public List<DishModel> Dishes { get; set; }
     }
 }

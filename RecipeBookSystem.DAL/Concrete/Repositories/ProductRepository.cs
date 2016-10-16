@@ -108,7 +108,7 @@ namespace RecipeBookSystem.DAL.Concrete.Repositories
             var parameters = new[]
             {
                 new SqlParameter(StoredProcedureParameters.Name, newProduct.Name),
-                new SqlParameter(StoredProcedureParameters.ProductTypeId, newProduct.productTypeId),
+                new SqlParameter(StoredProcedureParameters.ProductTypeId, newProduct.ProductTypeModel.Id),
                 new SqlParameter(StoredProcedureParameters.Proteins, newProduct.Proteins),
                 new SqlParameter(StoredProcedureParameters.Fats, newProduct.Fats),
                 new SqlParameter(StoredProcedureParameters.Carbohydrates, newProduct.Carbohydrates),

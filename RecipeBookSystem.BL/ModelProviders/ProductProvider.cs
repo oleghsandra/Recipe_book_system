@@ -51,7 +51,7 @@ namespace RecipeBookSystem.BL.ModelProviders
             }
             catch (Exception ex)
             {
-                throw new Exception("error while getting products: " + ex.Message, ex);
+                throw new Exception("Error while getting products: " + ex.Message, ex);
             }
         }
 
@@ -67,7 +67,7 @@ namespace RecipeBookSystem.BL.ModelProviders
             }
             catch (Exception ex)
             {
-                throw new Exception("error while deleting product: " + ex.Message, ex);
+                throw new Exception("Error while deleting product: " + ex.Message, ex);
             }
         }
 
@@ -103,7 +103,7 @@ namespace RecipeBookSystem.BL.ModelProviders
             }
             catch (Exception ex)
             {
-                throw new Exception("error while updating product: " + ex.Message, ex);
+                throw new Exception("Error while updating product: " + ex.Message, ex);
             }
         }
 
@@ -119,7 +119,7 @@ namespace RecipeBookSystem.BL.ModelProviders
             }
             catch (Exception ex)
             {
-                throw new Exception("error while adding product: " + ex.Message, ex);
+                throw new Exception("Error while adding product: " + ex.Message, ex);
             }
         }
 
@@ -136,7 +136,7 @@ namespace RecipeBookSystem.BL.ModelProviders
             }
             catch (Exception ex)
             {
-                throw new Exception("error while searching product: " + ex.Message, ex);
+                throw new Exception("Error while searching product: " + ex.Message, ex);
             }
         }
     }

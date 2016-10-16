@@ -57,7 +57,7 @@ namespace RecipeBookSystem.BL.ModelProviders
             }
             catch (Exception ex)
             {
-                throw new Exception("error while adding dish: " + ex.Message, ex);
+                throw new Exception("Error while adding dish: " + ex.Message, ex);
             }
         }
 
@@ -73,7 +73,7 @@ namespace RecipeBookSystem.BL.ModelProviders
             }
             catch (Exception ex)
             {
-                throw new Exception("error while deleting dish: " + ex.Message, ex);
+                throw new Exception("Error while deleting dish: " + ex.Message, ex);
             }
         }
     }

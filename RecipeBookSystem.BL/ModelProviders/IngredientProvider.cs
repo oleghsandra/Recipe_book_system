@@ -37,7 +37,7 @@ namespace RecipeBookSystem.BL.ModelProviders
             }
             catch (Exception ex)
             {
-                throw new Exception("error while getting ingredients: " + ex.Message, ex);
+                throw new Exception("Error while getting ingredients: " + ex.Message, ex);
             }
         }
 
@@ -53,7 +53,7 @@ namespace RecipeBookSystem.BL.ModelProviders
             }
             catch (Exception ex)
             {
-                throw new Exception("error while adding ingredient: " + ex.Message, ex);
+                throw new Exception("Error while adding ingredient: " + ex.Message, ex);
             }
         }
     }

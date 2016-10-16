@@ -70,12 +70,57 @@ namespace RecipeBookSystem.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ADD PRODUCT.
+        /// </summary>
+        internal static string AddProductMessage {
+            get {
+                return ResourceManager.GetString("AddProductMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ASC.
+        /// </summary>
+        internal static string ASCOrder {
+            get {
+                return ResourceManager.GetString("ASCOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Carbohydrates.
+        /// </summary>
+        internal static string CarbohydratesText {
+            get {
+                return ResourceManager.GetString("CarbohydratesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap DeleteIcon {
             get {
                 object obj = ResourceManager.GetObject("DeleteIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DESC.
+        /// </summary>
+        internal static string DESCOrder {
+            get {
+                return ResourceManager.GetString("DESCOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not leave a clear name field!.
+        /// </summary>
+        internal static string DontLeaveNameFieldMessage {
+            get {
+                return ResourceManager.GetString("DontLeaveNameFieldMessage", resourceCulture);
             }
         }
         
@@ -108,6 +153,15 @@ namespace RecipeBookSystem.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fats.
+        /// </summary>
+        internal static string FatsText {
+            get {
+                return ResourceManager.GetString("FatsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Incorrect input!.
         /// </summary>
         internal static string IncorrectInputMessage {
@@ -126,12 +180,57 @@ namespace RecipeBookSystem.UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The sum of all product parameters can not be more than 100!.
+        /// </summary>
+        internal static string IncorrectParametersSumMessage {
+            get {
+                return ResourceManager.GetString("IncorrectParametersSumMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap LeftSideImage {
             get {
                 object obj = ResourceManager.GetObject("LeftSideImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ⇓.
+        /// </summary>
+        internal static string LowerSymbol {
+            get {
+                return ResourceManager.GetString("LowerSymbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string NameText {
+            get {
+                return ResourceManager.GetString("NameText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No products yet.
+        /// </summary>
+        internal static string NoProductsYetMessage {
+            get {
+                return ResourceManager.GetString("NoProductsYetMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proteins.
+        /// </summary>
+        internal static string ProteinsText {
+            get {
+                return ResourceManager.GetString("ProteinsText", resourceCulture);
             }
         }
         
@@ -156,20 +255,29 @@ namespace RecipeBookSystem.UI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter all fields!.
-        /// </summary>
-        internal static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Success.
         /// </summary>
         internal static string SuccessMessage {
             get {
                 return ResourceManager.GetString("SuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UPDATE.
+        /// </summary>
+        internal static string UpdateText {
+            get {
+                return ResourceManager.GetString("UpdateText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ⇑.
+        /// </summary>
+        internal static string UpperSymbol {
+            get {
+                return ResourceManager.GetString("UpperSymbol", resourceCulture);
             }
         }
         
@@ -188,6 +296,15 @@ namespace RecipeBookSystem.UI.Properties {
         internal static string WarningMessage {
             get {
                 return ResourceManager.GetString("WarningMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect input.
+        /// </summary>
+        internal static string yhhh {
+            get {
+                return ResourceManager.GetString("yhhh", resourceCulture);
             }
         }
     }

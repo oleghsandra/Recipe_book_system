@@ -120,9 +120,24 @@
   <data name="AddedMessame" xml:space="preserve">
     <value> Added</value>
   </data>
+  <data name="AddProductMessage" xml:space="preserve">
+    <value>ADD PRODUCT</value>
+  </data>
+  <data name="ASCOrder" xml:space="preserve">
+    <value>ASC</value>
+  </data>
+  <data name="CarbohydratesText" xml:space="preserve">
+    <value>Carbohydrates</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="DeleteIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeleteIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DESCOrder" xml:space="preserve">
+    <value>DESC</value>
+  </data>
+  <data name="DontLeaveNameFieldMessage" xml:space="preserve">
+    <value>Do not leave a clear name field!</value>
   </data>
   <data name="EditIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AditIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -133,14 +148,32 @@
   <data name="ErrorMessage" xml:space="preserve">
     <value>Error!</value>
   </data>
+  <data name="FatsText" xml:space="preserve">
+    <value>Fats</value>
+  </data>
   <data name="IncorrectInputMessage" xml:space="preserve">
     <value>Incorrect input!</value>
   </data>
   <data name="IncorrectLoginPasswordMessage" xml:space="preserve">
     <value>Incorrect login or password</value>
   </data>
+  <data name="IncorrectParametersSumMessage" xml:space="preserve">
+    <value>The sum of all product parameters can not be more than 100!</value>
+  </data>
   <data name="LeftSideImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LowerSymbol" xml:space="preserve">
+    <value>⇓</value>
+  </data>
+  <data name="NameText" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NoProductsYetMessage" xml:space="preserve">
+    <value>No products yet</value>
+  </data>
+  <data name="ProteinsText" xml:space="preserve">
+    <value>Proteins</value>
   </data>
   <data name="RightSideImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,16 +181,22 @@
   <data name="Spinner" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\default.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value>Enter all fields!</value>
-  </data>
   <data name="SuccessMessage" xml:space="preserve">
     <value>Success</value>
+  </data>
+  <data name="UpdateText" xml:space="preserve">
+    <value>UPDATE</value>
+  </data>
+  <data name="UpperSymbol" xml:space="preserve">
+    <value>⇑</value>
   </data>
   <data name="UserExistsMessage" xml:space="preserve">
     <value>User already exists!</value>
   </data>
   <data name="WarningMessage" xml:space="preserve">
     <value>Warning!</value>
+  </data>
+  <data name="yhhh" xml:space="preserve">
+    <value>Incorrect input</value>
   </data>
 </root>
