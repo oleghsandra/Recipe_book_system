@@ -1,4 +1,6 @@
-﻿namespace RecipeBookSystem.Model.Models
+﻿using System.Collections.Generic;
+
+namespace RecipeBookSystem.Model.Models
 {
     /// <summary>
     /// The class that describes model of the dish
@@ -34,5 +36,10 @@
         /// Link on the big photo in the internet
         /// </summary>
         public string BigPhotoLink { get; set; }
+
+        /// <summary>
+        /// List of the included ingredients
+        /// </summary>
+        public List<IngredientModel> Ingredients { get; set; }
     }
 }

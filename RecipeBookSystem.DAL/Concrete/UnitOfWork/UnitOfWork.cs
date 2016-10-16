@@ -2,10 +2,6 @@
 using RecipeBookSystem.DAL.Abstraction.UnitOfWork;
 using RecipeBookSystem.DAL.Concrete.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RecipeBookSystem.DAL.Concrete.UnitOfWork
 {

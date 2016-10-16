@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RecipeBookSystem.SqlQueries
 		Create.sql = Create.sql
 		Delete.sql = Delete.sql
 		Insert.sql = Insert.sql
+		Procs.sql = Procs.sql
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBookSystem.DAL", "RecipeBookSystem.DAL\RecipeBookSystem.DAL.csproj", "{F2C33962-1787-4CDD-8C25-815A7DE0E457}"
@@ -17,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBookSystem.BL", "RecipeBookSystem.BL\RecipeBookSystem.BL.csproj", "{DF9E2456-F79B-426C-875B-F5FA85DC67E9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBookSystem.UI", "RecipeBookSystem.UI\RecipeBookSystem.UI.csproj", "{DF45D3D0-C667-4480-9D6D-A3FF9157BCF1}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "RecipeBookSystem.Setup", "RecipeBookSystem.Setup\RecipeBookSystem.Setup.vdproj", "{E1C0960F-DA0D-4F82-889F-F457F0A1C288}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +43,8 @@ Global
 		{DF45D3D0-C667-4480-9D6D-A3FF9157BCF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF45D3D0-C667-4480-9D6D-A3FF9157BCF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF45D3D0-C667-4480-9D6D-A3FF9157BCF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1C0960F-DA0D-4F82-889F-F457F0A1C288}.Debug|Any CPU.ActiveCfg = Debug
+		{E1C0960F-DA0D-4F82-889F-F457F0A1C288}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

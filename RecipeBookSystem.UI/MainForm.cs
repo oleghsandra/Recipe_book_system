@@ -73,8 +73,10 @@ namespace RecipeBookSystem.UI
             ingredientProvider = new IngredientProvider();
             dishProvider = new DishProvider();
 
+            //Common Font for all Labels in the forms
             commonFont = new Font("Berlin Sans FB", 14F);
 
+            //Common Table Padding without horisontal ScrollBar
             commonTablePadding = new Padding(0, 0, SystemInformation.VerticalScrollBarWidth, 0);
         }
 
@@ -82,6 +84,7 @@ namespace RecipeBookSystem.UI
         {
             this.productsManipulationPlan = ProductsManipulationPlan.CreatingNewProduct;
 
+            //Initialize all pages
             InitializeProductList();
             InitializeRecipeAdding();
             InitializeDishList();
@@ -96,7 +99,7 @@ namespace RecipeBookSystem.UI
 
             this.selectedProducts = new List<ProductModel>();
             this.productItems = new List<ProductItem>();
-
+            
             this.sortButtons = new Control[sortButtonCount];
 
             productsGridOptions = new ProductsGridOptions()
@@ -114,6 +117,7 @@ namespace RecipeBookSystem.UI
                 MessageBox.Show(ex.Message, "Error");
             }
 
+            //Fill filterProductComboBox with all available product type
             foreach (var productType in productTypes)
             {
                 filterProductComboBox.Items.Insert(productType.Id, productType.Name);
@@ -136,6 +140,7 @@ namespace RecipeBookSystem.UI
 
             this.makeRecipeButton.Hide();
 
+            //Filter froduct when value of ComboBox is changed
             this.filterProductComboBox.SelectedValueChanged += (sender, e) =>
             {
                 filterProducts();
@@ -143,6 +148,7 @@ namespace RecipeBookSystem.UI
 
             this.backgroundProductImageUploader.WorkerSupportsCancellation = true;
             showProducts();
+
             this.backgroundProductImageUploader.RunWorkerAsync();
         }
 
@@ -164,6 +170,7 @@ namespace RecipeBookSystem.UI
             }
             else
             {
+                //Hide makeRecipeButton when there no eny selected product
                 this.makeRecipeButton.Hide();
             }
         }
@@ -172,7 +179,6 @@ namespace RecipeBookSystem.UI
         {
             this.backgroundProductImageUploader.CancelAsync();
             clearTable();
-            //this.rightSideProductListButton.Enabled = true;
 
             int row = productItems.Count;
 
@@ -199,6 +205,7 @@ namespace RecipeBookSystem.UI
             {
                 this.productsGridOptions.PageNumber = 1;
                 this.leftSideProductListButton.Enabled = false;
+
                 try
                 {
                     filteredProducts = productProvider.SearchProductByName(
@@ -413,7 +420,7 @@ namespace RecipeBookSystem.UI
         {
             sortProducts((Button)sender, "Proteins");
         }
-        //Додати в проект модел сорт пропертісз цими констатнатами
+
         private void fatsSortButton_Click(object sender, EventArgs e)
         {
             sortProducts((Button)sender, "Fats");

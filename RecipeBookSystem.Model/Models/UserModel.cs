@@ -1,4 +1,6 @@
-﻿namespace RecipeBookSystem.Model.Models
+﻿using System.Collections.Generic;
+
+namespace RecipeBookSystem.Model.Models
 {
     /// <summary>
     /// The class that describes model of the user
@@ -24,5 +26,10 @@
         /// User's private password
         /// </summary>
         public string Password { get; set; }
+
+        /// <summary>
+        /// List of the personal dishes
+        /// </summary>
+        public List<DishModel> Ingredients { get; set; }
     }
 }

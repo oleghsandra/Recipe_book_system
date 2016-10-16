@@ -33,6 +33,7 @@
             this.pages = new MaterialSkin.Controls.MaterialTabControl();
             this.productsPage = new System.Windows.Forms.TabPage();
             this.noMoreProductMessageLabel = new System.Windows.Forms.Label();
+            this.labelWithMyName = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.searchProductTextField = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -96,7 +97,6 @@
             this.newRecipeImageLabel = new System.Windows.Forms.Label();
             this.newRecipePhotoAddLabel = new System.Windows.Forms.Label();
             this.newRecipeNameTextField = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.labelWithMyName = new System.Windows.Forms.Label();
             this.pages.SuspendLayout();
             this.productsPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -122,7 +122,7 @@
             this.pageSelector.Location = new System.Drawing.Point(-3, 24);
             this.pageSelector.MouseState = MaterialSkin.MouseState.HOVER;
             this.pageSelector.Name = "pageSelector";
-            this.pageSelector.Size = new System.Drawing.Size(709, 48);
+            this.pageSelector.Size = new System.Drawing.Size(702, 42);
             this.pageSelector.TabIndex = 2;
             this.pageSelector.Text = "pageSelector";
             // 
@@ -134,7 +134,7 @@
             this.pages.Controls.Add(this.addingProductPage);
             this.pages.Controls.Add(this.addingRecipePage);
             this.pages.Depth = 0;
-            this.pages.Location = new System.Drawing.Point(12, 56);
+            this.pages.Location = new System.Drawing.Point(9, 50);
             this.pages.MouseState = MaterialSkin.MouseState.HOVER;
             this.pages.Name = "pages";
             this.pages.SelectedIndex = 0;
@@ -146,6 +146,7 @@
             // 
             this.productsPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.productsPage.Controls.Add(this.noMoreProductMessageLabel);
+            this.productsPage.Controls.Add(this.labelWithMyName);
             this.productsPage.Controls.Add(this.label17);
             this.productsPage.Controls.Add(this.searchProductTextField);
             this.productsPage.Controls.Add(this.groupBox1);
@@ -182,6 +183,18 @@
             this.noMoreProductMessageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.noMoreProductMessageLabel.Visible = false;
             this.noMoreProductMessageLabel.Click += new System.EventHandler(this.noMoreProductMessageLabel_Click);
+            // 
+            // labelWithMyName
+            // 
+            this.labelWithMyName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelWithMyName.AutoEllipsis = true;
+            this.labelWithMyName.AutoSize = true;
+            this.labelWithMyName.Font = new System.Drawing.Font("Brush Script MT", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelWithMyName.Location = new System.Drawing.Point(586, 504);
+            this.labelWithMyName.Name = "labelWithMyName";
+            this.labelWithMyName.Size = new System.Drawing.Size(92, 18);
+            this.labelWithMyName.TabIndex = 3;
+            this.labelWithMyName.Text = "Designed by Oleg";
             // 
             // label17
             // 
@@ -807,7 +820,7 @@
             this.creatingProductFatsTextField.SelectedText = "";
             this.creatingProductFatsTextField.SelectionLength = 0;
             this.creatingProductFatsTextField.SelectionStart = 0;
-            this.creatingProductFatsTextField.Size = new System.Drawing.Size(7, 23);
+            this.creatingProductFatsTextField.Size = new System.Drawing.Size(37, 23);
             this.creatingProductFatsTextField.TabIndex = 2;
             this.creatingProductFatsTextField.Text = "0";
             this.creatingProductFatsTextField.UseSystemPasswordChar = false;
@@ -1002,27 +1015,14 @@
             this.newRecipeNameTextField.TabIndex = 13;
             this.newRecipeNameTextField.UseSystemPasswordChar = false;
             // 
-            // labelWithMyName
-            // 
-            this.labelWithMyName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelWithMyName.AutoEllipsis = true;
-            this.labelWithMyName.AutoSize = true;
-            this.labelWithMyName.Font = new System.Drawing.Font("Brush Script MT", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelWithMyName.Location = new System.Drawing.Point(602, 607);
-            this.labelWithMyName.Name = "labelWithMyName";
-            this.labelWithMyName.Size = new System.Drawing.Size(92, 18);
-            this.labelWithMyName.TabIndex = 3;
-            this.labelWithMyName.Text = "Designed by Oleg";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoScrollMinSize = new System.Drawing.Size(0, 24);
-            this.ClientSize = new System.Drawing.Size(706, 614);
+            this.ClientSize = new System.Drawing.Size(700, 614);
             this.Controls.Add(this.pageSelector);
-            this.Controls.Add(this.labelWithMyName);
             this.Controls.Add(this.pages);
             this.Name = "MainForm";
             this.Text = "Form1";
@@ -1046,7 +1046,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

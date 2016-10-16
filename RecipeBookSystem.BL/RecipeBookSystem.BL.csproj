@@ -54,6 +54,7 @@
     <Compile Include="Helpers\Abstraction\ICloudHelper.cs" />
     <Compile Include="Helpers\CloudHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Helpers\PasswordEncryptionProvider.cs" />
     <Compile Include="ModelProviders\DishProvider.cs" />
     <Compile Include="ModelProviders\IngredientProvider.cs" />
     <Compile Include="ModelProviders\ProductProvider.cs" />

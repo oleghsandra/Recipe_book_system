@@ -66,7 +66,6 @@
     <Compile Include="Concrete\UnitOfWork\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\RecipeBookSystem.Model\RecipeBookSystem.Model.csproj">
       <Project>{284717BB-A680-432D-A9C2-CEEE5B20A522}</Project>

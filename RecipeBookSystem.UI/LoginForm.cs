@@ -1,4 +1,5 @@
-﻿using RecipeBookSystem.BL.ModelProviders;
+﻿using RecipeBookSystem.BL.Helpers;
+using RecipeBookSystem.BL.ModelProviders;
 using RecipeBookSystem.Model.Models;
 using RecipeBookSystem.UI.Models.FormModels;
 using RecipeBookSystem.UI.Properties;
@@ -54,7 +55,7 @@ namespace RecipeBookSystem.UI
             var newUser = new UserModel() {
                 Name = name,
                 Email = email,
-                Password = password
+                Password = PasswordEncryptionProvider.EncryptPassword(password)
             };
 
             bool wasUserAdded;
@@ -101,7 +102,7 @@ namespace RecipeBookSystem.UI
 
             try
             {
-                user = userProvider.GetUser(email, password);
+                user = userProvider.GetUser(email, PasswordEncryptionProvider.EncryptPassword(password));
             }
             catch (Exception ex)
             {
