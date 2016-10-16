@@ -4,6 +4,7 @@ GO
 --Adding test user
 EXEC spUsers_Add 'TestUser', 'test@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055';
 
+
 --Adding product types
 EXEC spProductType_Add 'Fish', 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1475326464/kzmh7l9e1d2qlrhamapq.png', NULL;
 EXEC spProductType_Add 'Meat', 'https://res.cloudinary.com/dubbhhxmr/image/upload/v1475326507/qex3tsixufmhk0x5bc9u.png', NULL;
