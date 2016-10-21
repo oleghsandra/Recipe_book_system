@@ -28,6 +28,9 @@ namespace RecipeBookSystem.DAL.Concrete.UnitOfWork
             throw new NotImplementedException();
         }
 
+        //Review RZ: for example
+        //public IDishRepository DishRepository => _dishRepository ?? (_dishRepository = new DishRepository(_connection));
+
         public IDishRepository DishRepository
         {
             get
