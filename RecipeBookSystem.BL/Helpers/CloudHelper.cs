@@ -36,6 +36,8 @@ namespace RecipeBookSystem.BL.Helpers
         /// <returns>String - image link in the internet</returns>
         public string UploadImage(string imagePath)
         {
+            //Review RZ: use 'var' keyword 
+        
             ImageUploadParams uploadParams = new ImageUploadParams()
             {
                 File = new FileDescription(imagePath)
