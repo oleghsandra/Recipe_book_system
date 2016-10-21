@@ -9,6 +9,8 @@ namespace RecipeBookSystem.UI.Models.FormModels
     /// </summary>
     public class MaterialFormBaseModel : MaterialForm
     {
+         //Review RZ: all private fields should begin from underscore
+         
         private MaterialSkinManager skipManager;
 
         public MaterialFormBaseModel()
