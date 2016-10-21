@@ -22,6 +22,8 @@ namespace RecipeBookSystem.UI
             private set;
         }
 
+        //Review RZ: all private fields should begin from underscore
+        
         private readonly UserProvider userProvider;
 
         public LoginForm()
