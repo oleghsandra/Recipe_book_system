@@ -1,5 +1,7 @@
 ﻿namespace RecipeBookSystem.UI.Models
 {
+    // Review RZ: summary for properties must start with words 'Gets' or 'Sets'. 
+
     /// <summary>
     /// Class contains fields as parameters
     /// to getting product stored procedures
