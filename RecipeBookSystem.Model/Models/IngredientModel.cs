@@ -1,5 +1,7 @@
 ﻿namespace RecipeBookSystem.Model.Models
 {
+    // Review RZ: summary for properties must start with words 'Gets' or 'Sets'. 
+    
     /// <summary>
     /// The class that describes model of the ingredient
     /// </summary>
@@ -15,6 +17,8 @@
         /// </summary>
         public int DishId { get; set; }
 
+        //Review RZ: would be better to have property of Product model instead of ProductId and ProductName
+        
         /// <summary>
         /// Identity of Product that includes in the dish
         /// </summary>
