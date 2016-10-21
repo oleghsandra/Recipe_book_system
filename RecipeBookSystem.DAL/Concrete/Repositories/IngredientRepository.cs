@@ -28,7 +28,9 @@ namespace RecipeBookSystem.DAL.Concrete.Repositories
             {
                 new SqlParameter(StoredProcedureParameters.DishId, dishId),
             };
-
+            
+            //Review RZ: you create unnecessary variable. Think about performance!
+            
             var dishIngredients = base.ExecuteReader(StoredProcedureNames.spGetDishIngredients,
                 IngredientParser.MakeBuildingResult, parameters);
 
