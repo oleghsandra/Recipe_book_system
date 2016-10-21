@@ -5,6 +5,9 @@ using System;
 
 namespace RecipeBookSystem.DAL.Concrete.UnitOfWork
 {
+    //Review RZ: you can use expression body for 'only get properties'.
+    //Review RZ: if you start commetn you project - comment all!
+
     public class UnitOfWork : IUnitOfWork
     {
         private readonly string _connection;
