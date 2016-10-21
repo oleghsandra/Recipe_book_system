@@ -25,6 +25,8 @@ namespace RecipeBookSystem.DAL.Concrete.Repositories
             Func<SqlDataReader, TEntity> callback, 
             SqlParameter[] parameters = null)
         {
+            //Review RZ: you create unnecessary variable. Think about performance!
+            
             var result = SqlWrapper.ExecuteReader(spName, parameters, callback);
             return (IEnumerable<TEntity>)result;
         }

@@ -4,6 +4,8 @@ using System.Drawing;
 
 namespace RecipeBookSystem.UI.Models
 {
+    // Review RZ: summary for properties must start with words 'Gets' or 'Sets'.
+    
     class DishItem
     {
         /// <summary>

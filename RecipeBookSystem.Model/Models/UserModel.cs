@@ -2,6 +2,8 @@
 
 namespace RecipeBookSystem.Model.Models
 {
+    // Review RZ: summary for properties must start with words 'Gets' or 'Sets'.
+
     /// <summary>
     /// The class that describes model of the user
     /// </summary>

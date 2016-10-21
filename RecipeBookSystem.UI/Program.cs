@@ -1,4 +1,5 @@
 ﻿using System;
+//Review RZ: unused namespaces shoud remove
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +9,8 @@ namespace RecipeBookSystem.UI
 {
     static class Program
     {
+        // Review RZ: should write comments in english  
+        
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
@@ -22,6 +25,9 @@ namespace RecipeBookSystem.UI
             {
                 return;
             }
+            
+            // Review RZ: this comment has not sense
+            
             //перейменувати CurrentUser в LogedUser
             Application.Run(new MainForm(loginForm.CurrentUser));
         }

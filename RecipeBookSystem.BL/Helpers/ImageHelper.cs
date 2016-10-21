@@ -149,6 +149,8 @@ namespace RecipeBookSystem.BL.Helpers
             }
         }
 
+        //Review RZ: methods should name with first big letter
+        
         private string getAssemblyDirectory()
         {
             string codeBase = Assembly.GetExecutingAssembly().CodeBase;

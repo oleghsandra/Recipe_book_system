@@ -8,6 +8,8 @@ namespace RecipeBookSystem.DAL.Concrete.Parsers
     {
         public static IngredientModel MakeBuildingResult(SqlDataReader reader)
         {
+            //Review RZ: it would be greate to use object initializer
+            
             var model = new IngredientModel();
 
             model.Id = reader.Get<int>(ColumnNames.IngredientId);

@@ -20,6 +20,8 @@ namespace RecipeBookSystem.DAL.Concrete.Repositories
         /// <returns>List of all available product types</returns>
         public IEnumerable<ProductTypeModel> GetAllProductTypes()
         {
+            //Review RZ: you create unnecessary variable. Think about performance!
+        
             var productTypes = base.ExecuteReader(StoredProcedureNames.spGetAllProductTypes,
                 ProductTypeParser.MakeBuildingResult);
 

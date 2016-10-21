@@ -22,6 +22,8 @@ namespace RecipeBookSystem.UI
             private set;
         }
 
+        //Review RZ: all private fields should begin from underscore
+        
         private readonly UserProvider userProvider;
 
         public LoginForm()
@@ -128,6 +130,8 @@ namespace RecipeBookSystem.UI
             showLoginMenu();
         }
 
+        //Review RZ: all methods should begin from big letter
+        
         private void showRegisterMenu()
         {
             clearFields();

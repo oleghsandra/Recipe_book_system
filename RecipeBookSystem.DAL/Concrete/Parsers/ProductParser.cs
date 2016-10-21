@@ -8,6 +8,8 @@ namespace RecipeBookSystem.DAL.Concrete.Parsers
     {
         public static ProductModel MakeBuildingResult(SqlDataReader reader)
         {
+            //Review RZ: it would be greate to use object initializer
+            
             var model = new ProductModel();
             model.ProductTypeModel = new ProductTypeModel();
 
