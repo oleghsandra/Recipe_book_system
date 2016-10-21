@@ -17,6 +17,11 @@ using System.Windows.Forms;
 
 namespace RecipeBookSystem.UI
 { 
+    //Review RZ: all private fields should begin from underscore
+    //Review RZ: all methods should begin from big letter and private methods too!
+    //Review RZ: try to use object initializator
+    //Review RZ: use TPL instead of 'Thread' and Background Worker class
+
     public partial class MainForm : MaterialFormBaseModel
     {   
         private const int sortButtonCount = 4;
