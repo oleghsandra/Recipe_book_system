@@ -2,6 +2,9 @@
 
 namespace RecipeBookSystem.Model.Models
 {
+    // Review RZ: summary for properties must start with words 'Gets' or 'Sets'. 
+    // Review RZ: In my opinion, not all properties need summary, because their actions are understandable by names.
+
     /// <summary>
     /// The class that describes model of the dish
     /// </summary>
