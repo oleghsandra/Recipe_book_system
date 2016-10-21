@@ -8,6 +8,8 @@ namespace RecipeBookSystem.BL.Helpers
     /// </summary>
     public static class PasswordEncryptionProvider
     {
+        //Review RZ: use 'var' keyword
+        
         public static string EncryptPassword(string password)
         {
             // Create a new instance of the MD5CryptoServiceProvider object.
