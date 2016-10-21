@@ -17,6 +17,11 @@ using System.Windows.Forms;
 
 namespace RecipeBookSystem.UI
 { 
+    //Review RZ: all private fields should begin from underscore
+    //Review RZ: all methods should begin from big letter and private methods too!
+    //Review RZ: try to use object initializator
+    //Review RZ: use TPL instead of 'Thread' and Background Worker class
+    
     public partial class MainForm : MaterialFormBaseModel
     {   
         private const int sortButtonCount = 4;
@@ -397,6 +402,9 @@ namespace RecipeBookSystem.UI
         {
             //New Thread created to provide releasing the background 
             //worker for next image loading process.
+            
+            ////Review RZ: maybe would be better to use TPL
+            
             Thread imageLoader = new Thread(() =>
             {
                 showProductsImages();
@@ -637,7 +645,9 @@ namespace RecipeBookSystem.UI
             bool hasCarbsValue = Single.TryParse(
                 this.creatingProductCarbsTextField.Text, 
                 out newProductCarbsCount);
-
+            
+            //Review RZ: 'else' has not metter
+            
             if (newProductName == string.Empty)
             {
                 MessageBox.Show("Do not leave a clear name field!", Resources.WarningMessage);
@@ -737,9 +747,11 @@ namespace RecipeBookSystem.UI
             {
                 return;
             }
-
+            
             var newImage = new Bitmap(newImagePath);
-
+            
+            //Review RZ: maybe would be better to use TPL
+            
             if (newImage != null)
             {
                 Thread newImageLoader = new Thread(() =>
@@ -860,9 +872,11 @@ namespace RecipeBookSystem.UI
                 return;
             }
             var newImage = new Bitmap(newImagePath);
-
+            
             if (newImage != null)
             {
+                //Review RZ: mybe would be better to use TPL
+                
                 Thread newImageLoader = new Thread(() =>
                 {
                     this.newDishModel.BigPhotoLink = loadNewImage(
@@ -1036,7 +1050,9 @@ namespace RecipeBookSystem.UI
                 ingredientInfo.Append(ingredient.Weight);
                 ingredientsListBox.Items.Add(ingredientInfo.ToString());
             }
-
+            
+            //Review RZ: mybe would be better to use TPL
+            
             Thread imageLoader = new Thread(() =>
             {
                 showDisheImage(imageLabel, dishToShow);
