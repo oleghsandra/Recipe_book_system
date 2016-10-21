@@ -128,6 +128,8 @@ namespace RecipeBookSystem.UI
             showLoginMenu();
         }
 
+        //Review RZ: all methods should begin from big letter
+        
         private void showRegisterMenu()
         {
             clearFields();
