@@ -39,7 +39,9 @@ namespace RecipeBookSystem.DAL.Concrete.Repositories
                 new SqlParameter(StoredProcedureParameters.SortOrder, sortOrder),
                 new SqlParameter(StoredProcedureParameters.FilterProductTypeId, filterProductTypeId)
             };
-
+            
+            //Review RZ: you create unnecessary variable. Think about performance!
+            
             var products = base.ExecuteReader(
                 StoredProcedureNames.spGetProduct,
                 ProductParser.MakeBuildingResult,
