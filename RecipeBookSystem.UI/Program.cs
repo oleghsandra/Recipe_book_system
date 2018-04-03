@@ -16,14 +16,18 @@ namespace RecipeBookSystem.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            LoginForm loginForm = new LoginForm();
-            if (loginForm.ShowDialog() != DialogResult.OK)
+            
+            while(true)
             {
-                return;
+                LoginForm loginForm = new LoginForm();
+
+                if (loginForm.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                Application.Run(new MainForm(loginForm.CurrentUser));
             }
-            //перейменувати CurrentUser в LogedUser
-            Application.Run(new MainForm(loginForm.CurrentUser));
         }
     }
 }

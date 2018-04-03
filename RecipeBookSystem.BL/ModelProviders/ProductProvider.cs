@@ -74,6 +74,29 @@ namespace RecipeBookSystem.BL.ModelProviders
         /// <summary>
         /// Updates available product in DB
         /// </summary>
+        /// <param name="updateProductId">Product to update</param>
+        public void UpdateProduct(ProductModel updateProductModel)
+        {
+            try
+            {
+                _productRepository.UpdateProduct(
+                    updateProductModel.Id,
+                    updateProductModel.Name,
+                    updateProductModel.ProductTypeModel.Id,
+                    updateProductModel.Proteins,
+                    updateProductModel.Fats,
+                    updateProductModel.Carbohydrates,
+                    updateProductModel.SmallPhotoLink);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while updating product: " + ex.Message, ex);
+            }
+        }
+
+        /// <summary>
+        /// Updates available product in DB
+        /// </summary>
         /// <param name="updateProductId">Id of the product to update</param>
         /// <param name="name">New name of the product</param>
         /// <param name="productTypeId">New product type id of the product</param>
