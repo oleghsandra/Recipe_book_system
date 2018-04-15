@@ -40,7 +40,7 @@ namespace RecipeBookSystem.BL.Helpers
             {
                 File = new FileDescription(imagePath)
             };
-
+            
             var uploadResult = _cloudinary.Upload(uploadParams);
 
             return uploadResult.SecureUri.ToString();

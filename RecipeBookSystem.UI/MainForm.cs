@@ -785,7 +785,7 @@ namespace RecipeBookSystem.UI
 
                 return newImageLink;
             }
-            catch
+            catch (Exception ex)
             {
                 element.Image = defaultImage;
                 return null;

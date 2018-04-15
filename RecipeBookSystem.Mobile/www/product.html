@@ -1,0 +1,35 @@
+﻿<form id="new-product-form">
+    <div class="form-group row">
+        <label for="product-name" class="col-2 col-form-label">Name</label>
+        <div class="col-10">
+            <input class="form-control" name="Name" type="text" value="" id="product-name">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="product-type" class="col-2 col-form-label">Product type</label>
+        <div class="col-10">
+            <select class="form-control" name="ProductTypeModel.Id" id="product-type"></select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="product-proteins" class="col-2 col-form-label">Proteins</label>
+        <div class="col-10">
+            <input class="form-control" name="Proteins" type="number" value="0" min="0" max="100" id="product-proteins">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="product-fats" class="col-2 col-form-label">Fats</label>
+        <div class="col-10">
+            <input class="form-control" name="Fats" type="number" value="0" min="0" max="100" id="product-fats">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="product-carbohydrads" class="col-2 col-form-label">Carbohydrads</label>
+        <div class="col-10">
+            <input class="form-control" name="Carbohydrates" type="number" value="0" min="0" max="100" id="product-carbohydrads">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-info" id="submit-new-product">Add Product</button>
+    </div>
+</form>

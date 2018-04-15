@@ -1,0 +1,50 @@
+﻿<div class="row">
+    <div class="col-sm-6" style="text-align: right">
+        <div class="input-group">
+            <input type="text" class="form-control" id="input-search-product" placeholder="Search for...">
+            <span class="input-group-btn">
+                <button class="btn btn-info" type="button" id="btn-search-product">Search</button>
+            </span>
+        </div>
+    </div>
+    <div class="col-sm-6" style="text-align: right">
+        <button class="btn products-list-pagination-btn products-list-pagination-btn-left" disabled />
+        <button class="btn products-list-pagination-btn products-list-pagination-btn-right" />
+    </div>
+</div>
+
+<div class="col-sm-6 card-with-product-item card-with-product-item-layout" style="display:none">
+    <div class="card">
+        <div class="card-body">
+            <div class="row" style="text-align: right">
+                <button class="btn products-delete" />
+            </div>
+            <span class="products-id" style="display: none"></span>
+            <h3 style="text-align:center" class="products-name-header">
+                <span class="products-name"></span> (<span class="products-type"></span>)
+            </h3>
+            <div class="row">
+                <img class="products-image" />
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Proteins: <span class="products-proteins"></span></li>
+                        <li class="list-group-item">Fats: <span class="products-fats"></span></li>
+                        <li class="list-group-item">Carbs: <span class="products-carbs"></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="products-cards">
+</div>
+
+<div class="row">
+    <div class="col-sm-12" style="text-align: right">
+        <button class="btn products-list-pagination-btn products-list-pagination-btn-left" disabled />
+        <button class="btn products-list-pagination-btn products-list-pagination-btn-right" />
+    </div>
+</div>

@@ -1,7 +1,21 @@
 {
-    "name": "RecipeBookSystem.Mobile",
-    "version": "1.0.0",
-    "private": true,
-    "dependencies": {
+  "name": "RecipeBookSystem.Mobile",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "cordova-android": "^6.2.1",
+    "cordova-ios": "4.2.0",
+    "cordova-plugin-whitelist": "1.2.2",
+    "cordova-windows": "4.4.2"
+  },
+  "cordova": {
+    "platforms": [
+      "android",
+      "ios",
+      "windows"
+    ],
+    "plugins": {
+      "cordova-plugin-whitelist": {}
     }
+  }
 }

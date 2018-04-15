@@ -1,29 +1,71 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-    <!--
-        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
-        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
-    -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-        
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>RecipeBookSystem.Mobile</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Hello Oleg</p>
+<head>
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src * " />
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="../Content/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../Content/jquery.mobile-1.4.5.min.css" />
+
+    <title>RecipeBookSystem.Mobile</title>
+</head>
+<body>
+    <div class="container">
+        <div id="content">
+            <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                <li id="dishes-tab-selector" style="display: none">
+                    <a href="#dishes-tab" data-toggle="tab">Dishes</a>
+                </li>
+                <li id="products-tab-selector">
+                    <a href="#products-tab" data-toggle="tab">Products</a>
+                </li>
+                <li>
+                    <a href="#product-tab" data-toggle="tab">Product</a>
+                </li>
+                <li class="active">
+                    <a href="#login-tab" data-toggle="tab">Login</a>
+                </li>
+            </ul>
+        </div>
+        <div id="my-tab-content" class="tab-content">
+            <div class="tab-pane active" id="login-tab">
+                <div class="wrapper">
+                    <form action="" method="post" name="Login_Form" class="form-signin">
+                        <h1>Login</h1>
+                        <hr class="colorgraph"><br>
+
+                        <input type="text" class="form-control" id="Username" name="Username" placeholder="Username" autofocus="" value="test@gmail.com" />
+                        <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" value="1234" />
+
+                        <button class="btn btn-lg btn-primary btn-block" value="Login" id="login-btn">Login</button>
+                    </form>
+                </div>
+            </div>
+            <div class="tab-pane" id="products-tab" data-target-page="products.html">
+            </div>
+            <div class="tab-pane" id="dishes-tab" data-target-page="dishes.html">
+            </div>
+            <div class="tab-pane" id="product-tab" data-target-page="product.html">
+            </div>
+            <div class="tab-pane" id="dish-tab" data-target-page="dish.html">
             </div>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="scripts/platformOverrides.js"></script>
-        <script type="text/javascript" src="scripts/index.js"></script>
-    </body>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+    <script type="text/javascript" src="scripts/requestUrls.js"></script>
+    <script type="text/javascript" src="scripts/dish.js"></script>
+    <script type="text/javascript" src="scripts/dishesList.js"></script>
+    <script type="text/javascript" src="scripts/product.js"></script>
+    <script type="text/javascript" src="scripts/productsList.js"></script>
+    <script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+</body>
 </html>
